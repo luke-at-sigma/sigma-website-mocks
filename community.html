@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Community — Sigma Computing</title>
+
+  <!-- Sigma's actual CSS — same file as sigmacomputing.com -->
+  <link href="https://cdn.prod.website-files.com/666bbba4ff7240a20f4ccccf/css/resigma-staging.shared.4acbd1f04.min.css" rel="stylesheet" type="text/css" crossorigin="anonymous">
+
+  <style>
+    /* ─── Design system tokens (mirrors Sigma's CSS variables) ─── */
+    :root {
+      --neutral-0:  #ffffff;
+      --neutral-3:  #f5f6f8;
+      --neutral-6:  #e2e6ec;
+      --neutral-8:  #c6cdd8;
+      --neutral-9:  #9aa4b2;
+      --neutral-12: #1c1c1c;
+      --text-main:  #1c1c1c;
+      --text-secondary: #5a6475;
+      --stratus:    #8a95a3;
+      --shadow:     #292929;
+      --insight:    #f0ff45;
+      --primary-blue: #1a70f1;
+      --primary-blue-hover: #155ac1;
+    }
+
+    /* ─── Sigma .button (matches inline styles on real pages) ─── */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.5rem;
+      border: 1px solid #1a70f1;
+      border-radius: .5rem;
+      background-color: #1a70f1;
+      color: #fff;
+      font-family: Dmsans, sans-serif;
+      font-size: .9375rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 300ms, box-shadow 300ms;
+    }
+    .button:hover { background-color: #155ac1; border-color: #155ac1; color: #fff; }
+    .button.is-alternate {
+      background-color: transparent;
+      border-color: var(--neutral-6);
+      color: var(--text-main);
+    }
+    .button.is-alternate:hover { background-color: var(--neutral-3); }
+
+    /* ─── Page layout helpers ─── */
+    .community-container {
+      max-width: 76rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+
+    /* ─── HERO ─── */
+    .community-hero {
+      background-color: #f8f9fb;
+      border-bottom: 1px solid var(--neutral-6);
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .community-hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      background-color: rgba(26, 112, 241, .08);
+      border: 1px solid rgba(26, 112, 241, .2);
+      color: #1a70f1;
+      font-family: Dmsans, sans-serif;
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: .3125rem .75rem;
+      margin-bottom: 1.5rem;
+    }
+    .community-hero__heading {
+      font-family: Spacegrotesk, sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 700;
+      color: var(--shadow);
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      margin-bottom: 1.25rem;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .community-hero__heading mark {
+      background: none;
+      color: #1a70f1;
+    }
+    .community-hero__sub {
+      font-family: Dmsans, sans-serif;
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .community-hero__search {
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+    .community-hero__search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1rem;
+      height: 1rem;
+      color: var(--stratus);
+      pointer-events: none;
+    }
+    .community-hero__input {
+      width: 100%;
+      padding: .875rem 1rem .875rem 2.75rem;
+      font-family: Dmsans, sans-serif;
+      font-size: .9375rem;
+      background-color: var(--neutral-0);
+      border: 1px solid var(--neutral-6);
+      border-radius: .5rem;
+      box-shadow: 0 1px 3px rgba(28,28,28,.07);
+      outline: none;
+      color: var(--text-main);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .community-hero__input::placeholder { color: var(--stratus); }
+    .community-hero__input:focus {
+      border-color: #1a70f1;
+      box-shadow: 0 0 0 3px rgba(26,112,241,.12);
+    }
+    .community-hero__stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+    }
+    .community-hero__stat {
+      font-family: Dmsans, sans-serif;
+      font-size: .8125rem;
+      color: var(--stratus);
+      padding: 0 1.25rem;
+      border-right: 1px solid var(--neutral-6);
+    }
+    .community-hero__stat:first-child { padding-left: 0; }
+    .community-hero__stat:last-child { border-right: none; padding-right: 0; }
+    .community-hero__stat strong { color: var(--text-main); font-weight: 700; }
+
+    /* ─── SECTIONS ─── */
+    .community-section {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+      border-bottom: 1px solid var(--neutral-6);
+    }
+    .community-section--muted {
+      background-color: var(--neutral-3);
+    }
+    .community-section--compact {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    /* ─── SECTION HEADER ─── */
+    .section-kicker {
+      font-family: Dmsans, sans-serif;
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #1a70f1;
+      margin-bottom: .5rem;
+    }
+    .section-kicker.cc-light { color: var(--stratus); }
+    .section-h2 {
+      font-family: Spacegrotesk, sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -.025em;
+      line-height: 1.15;
+      margin-bottom: .625rem;
+    }
+    .section-h2.cc-light { color: var(--neutral-0); }
+    .section-desc {
+      font-family: Dmsans, sans-serif;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .section-desc.cc-light { color: var(--stratus); }
+    .section-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── ROUTER CARDS ─── */
+    .router-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--neutral-6);
+      border-radius: .5rem;
+      overflow: hidden;
+    }
+    .router-card {
+      background: var(--neutral-0);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .875rem;
+      border-right: 1px solid var(--neutral-6);
+      transition: background-color .15s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .router-card:last-child { border-right: none; }
+    .router-card:hover { background-color: var(--neutral-3); }
+    .router-indicator {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .router-pip {
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+    }
+    .router-level {
+      font-family: Dmsans, sans-serif;
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--stratus);
+    }
+    .router-title {
+      font-family: Spacegrotesk, sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+    .router-desc {
+      font-family: Dmsans, sans-serif;
+      font-size: .9375rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    /* ─── PILLAR GRID ─── */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .pillar-card {
+      background: var(--neutral-0);
+      border: 1px solid var(--neutral-6);
+      border-radius: .5rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .875rem;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    .pillar-card:hover { box-shadow: var(--g-shadow-100, 0 4px 24px #1c1c1c29); border-color: var(--neutral-8); }
+    .pillar-icon-wrap {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: .375rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+    .pillar-title {
+      font-family: Spacegrotesk, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .pillar-desc {
+      font-family: Dmsans, sans-serif;
+      font-size: .875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .pillar-link {
+      font-family: Dmsans, sans-serif;
+      font-size: .6875rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #1a70f1;
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+      transition: color .15s;
+    }
+    .pillar-card:hover .pillar-link { color: #155ac1; }
+
+    /* ─── FEATURED CARDS ─── */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .featured-card {
+      border: 1px solid var(--neutral-6);
+      border-radius: .5rem;
+      overflow: hidden;
+      background: var(--neutral-0);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .featured-card:hover {
+      box-shadow: 0 8px 32px rgba(28,28,28,.1);
+      transform: translateY(-2px);
+    }
+    .featured-thumb {
+      height: 10rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 2.5rem;
+    }
+    .featured-type-tag {
+      position: absolute;
+      top: .75rem;
+      left: .75rem;
+      font-family: Dmsans, sans-serif;
+      font-size: .625rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .25rem .5rem;
+      border-radius: .125rem;
+    }
+    .tag-course  { background: #f3eafc; color: #582fa8; }
+    .tag-guide   { background: #e5eefa; color: #155ac1; }
+    .tag-video   { background: #fbeaca; color: #7a4000; }
+    .featured-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .featured-title {
+      font-family: Spacegrotesk, sans-serif;
+      font-size: .9375rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+    .featured-blurb {
+      font-family: Dmsans, sans-serif;
+      font-size: .875rem;
+      color: var(--text-secondary);
+      flex: 1;
+      line-height: 1.55;
+    }
+    .featured-meta {
+      font-family: Dmsans, sans-serif;
+      font-size: .75rem;
+      color: var(--neutral-9);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .25rem;
+    }
+    .meta-sep { width: 3px; height: 3px; background: var(--neutral-8); border-radius: 50%; }
+
+    /* ─── TOPIC CHIPS ─── */
+    .topic-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .topic-chip {
+      font-family: Dmsans, sans-serif;
+      font-size: .8125rem;
+      font-weight: 600;
+      color: var(--text-main);
+      background: var(--neutral-0);
+      border: 1px solid var(--neutral-6);
+      border-radius: 999px;
+      padding: .4375rem 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .15s, border-color .15s, color .15s;
+    }
+    .topic-chip:hover { background: var(--neutral-12); border-color: var(--neutral-12); color: var(--neutral-0); }
+    .topic-chip.is-active { background: #1a70f1; border-color: #1a70f1; color: var(--neutral-0); }
+
+    /* ─── PUBLIC CARDS ─── */
+    .public-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .public-card {
+      border: 1px solid var(--neutral-6);
+      border-radius: .5rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .public-card:hover {
+      box-shadow: 0 8px 32px rgba(28,28,28,.1);
+      transform: translateY(-2px);
+    }
+    .public-preview {
+      height: 11rem;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+    }
+    .public-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: .375rem;
+      padding: 0 1.25rem 1.25rem;
+      opacity: .5;
+      width: 100%;
+    }
+    .public-bars span {
+      display: block;
+      flex: 1;
+      border-radius: .125rem .125rem 0 0;
+      background: rgba(255,255,255,.75);
+    }
+    .public-badge {
+      position: absolute;
+      top: .75rem;
+      right: .75rem;
+      font-family: Dmsans, sans-serif;
+      font-size: .625rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      border: 1px solid rgba(255,255,255,.25);
+      padding: .1875rem .5rem;
+      border-radius: .125rem;
+    }
+    .public-body { padding: 1rem 1.25rem 1.25rem; }
+    .public-title {
+      font-family: Spacegrotesk, sans-serif;
+      font-size: .9375rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: .375rem;
+    }
+    .public-desc {
+      font-family: Dmsans, sans-serif;
+      font-size: .8125rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ─── COMMUNITY CTA SECTION ─── */
+    .community-cta-section {
+      background-color: var(--shadow);
+      padding: 5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .community-cta-section::before { display: none; }
+    .cta-h2 {
+      font-family: Spacegrotesk, sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--neutral-0);
+      letter-spacing: -.025em;
+      line-height: 1.1;
+      margin-bottom: .875rem;
+    }
+    .cta-sub {
+      font-family: Dmsans, sans-serif;
+      font-size: 1.0625rem;
+      color: var(--stratus);
+      max-width: 380px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.65;
+    }
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    /* Insight CTA button — yellow-green on dark bg */
+    .button-insight {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      background-color: var(--insight);
+      border: 2px solid var(--insight);
+      color: var(--shadow);
+      font-family: Dmsans, sans-serif;
+      font-size: .6875rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-radius: .25rem;
+      padding: .75rem 1rem;
+      text-decoration: none;
+      transition: background-color .2s;
+    }
+    .button-insight:hover { background-color: #d8e63c; border-color: #d8e63c; }
+
+    /* ─── FOOTER ─── */
+    .community-footer {
+      background-color: var(--neutral-0);
+      border-top: 1px solid var(--neutral-6);
+      padding: 1.5rem 2.5rem;
+    }
+    .community-footer__inner {
+      max-width: 76rem;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+    .community-footer__copy {
+      font-family: Dmsans, sans-serif;
+      font-size: .8125rem;
+      color: var(--stratus);
+    }
+    .community-footer__links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .community-footer__links a {
+      font-family: Dmsans, sans-serif;
+      font-size: .8125rem;
+      color: var(--stratus);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .community-footer__links a:hover { color: var(--text-main); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .community-container { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .router-grid { grid-template-columns: 1fr; }
+      .router-card { border-right: none; border-bottom: 1px solid var(--neutral-6); }
+      .router-card:last-child { border-bottom: none; }
+      .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-grid, .public-grid { grid-template-columns: 1fr; }
+      .community-hero { padding: 3rem 1.5rem; }
+      .community-cta-section { padding: 3.5rem 1.5rem; }
+      .community-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+  </style>
+</head>
+<body class="body-3">
+
+<!-- ══════════════ NAV ══════════════ -->
+<style>
+  .sc-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid #e2e6ec;
+    height: 64px;
+    display: flex;
+    align-items: center;
+  }
+  .sc-nav__inner {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .sc-nav__logo { flex-shrink: 0; display: flex; align-items: center; }
+  .sc-nav__logo img { height: 22px; width: auto; display: block; }
+  .sc-nav__links {
+    display: flex;
+    align-items: center;
+    gap: .125rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+  }
+  .sc-nav__link {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    padding: .375rem .75rem;
+    font-family: Dmsans, -apple-system, sans-serif;
+    font-size: .9375rem;
+    font-weight: 500;
+    color: #1c1c1c;
+    text-decoration: none;
+    border-radius: .375rem;
+    transition: background-color .15s, color .15s;
+    white-space: nowrap;
+  }
+  .sc-nav__link:hover { background-color: #f5f6f8; color: #1c1c1c; }
+  .sc-nav__link.is-active { color: #1a70f1; font-weight: 600; }
+  .sc-nav__link svg { opacity: .5; flex-shrink: 0; }
+  .sc-nav__actions {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .sc-nav__login {
+    padding: .375rem .75rem;
+    font-family: Dmsans, -apple-system, sans-serif;
+    font-size: .9375rem;
+    font-weight: 500;
+    color: #1c1c1c;
+    text-decoration: none;
+    border-radius: .375rem;
+    transition: background-color .15s;
+  }
+  .sc-nav__login:hover { background-color: #f5f6f8; }
+  .sc-nav__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: .375rem;
+    padding: .5rem 1.125rem;
+    background-color: #1a70f1;
+    border: 1px solid #1a70f1;
+    border-radius: .5rem;
+    font-family: Dmsans, -apple-system, sans-serif;
+    font-size: .9375rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 200ms;
+  }
+  .sc-nav__cta:hover { background-color: #155ac1; border-color: #155ac1; color: #fff; }
+</style>
+<nav class="sc-nav" role="navigation">
+  <div class="sc-nav__inner">
+    <a href="https://www.sigmacomputing.com/" class="sc-nav__logo" aria-label="Sigma Computing">
+      <img src="https://cdn.prod.website-files.com/666bbba4ff7240a20f4ccccf/666bbba4ff7240a20f4ccd33_logo-sigma-black.svg" alt="Sigma Computing" height="22">
+    </a>
+    <ul class="sc-nav__links">
+      <li><a class="sc-nav__link" href="https://www.sigmacomputing.com/platform">Platform <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+      <li><a class="sc-nav__link" href="https://www.sigmacomputing.com/solutions">Solutions <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+      <li><a class="sc-nav__link is-active" href="https://public.sigmacomputing.com/">Sigma Public</a></li>
+      <li><a class="sc-nav__link" href="https://www.sigmacomputing.com/resources">Resources <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+    </ul>
+    <ul class="sc-nav__actions">
+      <li><a class="sc-nav__login" href="https://app.sigmacomputing.com/login">Log in</a></li>
+      <li><a class="sc-nav__cta" href="https://www.sigmacomputing.com/go/free-trial">Get Started</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="community-hero">
+  <div class="community-container">
+    <div class="community-hero__eyebrow">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M6 4v2.5l1.5.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Learning Hub
+    </div>
+    <h1 class="community-hero__heading">Your hub for<br><mark>learning Sigma</mark></h1>
+    <p class="community-hero__sub">Guides, courses, videos, and a community — everything you need to go from curious to confident.</p>
+    <div class="community-hero__search">
+      <svg class="community-hero__search-icon" viewBox="0 0 16 16" fill="none">
+        <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/>
+        <path d="m11 11 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <input class="community-hero__input" type="text" placeholder="Search guides, videos, courses...">
+    </div>
+    <div class="community-hero__stats">
+      <div class="community-hero__stat"><strong>500+</strong>&nbsp;QuickStart guides</div>
+      <div class="community-hero__stat"><strong>100+</strong>&nbsp;training videos</div>
+      <div class="community-hero__stat"><strong>10k+</strong>&nbsp;community members</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SKILL ROUTER ══════════════ -->
+<section class="community-section community-section--compact">
+  <div class="community-container">
+    <div class="section-header-row">
+      <div>
+        <p class="section-kicker">Get started</p>
+        <h2 class="section-h2">Where are you starting?</h2>
+        <p class="section-desc">Find the right path for where you are in your Sigma journey.</p>
+      </div>
+    </div>
+    <div class="router-grid">
+
+      <a class="router-card" href="https://www.sigmacomputing.com/resources/on-demand-webinars?*=jumpstart">
+        <div class="router-indicator">
+          <div class="router-pip" style="background:#4cec8c;"></div>
+          <span class="router-level">Beginner</span>
+        </div>
+        <div class="router-title">New to Sigma</div>
+        <div class="router-desc">Start with our Jumpstart training series — live-recorded, longform sessions that walk through the full platform from day one.</div>
+        <span class="button-cursor" style="color:#1a70f1;">
+          Start Jumpstart training
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a class="router-card" href="https://quickstarts.sigmacomputing.com/">
+        <div class="router-indicator">
+          <div class="router-pip" style="background:#a8e8f3;"></div>
+          <span class="router-level">Intermediate</span>
+        </div>
+        <div class="router-title">Building something specific</div>
+        <div class="router-desc">Step-by-step QuickStart guides for specific workflows, features, and use cases — searchable and organized by topic.</div>
+        <span class="button-cursor" style="color:#1a70f1;">
+          Browse QuickStarts
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a class="router-card" href="https://community.sigmacomputing.com/">
+        <div class="router-indicator">
+          <div class="router-pip" style="background:#ff9a74;"></div>
+          <span class="router-level">Advanced</span>
+        </div>
+        <div class="router-title">Going deeper</div>
+        <div class="router-desc">Community discussions, peer answers, and real-world examples from analysts and developers pushing Sigma every day.</div>
+        <span class="button-cursor" style="color:#1a70f1;">
+          Explore the community
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTENT PILLARS ══════════════ -->
+<section class="community-section community-section--muted">
+  <div class="community-container">
+    <div class="section-header-row">
+      <div>
+        <p class="section-kicker">Resources</p>
+        <h2 class="section-h2">Explore by format</h2>
+        <p class="section-desc">Four ways to learn — pick what fits how you think.</p>
+      </div>
+    </div>
+    <div class="pillar-grid">
+
+      <a class="pillar-card" href="https://quickstarts.sigmacomputing.com/">
+        <div class="pillar-icon-wrap" style="background:#e5eefa;">📄</div>
+        <div class="pillar-title">QuickStarts</div>
+        <div class="pillar-desc">Written step-by-step guides for specific tasks. Follow along at your own pace with real screenshots and code.</div>
+        <span class="pillar-link">Browse all guides <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="pillar-card" href="https://www.sigmacomputing.com/resources/training-videos">
+        <div class="pillar-icon-wrap" style="background:#fbeaca;">🎬</div>
+        <div class="pillar-title">Training Videos</div>
+        <div class="pillar-desc">Short, focused lessons built for quick skill reps. Find the exact topic you need and get up to speed fast.</div>
+        <span class="pillar-link">Watch videos <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="pillar-card" href="https://www.sigmacomputing.com/resources/on-demand-webinars?*=jumpstart">
+        <div class="pillar-icon-wrap" style="background:#f3eafc;">🎓</div>
+        <div class="pillar-title">Jumpstart Trainings</div>
+        <div class="pillar-desc">Longform video courses covering Sigma end to end. Ideal for onboarding a team or going from zero to proficient.</div>
+        <span class="pillar-link">View all courses <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="pillar-card" href="https://community.sigmacomputing.com/">
+        <div class="pillar-icon-wrap" style="background:#cffcdd;">💬</div>
+        <div class="pillar-title">Community Forum</div>
+        <div class="pillar-desc">Ask questions, share solutions, and connect with 10,000+ analysts, admins, and developers using Sigma every day.</div>
+        <span class="pillar-link">Join the conversation <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FEATURED ══════════════ -->
+<section class="community-section">
+  <div class="community-container">
+    <div class="section-header-row">
+      <div>
+        <p class="section-kicker">Curated picks</p>
+        <h2 class="section-h2">Start with these</h2>
+        <p class="section-desc">Great for any skill level — high signal across every format.</p>
+      </div>
+      <a class="button-cursor" href="#" style="color:#1a70f1; white-space:nowrap;">
+        See all featured
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="featured-grid">
+
+      <a class="featured-card" href="https://www.sigmacomputing.com/resources/on-demand-webinars?*=jumpstart">
+        <div class="featured-thumb" style="background:linear-gradient(135deg,#292929,#3d3d3d);">
+          🎓
+          <span class="featured-type-tag tag-course">Course</span>
+        </div>
+        <div class="featured-body">
+          <div class="featured-title">Sigma Fundamentals — Jumpstart Training</div>
+          <div class="featured-blurb">A full walkthrough of Sigma from scratch: workbooks, visualizations, formulas, and sharing.</div>
+          <div class="featured-meta">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.25"/><path d="M5.5 3.5v2.5l1.5.875" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
+            ~3 hours <span class="meta-sep"></span> Beginner
+          </div>
+        </div>
+      </a>
+
+      <a class="featured-card" href="https://quickstarts.sigmacomputing.com/">
+        <div class="featured-thumb" style="background:linear-gradient(135deg,#051630,#08377e);">
+          📄
+          <span class="featured-type-tag tag-guide">QuickStart</span>
+        </div>
+        <div class="featured-body">
+          <div class="featured-title">Build Your First Workbook</div>
+          <div class="featured-blurb">Connect to data, add a table, create calculations, and build your first chart — step by step.</div>
+          <div class="featured-meta">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.25"/><path d="M5.5 3.5v2.5l1.5.875" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
+            ~20 min <span class="meta-sep"></span> Beginner
+          </div>
+        </div>
+      </a>
+
+      <a class="featured-card" href="https://www.sigmacomputing.com/resources/training-videos">
+        <div class="featured-thumb" style="background:linear-gradient(135deg,#3b0b0b,#7a2000);">
+          🎬
+          <span class="featured-type-tag tag-video">Video</span>
+        </div>
+        <div class="featured-body">
+          <div class="featured-title">Admin Overview — Managing Your Sigma Org</div>
+          <div class="featured-blurb">User management, permissions, audit logging, and org settings — everything admins need.</div>
+          <div class="featured-meta">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.25"/><path d="M5.5 3.5v2.5l1.5.875" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
+            ~15 min <span class="meta-sep"></span> Intermediate
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TOPIC CHIPS ══════════════ -->
+<section class="community-section community-section--muted community-section--compact">
+  <div class="community-container">
+    <div style="margin-bottom:1.25rem;">
+      <p class="section-kicker">Topics</p>
+      <h2 class="section-h2" style="font-size:1.375rem;">Browse by topic</h2>
+    </div>
+    <div class="topic-chips">
+      <a class="topic-chip is-active" href="#">Fundamentals</a>
+      <a class="topic-chip" href="#">Visualizations</a>
+      <a class="topic-chip" href="#">Data Modeling</a>
+      <a class="topic-chip" href="#">Administration</a>
+      <a class="topic-chip" href="#">AI &amp; Apps</a>
+      <a class="topic-chip" href="#">Embedding</a>
+      <a class="topic-chip" href="#">Formulas &amp; Functions</a>
+      <a class="topic-chip" href="#">Input Tables</a>
+      <a class="topic-chip" href="#">Security</a>
+      <a class="topic-chip" href="#">Templates</a>
+      <a class="topic-chip" href="#">Developers &amp; API</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SIGMA PUBLIC ══════════════ -->
+<section class="community-section">
+  <div class="community-container">
+    <div class="section-header-row">
+      <div>
+        <p class="section-kicker">Inspiration</p>
+        <h2 class="section-h2">See what's possible</h2>
+        <p class="section-desc">Real workbooks built in Sigma — explore to see what mastery looks like.</p>
+      </div>
+      <a class="button-cursor" href="https://public.sigmacomputing.com/" style="color:#1a70f1; white-space:nowrap;">
+        Explore Sigma Public
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="public-grid">
+
+      <a class="public-card" href="https://public.sigmacomputing.com/">
+        <div class="public-preview" style="background:linear-gradient(135deg,#051630,#1b2a40);">
+          <span class="public-badge">Sigma Public</span>
+          <div class="public-bars">
+            <span style="height:2.5rem;"></span><span style="height:4rem;"></span><span style="height:3.5rem;"></span>
+            <span style="height:5rem;"></span><span style="height:3rem;"></span><span style="height:4.5rem;"></span>
+          </div>
+        </div>
+        <div class="public-body">
+          <div class="public-title">Sales Performance Dashboard</div>
+          <div class="public-desc">Pipeline tracking, quota attainment, and rep-level drill-downs in one live view.</div>
+        </div>
+      </a>
+
+      <a class="public-card" href="https://public.sigmacomputing.com/">
+        <div class="public-preview" style="background:linear-gradient(135deg,#124342,#1a5e5c);">
+          <span class="public-badge">Sigma Public</span>
+          <div class="public-bars">
+            <span style="height:3rem;"></span><span style="height:2rem;"></span><span style="height:4.5rem;"></span>
+            <span style="height:3.5rem;"></span><span style="height:5.5rem;"></span><span style="height:3rem;"></span>
+          </div>
+        </div>
+        <div class="public-body">
+          <div class="public-title">Marketing Analytics Hub</div>
+          <div class="public-desc">Channel performance, attribution modeling, and campaign ROI across every touchpoint.</div>
+        </div>
+      </a>
+
+      <a class="public-card" href="https://public.sigmacomputing.com/">
+        <div class="public-preview" style="background:linear-gradient(135deg,#271153,#3a2275);">
+          <span class="public-badge">Sigma Public</span>
+          <div class="public-bars">
+            <span style="height:3.5rem;"></span><span style="height:5rem;"></span><span style="height:2.5rem;"></span>
+            <span style="height:4.5rem;"></span><span style="height:3rem;"></span><span style="height:5.5rem;"></span>
+          </div>
+        </div>
+        <div class="public-body">
+          <div class="public-title">Operational KPI Tracker</div>
+          <div class="public-desc">Real-time ops metrics with input tables for targets, commentary, and write-back.</div>
+        </div>
+      </a>
+
+    </div>
+    <div style="text-align:center;">
+      <a class="button-secondary" href="https://public.sigmacomputing.com/">Explore all public workbooks</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ COMMUNITY CTA ══════════════ -->
+<div class="community-cta-section">
+  <div style="position:relative; z-index:1; max-width:520px; margin:0 auto;">
+    <h2 class="cta-h2">Have a question?<br>The community has answers.</h2>
+    <p class="cta-sub">10,000+ Sigma users sharing tips, solutions, and ideas — every day.</p>
+    <div class="cta-buttons">
+      <a class="button-insight" href="https://community.sigmacomputing.com/">Join the community</a>
+      <a class="button-secondary cc-white" href="https://community.sigmacomputing.com/">Browse discussions</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="community-footer">
+  <div class="community-footer__inner">
+    <span class="community-footer__copy">© 2026 Sigma Computing, Inc. All rights reserved.</span>
+    <ul class="community-footer__links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Security</a></li>
+      <li><a href="#">Status</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
