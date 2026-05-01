@@ -1068,10 +1068,10 @@
   .footer_component-inner { padding: 3rem 0 0; }
 
   .footer-header {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: flex-start;
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
     padding-bottom: 2.5rem;
     border-bottom: 1px solid rgba(255,255,255,.1);
     margin-bottom: 2.5rem;
@@ -1119,15 +1119,15 @@
   .icon-1x1-xsmall { width: 1rem; height: 1rem; display: flex; align-items: center; justify-content: center; }
 
   .footer-navigation {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
     gap: 1.5rem 2rem;
     padding-bottom: 2.5rem;
     border-bottom: 1px solid rgba(255,255,255,.08);
     margin-bottom: 0;
   }
   .footer-navigation + .footer-navigation {
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, 1fr) !important;
     border-bottom: none;
     padding-bottom: 2rem;
   }
