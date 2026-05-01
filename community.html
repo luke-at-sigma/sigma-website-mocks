@@ -1063,197 +1063,409 @@
 
 <!-- ══════════════ FOOTER ══════════════ -->
 <style>
-  .sc-footer {
-    background-color: #1c1c1c;
-    color: #fff;
-    padding: 4rem 2rem 0;
-  }
-  .sc-footer__top {
-    max-width: 76rem;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.5fr repeat(5, 1fr);
-    gap: 2.5rem;
-    padding-bottom: 3rem;
+  /* Webflow footer overrides — fill gaps where the CDN CSS may not cover dark-bg context */
+  .footer-7 { background-color: #1c1c1c; }
+  .footer_component { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+  .footer_component-inner { padding: 3rem 0 0; }
+
+  .footer-header {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 2.5rem;
     border-bottom: 1px solid rgba(255,255,255,.1);
+    margin-bottom: 2.5rem;
+    gap: 1.5rem;
   }
-  .sc-footer__brand { display: flex; flex-direction: column; gap: 1.5rem; }
-  .sc-footer__logo img { height: 20px; filter: brightness(0) invert(1); }
-  .sc-footer__social { display: flex; gap: .75rem; }
-  .sc-footer__social a {
+  .footer-header-right { display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+  .footer-header-right .text-heading.heading-style-h4.is-footer {
+    font-family: Advercase, sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    line-height: 1.1;
+  }
+  .footer-header-right .button.is-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: #f0ff45;
+    color: #1c1c1c;
+    font-family: Dmsans, sans-serif;
+    font-size: .875rem;
+    font-weight: 600;
+    padding: .625rem 1.125rem;
+    border-radius: .375rem;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .footer-header-right .button.is-icon:hover { opacity: .88; }
+  .icon-embed-small { display: flex; align-items: center; }
+
+  .footer-header-left { display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+  .footer-header-logo-wrapper svg { height: 22px; width: auto; }
+  .footer-header-social-icons { display: flex; gap: .5rem; }
+  .footer-header-social-icon-3 {
     display: flex; align-items: center; justify-content: center;
     width: 2rem; height: 2rem;
     border-radius: .375rem;
     background: rgba(255,255,255,.08);
-    color: rgba(255,255,255,.7);
+    color: rgba(255,255,255,.6);
     text-decoration: none;
     transition: background .15s, color .15s;
   }
-  .sc-footer__social a:hover { background: rgba(255,255,255,.16); color: #fff; }
-  .sc-footer__col {}
-  .sc-footer__col-heading {
+  .footer-header-social-icon-3:hover { background: rgba(255,255,255,.16); color: #fff; }
+
+  .footer-navigation {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem 2rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    margin-bottom: 0;
+  }
+  .footer-navigation + .footer-navigation {
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: none;
+    padding-bottom: 2rem;
+  }
+  .footer-navigation-col { display: flex; flex-direction: column; gap: .75rem; min-width: 0; }
+  .footer-navigation-header { margin-bottom: .25rem; }
+  .footer-navigation-header .navbar-label.text-style-allcaps.text-color-secondary.text-weight-bold {
     font-family: Dmsans, sans-serif;
     font-size: .6875rem;
     font-weight: 700;
-    letter-spacing: .1em;
+    letter-spacing: .08em;
     text-transform: uppercase;
     color: rgba(255,255,255,.4);
-    margin-bottom: 1rem;
   }
-  .sc-footer__col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
-  .sc-footer__col a {
-    font-family: Dmsans, sans-serif;
-    font-size: .875rem;
-    color: rgba(255,255,255,.7);
-    text-decoration: none;
-    transition: color .15s;
-  }
-  .sc-footer__col a:hover { color: #fff; }
-  .sc-footer__bottom {
-    max-width: 76rem;
-    margin: 0 auto;
-    padding: 1.25rem 0;
+  .footer-navigation-items { display: flex; flex-direction: column; gap: .4rem; }
+  .footer-navigation-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: .375rem;
     flex-wrap: wrap;
-    gap: .75rem;
   }
-  .sc-footer__copy {
+  .footer-navigation-item a.text-size-small {
     font-family: Dmsans, sans-serif;
     font-size: .8125rem;
-    color: rgba(255,255,255,.35);
-  }
-  .sc-footer__legal { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
-  .sc-footer__legal a {
-    font-family: Dmsans, sans-serif;
-    font-size: .8125rem;
-    color: rgba(255,255,255,.35);
+    color: rgba(255,255,255,.65);
     text-decoration: none;
     transition: color .15s;
+    white-space: nowrap;
   }
-  .sc-footer__legal a:hover { color: rgba(255,255,255,.7); }
-  @media (max-width: 960px) {
-    .sc-footer__top { grid-template-columns: repeat(2, 1fr); }
-    .sc-footer__brand { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; }
+  .footer-navigation-item a.text-size-small:hover { color: #fff; }
+  .footer-navigation-item-label-3 {
+    display: inline-flex;
+    align-items: center;
+  }
+  .footer-navigation-item-label-3 .caption.text-weight-semibold {
+    font-family: Dmsans, sans-serif;
+    font-size: .625rem;
+    font-weight: 600;
+    padding: .1rem .4rem;
+    border-radius: 2rem;
+    line-height: 1.4;
+  }
+  /* Popular badge — yellow */
+  .footer-navigation-item:has(.caption.text-weight-semibold:first-child) .footer-navigation-item-label-3 .caption.text-weight-semibold {
+    background: #f0ff45;
+    color: #1c1c1c;
+  }
+  /* Fallback: Popular badge */
+  .badge-popular .caption.text-weight-semibold { background: #f0ff45; color: #1c1c1c; }
+  /* New badge — blue */
+  .badge-new .caption.text-weight-semibold { background: #1a70f1; color: #fff; }
+
+  .footer-footnote {
+    padding: 1.25rem 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+  .footer-footnote a.text-size-small-4.text-color-secondary {
+    font-family: Dmsans, sans-serif;
+    font-size: .8125rem;
+    color: rgba(255,255,255,.3);
+    text-decoration: none;
+  }
+
+  @media (max-width: 1024px) {
+    .footer-navigation { grid-template-columns: repeat(3, 1fr); }
+    .footer-navigation + .footer-navigation { grid-template-columns: repeat(3, 1fr); }
+    .footer-header { flex-direction: column; }
+  }
+  @media (max-width: 600px) {
+    .footer-navigation { grid-template-columns: repeat(2, 1fr); }
+    .footer-navigation + .footer-navigation { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
-<footer class="sc-footer">
-  <div class="sc-footer__top">
 
-    <div class="sc-footer__brand">
-      <a href="https://www.sigmacomputing.com/" class="sc-footer__logo">
-        <img src="https://cdn.prod.website-files.com/666bbba4ff7240a20f4ccccf/666bbba4ff7240a20f4ccd33_logo-sigma-black.svg" alt="Sigma Computing">
-      </a>
-      <div class="sc-footer__social">
-        <a href="https://www.linkedin.com/company/sigmacomputing/" aria-label="LinkedIn" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-        </a>
-        <a href="https://twitter.com/sigmacomputing" aria-label="X / Twitter" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <a href="https://www.youtube.com/@sigmacomputing" aria-label="YouTube" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </a>
+<section class="footer-7">
+  <div class="footer_component">
+    <div class="footer_component-inner">
+
+      <!-- Footer header -->
+      <div class="footer-header">
+        <div class="footer-header-right">
+          <h5 class="text-heading heading-style-h4 is-footer">AI Apps. Analytics.</h5>
+          <a href="/go/free-trial" class="button is-icon w-inline-block">
+            <div>Try Sigma free</div>
+            <div class="icon-embed-small w-embed">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+        <div class="footer-header-left">
+          <div class="footer-header-logo-wrapper">
+            <div class="icon-embed-custom w-embed">
+              <img src="https://cdn.prod.website-files.com/666bbba4ff7240a20f4ccccf/666bbba4ff7240a20f4ccd33_logo-sigma-black.svg" alt="Sigma Computing" style="height:22px;width:auto;filter:brightness(0) invert(1);">
+            </div>
+          </div>
+          <div class="footer-header-social-icons">
+            <a href="https://www.linkedin.com/company/sigmacomputing" class="footer-header-social-icon-3 w-inline-block" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/c/sigmacomputing" class="footer-header-social-icon-3 w-inline-block" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="sc-footer__col">
-      <div class="sc-footer__col-heading">Platform</div>
-      <ul>
-        <li><a href="https://www.sigmacomputing.com/product/architecture">Architecture</a></li>
-        <li><a href="https://www.sigmacomputing.com/product/ai-toolkit">AI Toolkit</a></li>
-        <li><a href="https://www.sigmacomputing.com/product/python-sql">Python / SQL</a></li>
-        <li><a href="https://www.sigmacomputing.com/product/data-modeling">Data Modeling</a></li>
-        <li><a href="https://www.sigmacomputing.com/product/spreadsheets">Spreadsheets &amp; Writeback</a></li>
-        <li><a href="https://www.sigmacomputing.com/product/exploration">Exploration</a></li>
-        <li><a href="https://www.sigmacomputing.com/product/ai-applications">AI Applications</a></li>
-        <li><a href="https://www.sigmacomputing.com/product/dashboards">Dashboards &amp; Analytics</a></li>
-        <li><a href="https://www.sigmacomputing.com/product/pixel-perfect">Pixel Perfect Reports</a></li>
-        <li><a href="https://www.sigmacomputing.com/product/embedded-analytics">Embedded Analytics</a></li>
-      </ul>
-    </div>
+      <!-- Footer nav row 1: Features / Capabilities / BY INDUSTRY / by role / integrations / CONTACT -->
+      <div class="footer-navigation">
 
-    <div class="sc-footer__col">
-      <div class="sc-footer__col-heading">Solutions</div>
-      <ul>
-        <li><a href="https://www.sigmacomputing.com/solutions/financial-services">Financial Services</a></li>
-        <li><a href="https://www.sigmacomputing.com/solutions/healthcare">Healthcare</a></li>
-        <li><a href="https://www.sigmacomputing.com/solutions/retail-cpg">Retail &amp; CPG</a></li>
-        <li><a href="https://www.sigmacomputing.com/solutions/manufacturing">Manufacturing</a></li>
-      </ul>
-      <div class="sc-footer__col-heading" style="margin-top:1.5rem;">Integrations</div>
-      <ul>
-        <li><a href="https://www.sigmacomputing.com/integrations/snowflake">Snowflake</a></li>
-        <li><a href="https://www.sigmacomputing.com/integrations/databricks">Databricks</a></li>
-        <li><a href="https://www.sigmacomputing.com/integrations/aws">AWS</a></li>
-        <li><a href="https://www.sigmacomputing.com/integrations/azure">Azure</a></li>
-        <li><a href="https://www.sigmacomputing.com/integrations/google-cloud">Google Cloud</a></li>
-      </ul>
-    </div>
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Features</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item">
+              <a href="/product/architecture" class="text-size-small">Architecture</a>
+              <div class="footer-navigation-item-label-3 badge-popular"><div class="caption text-weight-semibold">Popular</div></div>
+            </div>
+            <div class="footer-navigation-item"><a href="/product/ai-toolkit" class="text-size-small">AI Toolkit</a></div>
+            <div class="footer-navigation-item"><a href="/product/python-sql" class="text-size-small">Python/SQL</a></div>
+            <div class="footer-navigation-item"><a href="/product/data-modeling" class="text-size-small">Data modeling</a></div>
+            <div class="footer-navigation-item"><a href="/product/spreadsheets" class="text-size-small">Spreadsheets &amp; Writeback</a></div>
+            <div class="footer-navigation-item">
+              <a href="/product/sigma-agents" class="text-size-small">Sigma Agents</a>
+              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+            </div>
+            <div class="footer-navigation-item">
+              <a href="/product/exploration" class="text-size-small">Exploration</a>
+              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+            </div>
+          </div>
+        </div>
 
-    <div class="sc-footer__col">
-      <div class="sc-footer__col-heading">Resources</div>
-      <ul>
-        <li><a href="https://www.sigmacomputing.com/blog">Blog</a></li>
-        <li><a href="https://help.sigmacomputing.com/">Documentation</a></li>
-        <li><a href="https://quickstarts.sigmacomputing.com/">QuickStarts</a></li>
-        <li><a href="https://www.sigmacomputing.com/resources/ebooks">eBooks</a></li>
-        <li><a href="https://www.sigmacomputing.com/resources/white-papers">White Papers</a></li>
-        <li><a href="https://www.sigmacomputing.com/resources/analyst-reports">Analyst Reports</a></li>
-      </ul>
-      <div class="sc-footer__col-heading" style="margin-top:1.5rem;">Events</div>
-      <ul>
-        <li><a href="https://www.sigmacomputing.com/resources/live-events">Live Events</a></li>
-        <li><a href="https://www.sigmacomputing.com/resources/on-demand-webinars">On-Demand Webinars</a></li>
-        <li><a href="https://www.sigmacomputing.com/events/snowflake-summit-2026">Snowflake Summit</a></li>
-        <li><a href="https://www.sigmacomputing.com/events/databricks-summit-2026">Databricks Summit</a></li>
-      </ul>
-    </div>
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Capabilities</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item">
+              <a href="/product/ai-applications" class="text-size-small">AI Applications</a>
+              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+            </div>
+            <div class="footer-navigation-item">
+              <a href="/product/dashboards" class="text-size-small">Dashboards &amp; Analytics</a>
+              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+            </div>
+            <div class="footer-navigation-item">
+              <a href="/product/pixel-perfect" class="text-size-small">Pixel Perfect Reports</a>
+              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+            </div>
+            <div class="footer-navigation-item">
+              <a href="/product/embedded-analytics" class="text-size-small">Embedded Analytics</a>
+              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+            </div>
+            <div class="footer-navigation-item">
+              <a href="/product/self-service" class="text-size-small">Self-service</a>
+              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+            </div>
+          </div>
+        </div>
 
-    <div class="sc-footer__col">
-      <div class="sc-footer__col-heading">Support</div>
-      <ul>
-        <li><a href="https://help.sigmacomputing.com/docs/sigma-support">Get Support</a></li>
-        <li><a href="https://community.sigmacomputing.com/">Community</a></li>
-        <li><a href="https://quickstarts.sigmacomputing.com/">QuickStarts</a></li>
-        <li><a href="https://help.sigmacomputing.com/">Documentation</a></li>
-        <li><a href="https://www.sigmacomputing.com/product/vdp">Bug Bounty</a></li>
-        <li><a href="https://status.sigmacomputing.com/">Sigma Status</a></li>
-      </ul>
-    </div>
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">By Industry</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item">
+              <a href="/solutions/financial-services" class="text-size-small">Financial Services</a>
+              <div class="footer-navigation-item-label-3 badge-popular"><div class="caption text-weight-semibold">Popular</div></div>
+            </div>
+            <div class="footer-navigation-item">
+              <a href="/solutions/healthcare" class="text-size-small">Healthcare</a>
+              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+            </div>
+            <div class="footer-navigation-item">
+              <a href="/solutions/retail-cpg" class="text-size-small">Retail &amp; CPG</a>
+              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+            </div>
+            <div class="footer-navigation-item">
+              <a href="/solutions/manufacturing" class="text-size-small">Manufacturing</a>
+              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+            </div>
+          </div>
+        </div>
 
-    <div class="sc-footer__col">
-      <div class="sc-footer__col-heading">Company</div>
-      <ul>
-        <li><a href="https://www.sigmacomputing.com/company">About Us</a></li>
-        <li><a href="https://www.sigmacomputing.com/company/newsroom">Newsroom</a></li>
-        <li><a href="https://security.sigmacomputing.com/">Security Center</a></li>
-        <li><a href="https://www.sigmacomputing.com/customers">Customers</a></li>
-        <li><a href="https://www.sigmacomputing.com/product/why-sigma">Why Sigma</a></li>
-        <li><a href="https://www.sigmacomputing.com/comparison">Comparison</a></li>
-        <li><a href="https://www.sigmacomputing.com/company/careers">Careers</a></li>
-      </ul>
-      <div class="sc-footer__col-heading" style="margin-top:1.5rem;">Partners</div>
-      <ul>
-        <li><a href="https://www.sigmacomputing.com/partners">Program Overview</a></li>
-        <li><a href="https://www.sigmacomputing.com/partners/technology">Technology Partners</a></li>
-        <li><a href="https://www.sigmacomputing.com/partners/consulting">Consulting Partners</a></li>
-      </ul>
-    </div>
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">By Role</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item"><a href="/solutions/analyst" class="text-size-small">Analyst</a></div>
+            <div class="footer-navigation-item"><a href="/solutions/analytics-engineer" class="text-size-small">Analytics Engineer</a></div>
+            <div class="footer-navigation-item"><a href="/solutions/finance" class="text-size-small">Finance</a></div>
+            <div class="footer-navigation-item"><a href="/solutions/marketing" class="text-size-small">Marketing</a></div>
+            <div class="footer-navigation-item"><a href="/solutions/product" class="text-size-small">Product</a></div>
+            <div class="footer-navigation-item"><a href="/solutions/sales" class="text-size-small">Sales</a></div>
+            <div class="footer-navigation-item"><a href="/solutions/supply-chain" class="text-size-small">Supply Chain</a></div>
+          </div>
+        </div>
 
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Integrations</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item"><a href="/integrations/snowflake" class="text-size-small">Snowflake</a></div>
+            <div class="footer-navigation-item"><a href="/integrations/databricks" class="text-size-small">Databricks</a></div>
+            <div class="footer-navigation-item"><a href="/integrations/aws" class="text-size-small">AWS</a></div>
+            <div class="footer-navigation-item"><a href="/integrations/azure" class="text-size-small">Azure</a></div>
+            <div class="footer-navigation-item"><a href="/integrations/google-cloud" class="text-size-small">Google Cloud</a></div>
+          </div>
+        </div>
+
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Contact</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item"><a href="/contact" class="text-size-small">Contact us</a></div>
+            <div class="footer-navigation-item">
+              <a href="/go/request-demo" class="text-size-small">Request a demo</a>
+              <div class="footer-navigation-item-label-3 badge-popular"><div class="caption text-weight-semibold">Popular</div></div>
+            </div>
+            <div class="footer-navigation-item"><a href="/go/free-trial" class="text-size-small">Try Sigma free</a></div>
+            <div class="footer-navigation-item"><a href="https://help.sigmacomputing.com/docs/sigma-support" class="text-size-small">Get support</a></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer nav row 2: RESOURCES / Events / LEGAL / SUPPORT / COMPANY / PARTNERS / POLICIES -->
+      <div class="footer-navigation">
+
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Resources</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item"><a href="/blog" class="text-size-small">Blog</a></div>
+            <div class="footer-navigation-item"><a href="https://help.sigmacomputing.com/" class="text-size-small">Documentation</a></div>
+            <div class="footer-navigation-item"><a href="/resources/ebooks" class="text-size-small">eBooks</a></div>
+            <div class="footer-navigation-item"><a href="/resources/white-papers" class="text-size-small">White Papers</a></div>
+            <div class="footer-navigation-item"><a href="/resources/analyst-reports" class="text-size-small">Analyst reports</a></div>
+            <div class="footer-navigation-item"><a href="/resources/lightboard-videos" class="text-size-small">Lightboard videos</a></div>
+            <div class="footer-navigation-item"><a href="/resources/learning-center" class="text-size-small">Learning Center</a></div>
+            <div class="footer-navigation-item"><a href="/resources" class="text-size-small">Resource Center</a></div>
+          </div>
+        </div>
+
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Events</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item"><a href="/resources/community-events" class="text-size-small">Community events</a></div>
+            <div class="footer-navigation-item"><a href="/resources/live-events" class="text-size-small">Live events</a></div>
+            <div class="footer-navigation-item"><a href="/resources/on-demand-webinars" class="text-size-small">On-demand webinars</a></div>
+            <div class="footer-navigation-item"><a href="/events/snowflake-summit" class="text-size-small">Snowflake Summit</a></div>
+            <div class="footer-navigation-item"><a href="/events/databricks-summit" class="text-size-small">Databricks Summit</a></div>
+            <div class="footer-navigation-item"><a href="/events/workflow-conference" class="text-size-small">Workflow Conference</a></div>
+          </div>
+        </div>
+
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Legal</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item"><a href="/legal/subprocessors" class="text-size-small">Subprocessors</a></div>
+            <div class="footer-navigation-item"><a href="/legal/trademarks" class="text-size-small">Trademarks</a></div>
+            <div class="footer-navigation-item"><a href="/legal/patents" class="text-size-small">Patents</a></div>
+          </div>
+        </div>
+
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Support</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item"><a href="https://help.sigmacomputing.com/docs/sigma-support" class="text-size-small">Get support</a></div>
+            <div class="footer-navigation-item"><a href="https://community.sigmacomputing.com/" class="text-size-small">Community</a></div>
+            <div class="footer-navigation-item"><a href="https://quickstarts.sigmacomputing.com/" class="text-size-small">QuickStarts</a></div>
+            <div class="footer-navigation-item"><a href="https://help.sigmacomputing.com/" class="text-size-small">Documentation</a></div>
+            <div class="footer-navigation-item"><a href="/product/vdp" class="text-size-small">Bug Bounty</a></div>
+            <div class="footer-navigation-item"><a href="https://status.sigmacomputing.com/" class="text-size-small">Sigma Status</a></div>
+          </div>
+        </div>
+
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Company</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item"><a href="/company" class="text-size-small">About us</a></div>
+            <div class="footer-navigation-item"><a href="/company/newsroom" class="text-size-small">Newsroom</a></div>
+            <div class="footer-navigation-item"><a href="https://security.sigmacomputing.com/" class="text-size-small">Security Center</a></div>
+            <div class="footer-navigation-item"><a href="/customers" class="text-size-small">Customers</a></div>
+            <div class="footer-navigation-item"><a href="/product/why-sigma" class="text-size-small">Why Sigma?</a></div>
+            <div class="footer-navigation-item"><a href="/comparison" class="text-size-small">Comparison</a></div>
+            <div class="footer-navigation-item"><a href="/company/careers" class="text-size-small">Careers</a></div>
+          </div>
+        </div>
+
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Partners</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item"><a href="/partners" class="text-size-small">Program overview</a></div>
+            <div class="footer-navigation-item"><a href="/partners/technology" class="text-size-small">Technology partners</a></div>
+            <div class="footer-navigation-item"><a href="/partners/consulting" class="text-size-small">Consulting partners</a></div>
+            <div class="footer-navigation-item"><a href="/partners/integrations" class="text-size-small">Partner Integrations</a></div>
+          </div>
+        </div>
+
+        <div class="footer-navigation-col">
+          <div class="footer-navigation-header">
+            <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Policies</div>
+          </div>
+          <div class="footer-navigation-items">
+            <div class="footer-navigation-item"><a href="/legal/privacy-policy" class="text-size-small">Privacy Policy</a></div>
+            <div class="footer-navigation-item"><a href="/legal/cookie-policy" class="text-size-small">Cookie Policy</a></div>
+            <div class="footer-navigation-item"><a href="/legal" class="text-size-small">Terms of Service</a></div>
+            <div class="footer-navigation-item"><a href="/site-index" class="text-size-small">Site Index</a></div>
+            <div class="footer-navigation-item"><a href="#" class="text-size-small">Cookie Settings</a></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-footnote">
+        <a href="#" class="text-size-small-4 text-color-secondary">© 2026 Sigma Computing</a>
+      </div>
+
+    </div>
   </div>
-  <div class="sc-footer__bottom">
-    <span class="sc-footer__copy">© 2026 Sigma Computing, Inc. All rights reserved.</span>
-    <ul class="sc-footer__legal">
-      <li><a href="https://www.sigmacomputing.com/legal/privacy-policy">Privacy Policy</a></li>
-      <li><a href="https://www.sigmacomputing.com/legal/cookie-policy">Cookie Policy</a></li>
-      <li><a href="https://www.sigmacomputing.com/legal">Terms of Service</a></li>
-      <li><a href="https://www.sigmacomputing.com/legal/subprocessors">Subprocessors</a></li>
-      <li><a href="https://www.sigmacomputing.com/site-index">Site Index</a></li>
-    </ul>
-  </div>
-</footer>
+</section>
 
 </body>
 </html>
