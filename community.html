@@ -127,38 +127,9 @@
       margin: 0 auto 2.5rem;
       line-height: 1.7;
     }
-    .community-hero__search {
-      max-width: 500px;
-      margin: 0 auto 2rem;
-      position: relative;
-    }
-    .community-hero__search-icon {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 1rem;
-      height: 1rem;
-      color: var(--stratus);
-      pointer-events: none;
-    }
-    .community-hero__input {
-      width: 100%;
-      padding: .875rem 1rem .875rem 2.75rem;
-      font-family: Dmsans, sans-serif;
-      font-size: .9375rem;
-      background-color: var(--neutral-0);
-      border: 1px solid var(--neutral-6);
-      border-radius: .5rem;
-      box-shadow: 0 1px 3px rgba(28,28,28,.07);
-      outline: none;
-      color: var(--text-main);
-      transition: border-color .2s, box-shadow .2s;
-    }
-    .community-hero__input::placeholder { color: var(--stratus); }
-    .community-hero__input:focus {
-      border-color: #1a70f1;
-      box-shadow: 0 0 0 3px rgba(26,112,241,.12);
+    .community-hero__router {
+      max-width: 900px;
+      margin: 0 auto 2.5rem;
     }
     .community-hero__stats {
       display: flex;
@@ -720,74 +691,56 @@
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M6 4v2.5l1.5.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       Learning Hub
     </div>
-    <h1 class="community-hero__heading">Your hub for<br><mark>learning Sigma</mark></h1>
-    <p class="community-hero__sub">Guides, courses, videos, and a community — everything you need to go from curious to confident.</p>
-    <div class="community-hero__search">
-      <svg class="community-hero__search-icon" viewBox="0 0 16 16" fill="none">
-        <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/>
-        <path d="m11 11 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-      <input class="community-hero__input" type="text" placeholder="Search guides, videos, courses...">
+    <h1 class="community-hero__heading">Where do you<br><mark>want to start?</mark></h1>
+    <p class="community-hero__sub">Pick a path based on where you are — and go from there.</p>
+    <div class="community-hero__router">
+      <div class="router-grid">
+
+        <a class="router-card" href="https://www.sigmacomputing.com/resources/on-demand-webinars?*=jumpstart">
+          <div class="router-indicator">
+            <div class="router-pip" style="background:#4cec8c;"></div>
+            <span class="router-level">Beginner</span>
+          </div>
+          <div class="router-title">New to Sigma</div>
+          <div class="router-desc">Start with our Jumpstart training series — live-recorded, longform sessions that walk through the full platform from day one.</div>
+          <span class="button-cursor" style="color:#1a70f1;">
+            Start Jumpstart training
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a class="router-card" href="https://quickstarts.sigmacomputing.com/">
+          <div class="router-indicator">
+            <div class="router-pip" style="background:#a8e8f3;"></div>
+            <span class="router-level">Intermediate</span>
+          </div>
+          <div class="router-title">Building something specific</div>
+          <div class="router-desc">Step-by-step QuickStart guides for specific workflows, features, and use cases — searchable and organized by topic.</div>
+          <span class="button-cursor" style="color:#1a70f1;">
+            Browse QuickStarts
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a class="router-card" href="https://community.sigmacomputing.com/">
+          <div class="router-indicator">
+            <div class="router-pip" style="background:#ff9a74;"></div>
+            <span class="router-level">Advanced</span>
+          </div>
+          <div class="router-title">Going deeper</div>
+          <div class="router-desc">Community discussions, peer answers, and real-world examples from analysts and developers pushing Sigma every day.</div>
+          <span class="button-cursor" style="color:#1a70f1;">
+            Explore the community
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+      </div>
     </div>
     <div class="community-hero__stats">
       <div class="community-hero__stat"><strong>500+</strong>&nbsp;QuickStart guides</div>
       <div class="community-hero__stat"><strong>100+</strong>&nbsp;training videos</div>
       <div class="community-hero__stat"><strong>10k+</strong>&nbsp;community members</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ SKILL ROUTER ══════════════ -->
-<section class="community-section community-section--compact">
-  <div class="community-container">
-    <div class="section-header-row">
-      <div>
-        <p class="section-kicker">Get started</p>
-        <h2 class="section-h2">Where are you starting?</h2>
-        <p class="section-desc">Find the right path for where you are in your Sigma journey.</p>
-      </div>
-    </div>
-    <div class="router-grid">
-
-      <a class="router-card" href="https://www.sigmacomputing.com/resources/on-demand-webinars?*=jumpstart">
-        <div class="router-indicator">
-          <div class="router-pip" style="background:#4cec8c;"></div>
-          <span class="router-level">Beginner</span>
-        </div>
-        <div class="router-title">New to Sigma</div>
-        <div class="router-desc">Start with our Jumpstart training series — live-recorded, longform sessions that walk through the full platform from day one.</div>
-        <span class="button-cursor" style="color:#1a70f1;">
-          Start Jumpstart training
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-      </a>
-
-      <a class="router-card" href="https://quickstarts.sigmacomputing.com/">
-        <div class="router-indicator">
-          <div class="router-pip" style="background:#a8e8f3;"></div>
-          <span class="router-level">Intermediate</span>
-        </div>
-        <div class="router-title">Building something specific</div>
-        <div class="router-desc">Step-by-step QuickStart guides for specific workflows, features, and use cases — searchable and organized by topic.</div>
-        <span class="button-cursor" style="color:#1a70f1;">
-          Browse QuickStarts
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-      </a>
-
-      <a class="router-card" href="https://community.sigmacomputing.com/">
-        <div class="router-indicator">
-          <div class="router-pip" style="background:#ff9a74;"></div>
-          <span class="router-level">Advanced</span>
-        </div>
-        <div class="router-title">Going deeper</div>
-        <div class="router-desc">Community discussions, peer answers, and real-world examples from analysts and developers pushing Sigma every day.</div>
-        <span class="button-cursor" style="color:#1a70f1;">
-          Explore the community
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-      </a>
-
     </div>
   </div>
 </section>
