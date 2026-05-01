@@ -1063,173 +1063,372 @@
 
 <!-- ══════════════ FOOTER ══════════════ -->
 <style>
-  .footer-7 { background-color: #1c1c1c; }
-  .footer_component { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
-  .footer_component-inner { padding: 3rem 0 0; }
-
-  .footer-header {
-    display: flex !important;
-    flex-direction: row-reverse !important;
-    justify-content: space-between !important;
-    align-items: flex-start !important;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid rgba(255,255,255,.1);
-    margin-bottom: 2.5rem;
-    gap: 1.5rem;
+  /* New footer — light blue, glass card, Tailwind-matched */
+  .nf-root {
+    background-color: #dbeafe; /* blue-100 */
+    position: relative;
+    font-family: Dmsans, ui-sans-serif, system-ui, sans-serif;
   }
-  .footer-header-right { display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
-  .footer-header-right .text-heading.heading-style-h4.is-footer {
+  .nf-outer {
+    position: relative;
+    padding: 1rem 1rem 1.5rem;
+  }
+  .nf-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 4rem 1rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(241,245,255,0.82) 100%);
+    box-shadow: 0px 4px 40px 0px rgba(117,131,163,0.10);
+    width: 100%;
+    box-sizing: border-box;
+  }
+  /* Header row */
+  .nf-header {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+  }
+  .nf-cta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+  }
+  .nf-headline {
     font-family: Advercase, sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
     font-weight: 700;
-    color: #fff;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.2;
+    color: #111827;
     margin: 0;
-    line-height: 1.1;
+    text-align: center;
   }
-  .footer-header-right .button.is-icon {
+  .nf-cta-btn {
     display: inline-flex;
     align-items: center;
-    gap: .5rem;
-    background: #f0ff45;
-    color: #1c1c1c;
+    gap: 0.5rem;
+    background: #1a70f1;
+    color: #fff;
     font-family: Dmsans, sans-serif;
-    font-size: .875rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    padding: .625rem 1.125rem;
-    border-radius: .375rem;
+    height: 3rem;
+    padding: 0 1.5rem;
+    border-radius: 0.375rem;
     text-decoration: none;
-    transition: opacity .15s;
-  }
-  .footer-header-right .button.is-icon:hover { opacity: .88; }
-  .icon-embed-small { display: flex; align-items: center; width: 1.25rem; height: 1.25rem; }
-
-  .footer-header-left { display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
-  .footer-header-logo-wrapper svg { filter: brightness(0) invert(1); }
-  .footer-header-social-icons { display: flex; gap: .5rem; }
-  .footer-header-social-icon-3 {
-    display: flex; align-items: center; justify-content: center;
-    width: 2rem; height: 2rem;
-    border-radius: .375rem;
-    background: rgba(255,255,255,.08);
-    color: rgba(255,255,255,.6);
-    text-decoration: none;
-    transition: background .15s, color .15s;
-  }
-  .footer-header-social-icon-3:hover { background: rgba(255,255,255,.16); color: #fff; }
-  .icon-1x1-xsmall { width: 1rem; height: 1rem; display: flex; align-items: center; justify-content: center; }
-
-  .footer-navigation {
-    display: grid !important;
-    grid-template-columns: repeat(6, 1fr) !important;
-    gap: 1.5rem 2rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    margin-bottom: 0;
-  }
-  .footer-navigation + .footer-navigation {
-    grid-template-columns: repeat(7, 1fr) !important;
-    border-bottom: none;
-    padding-bottom: 2rem;
-  }
-  .footer-navigation-col { display: flex; flex-direction: column; gap: .75rem; min-width: 0; }
-  .footer-navigation-header { margin-bottom: .25rem; }
-  .footer-navigation-header .navbar-label.text-style-allcaps.text-color-secondary.text-weight-bold {
-    font-family: Dmsans, sans-serif;
-    font-size: .6875rem;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,.4);
-  }
-  .footer-navigation-items { display: flex; flex-direction: column; gap: .4rem; }
-  .footer-navigation-item {
-    display: flex;
-    align-items: center;
-    gap: .375rem;
-    flex-wrap: wrap;
-  }
-  .footer-navigation-item a.text-size-small {
-    font-family: Dmsans, sans-serif;
-    font-size: .8125rem;
-    color: rgba(255,255,255,.65);
-    text-decoration: none;
-    transition: color .15s;
+    transition: opacity 0.15s;
     white-space: nowrap;
   }
-  .footer-navigation-item a.text-size-small:hover { color: #fff; }
-  .footer-navigation-item-label-3 {
+  .nf-cta-btn:hover { opacity: 0.88; }
+  .nf-cta-btn svg { width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
+  .nf-logo-social {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nf-logo svg { display: block; }
+  .nf-socials { display: flex; gap: 0.5rem; }
+  .nf-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.375rem;
+    background: #dbeafe; /* blue-100 */
+    color: #1a70f1; /* blue-500 */
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .nf-social-icon:hover { background: #bfdbfe; }
+  .nf-social-icon svg { width: 1rem; height: 1rem; }
+
+  /* Separator */
+  .nf-sep {
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    width: 100%;
+  }
+
+  /* Nav grids */
+  .nf-nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1.25rem;
+    width: 100%;
+  }
+  .nf-col { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+  .nf-col-header {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b7280; /* gray-500 */
+    margin-bottom: 0.25rem;
+  }
+  .nf-col-items { display: flex; flex-direction: column; gap: 0.4rem; }
+  .nf-col-item { display: flex; align-items: center; gap: 0.375rem; flex-wrap: wrap; }
+  .nf-col-item a {
+    font-size: 0.8125rem;
+    color: #374151; /* gray-700 */
+    text-decoration: none;
+    transition: color 0.15s;
+    white-space: nowrap;
+    line-height: 1.5;
+  }
+  .nf-col-item a:hover { color: #111827; }
+
+  /* Badges */
+  .nf-badge {
     display: inline-flex;
     align-items: center;
-    background: transparent !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    border: none !important;
-  }
-  .footer-navigation-item-label-3 .caption.text-weight-semibold {
-    font-family: Dmsans, sans-serif;
-    font-size: .625rem;
+    justify-content: center;
+    padding: 0.125rem 0.375rem;
+    border-radius: 9999px;
+    font-size: 0.625rem;
     font-weight: 600;
-    padding: .1rem .4rem;
-    border-radius: 2rem;
     line-height: 1.4;
-    background: #f0ff45 !important;
-    color: #1c1c1c !important;
-    border: none !important;
+    white-space: nowrap;
   }
-  .footer-navigation-item-label-3.is-new .caption.text-weight-semibold {
-    background: #1a70f1 !important;
-    color: #fff !important;
+  .nf-badge-popular {
+    background: #dbeafe; /* blue-100 */
+    color: #1a70f1;      /* blue-500 */
   }
-
-  .footer-footnote {
-    padding: 1.25rem 0;
-    border-top: 1px solid rgba(255,255,255,.08);
-  }
-  .footer-footnote a.text-size-small-4.text-color-secondary {
-    font-family: Dmsans, sans-serif;
-    font-size: .8125rem;
-    color: rgba(255,255,255,.3);
-    text-decoration: none;
+  .nf-badge-new {
+    background: #ede9fe; /* violet-100 */
+    color: #7c3aed;      /* violet-600 */
   }
 
-  @media (max-width: 1024px) {
-    .footer-navigation { grid-template-columns: repeat(3, 1fr); }
-    .footer-navigation + .footer-navigation { grid-template-columns: repeat(3, 1fr); }
-    .footer-header { flex-direction: column; }
+  /* Copyright */
+  .nf-copyright {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8125rem;
+    color: #6b7280;
   }
-  @media (max-width: 600px) {
-    .footer-navigation { grid-template-columns: repeat(2, 1fr); }
-    .footer-navigation + .footer-navigation { grid-template-columns: repeat(2, 1fr); }
+
+  /* Responsive */
+  @media (min-width: 768px) {
+    .nf-nav { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  }
+  @media (min-width: 1280px) {
+    .nf-outer { padding: 2.5rem 4rem; }
+    .nf-card { padding: 4rem; }
+    .nf-header { flex-direction: row; align-items: flex-start; }
+    .nf-cta-block { align-items: flex-start; flex: 1 0 0; }
+    .nf-headline { text-align: left; }
+    .nf-logo-social { flex-direction: column; align-items: flex-start; }
+    .nf-nav { grid-template-columns: repeat(6, 1fr); gap: 2rem 3.5rem; }
+    .nf-copyright { justify-content: flex-start; }
   }
 </style>
 
-<section class="footer-7"><div class="footer_component"><div class="footer_component-inner"><div class="footer-header"><div class="footer-header-right"><h5 class="text-heading heading-style-h4 is-footer">AI Apps. Analytics.</h5><a href="/go/free-trial" class="button is-icon w-inline-block"><div>Try Sigma free</div><div class="icon-embed-small w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
-<path d="M4.16675 10H15.8334" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-<path d="M10 4.16669L15.8333 10L10 15.8334" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg></div></a></div><div class="footer-header-left"><div class="footer-header-logo-wrapper"><div class="icon-embed-custom w-embed"><svg width="104" height="32" viewBox="0 0 104 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_1394_7905)">
-<path d="M14.4523 15.3524L0 0.833252L21.4587 7.77987L14.4523 15.3524Z" fill="#171717"></path>
-<path d="M15.2998 16.1905L26.9132 30.6246L22.2957 8.60608L15.2998 16.1905Z" fill="#171717"></path>
-<path d="M25.4969 30.751L9.08936 23.5399L19.6967 23.5435L25.4969 30.751Z" fill="#171717"></path>
-<path d="M27.84 0.98877L22.4184 6.85587L17.1924 5.16107L27.84 0.98877Z" fill="#171717"></path>
-<path d="M25.9214 4.6494L28.9928 1.49194L34.2845 4.80135L25.9214 4.6494Z" fill="#171717"></path>
-<path d="M47.7863 9.6079C48.8889 9.6079 49.7827 8.66864 49.7827 7.51C49.7827 6.35137 48.8889 5.41211 47.7863 5.41211C46.6838 5.41211 45.79 6.35137 45.79 7.51C45.79 8.66864 46.6838 9.6079 47.7863 9.6079Z" fill="#171717"></path>
-<path d="M89.5358 16.7473V24.3486H86.2427V17.0082C86.2427 14.8323 85.1256 13.7586 83.5791 13.7586C81.6606 13.7586 80.4578 15.2093 80.6012 17.6465L80.5723 17.5305V24.3486H77.2495V17.0082C77.2495 14.8323 76.1328 13.7586 74.7009 13.7586C73.1545 13.7586 71.6081 14.629 71.6081 17.2115V24.3486H68.2852V10.7991H71.6081V13.1203C72.0947 11.4086 73.9279 10.5068 75.5868 10.5068C77.5341 10.5068 79.1378 11.437 79.9108 13.1761C80.3369 12.3479 80.9847 11.6583 81.78 11.1861C82.5753 10.714 83.4859 10.4785 84.4072 10.5068C87.7598 10.509 89.5358 12.8013 89.5358 16.7473Z" fill="#171717"></path>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M65.5836 22.4329V10.7992L62.3407 10.7966V12.5684C61.4182 11.1757 59.657 10.5082 57.9799 10.5082C54.5411 10.5082 51.5781 13.2068 51.5781 17.5589C51.5781 21.8818 54.5691 24.638 58.0079 24.638C59.6011 24.638 61.4182 23.9416 62.3407 22.5494V22.7523C62.3407 26.6109 60.7755 28.1197 58.2593 28.1197C57.5336 28.1103 56.8244 27.8998 56.2084 27.5111C55.5925 27.1224 55.0933 26.5703 54.765 25.9146L52.0813 27.1912C52.6239 28.3862 53.4955 29.3971 54.5914 30.1023C55.6874 30.8074 56.961 31.177 58.2593 31.1664C62.732 31.1664 65.5836 28.5259 65.5836 22.4329ZM62.0111 16.0522C62.1976 16.5221 62.2906 17.0246 62.2848 17.531C62.3012 18.0433 62.2157 18.5537 62.0335 19.0319C61.8513 19.5102 61.5759 19.9465 61.2239 20.3149C60.8718 20.6832 60.4502 20.976 59.9842 21.1758C59.5181 21.3757 59.0172 21.4786 58.5111 21.4783C56.4981 21.4783 54.8489 19.7954 54.8489 17.5323C54.8289 17.0312 54.9085 16.5312 55.0833 16.062C55.258 15.5928 55.5241 15.164 55.8659 14.8012C56.2076 14.4384 56.6179 14.149 57.0724 13.9503C57.5268 13.7515 58.0161 13.6475 58.5111 13.6444C59.0114 13.6468 59.5063 13.7494 59.9672 13.9464C60.4282 14.1435 60.8461 14.431 61.1969 14.7924C61.5477 15.1538 61.8244 15.582 62.0111 16.0522Z" fill="#171717"></path>
-<path d="M49.459 10.7992H46.1362V24.3487H49.459V10.7992Z" fill="#171717"></path>
-<path d="M36.1091 20.144H32.8076C32.8684 23.045 35.6867 24.6698 38.5037 24.6711C41.3806 24.6711 44.2579 23.2191 44.2579 20.463C44.2579 19.2151 43.6826 17.3006 40.5027 16.517L38.2291 15.9367C37.4115 15.7626 36.715 15.3564 36.715 14.6601C36.715 13.8189 37.4719 13.2386 38.5623 13.2386C39.5618 13.2386 40.4402 13.8189 40.4402 14.7761H43.8019C43.8325 11.7298 40.9854 10.54 38.4714 10.54C35.382 10.54 33.2016 12.397 33.2016 14.5152C33.2016 16.2277 34.0192 17.8516 37.1995 18.664L39.0773 19.1283C40.1372 19.3604 40.7431 19.7099 40.7431 20.463C40.7431 21.3334 39.8342 21.9424 38.4412 21.9424C36.9573 21.9424 36.1091 21.0742 36.1091 20.144Z" fill="#171717"></path>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M104 24.3488V16.2536C104 12.5397 101.437 10.5087 97.9203 10.5078C95.4667 10.5078 93.2041 11.4943 92.1137 12.9743L93.9128 14.8892C94.5944 14.048 96.0936 13.4385 97.7022 13.4385C99.5831 13.4385 100.728 14.6283 100.728 16.3399V17.1523C99.4591 16.5097 98.0576 16.1816 96.6389 16.1951C93.6946 16.1951 91.3774 17.7034 91.3774 20.4307C91.3774 22.9849 93.3676 24.6389 96.1483 24.6389C97.9203 24.6389 99.8288 23.7973 100.728 22.5499V24.3488H104ZM100.728 19.4163V19.9674C99.9377 21.1572 98.2203 21.8823 96.7753 21.8832C95.3596 21.8832 94.4851 21.2475 94.4851 20.2885C94.4851 19.3295 95.3849 18.5167 97.2116 18.5167C98.441 18.5022 99.6529 18.8123 100.728 19.4163Z" fill="#171717"></path>
-</g>
-<defs>
-<clipPath id="clip0_1394_7905">
-<rect width="104" height="32" fill="white"></rect>
-</clipPath>
-</defs>
-</svg></div></div><div class="footer-header-social-icons"><a href="https://www.linkedin.com/company/sigmacomputing" target="_blank" class="footer-header-social-icon-3 w-inline-block"><div class="icon-1x1-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
-<path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" fill="currentColor"></path>
-<path d="M6 9H2V21H6V9Z" fill="currentColor"></path>
-<path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" fill="currentColor"></path>
-</svg></div></a><a href="https://www.youtube.com/c/sigmacomputing" target="_blank" class="footer-header-social-icon-3 w-inline-block"><div class="icon-1x1-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--simple-icons" width=" 100%" height=" 100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"></path></svg></div></a></div></div></div><div class="footer-navigation"><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Features</div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/product/architecture" class="text-size-small">Architecture</a><div class="footer-navigation-item-label-3"><div class="caption text-weight-semibold">Popular</div></div></div><div class="footer-navigation-item"><a href="/product/ai" class="text-size-small">AI Toolkit</a></div><div class="footer-navigation-item"><a href="/product/python-sql" class="text-size-small">Python / SQL</a></div><div class="footer-navigation-item"><a href="/product/data-modeling" class="text-size-small">Data modeling</a></div><div class="footer-navigation-item"><a href="/product/spreadsheets" class="text-size-small">Spreadsheets &amp;&nbsp;Writeback</a></div><div class="footer-navigation-item"><a href="/product/agents" class="text-size-small">Sigma Agents</a><div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div></div><div class="footer-navigation-item"><a href="/product/data-discovery-reveal" class="text-size-small">Exploration</a><div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div></div></div></div><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">capabilities</div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/product/ai-applications" class="text-size-small">AI Applications</a><div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div></div><div class="footer-navigation-item"><a href="/product/business-intelligence" class="text-size-small">Dashboards &amp;&nbsp;Analytics</a><div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div></div><div class="footer-navigation-item"><a href="/product/reporting" class="text-size-small">Pixel&nbsp;Perfect Reports</a><div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div></div><div class="footer-navigation-item"><a href="/product/embedded-analytics" class="text-size-small">Embedded Analytics</a><div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div></div><div class="footer-navigation-item"><a href="/product/self-service" class="text-size-small">Self-service</a><div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div></div></div></div><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">BY INDUSTRY<br></div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/use-cases/financial-services" class="text-size-small">Financial Services</a><div class="footer-navigation-item-label-3"><div class="caption text-weight-semibold">Popular</div></div></div><div class="footer-navigation-item"><a href="/use-cases/healthcare" class="text-size-small">Healthcare</a><div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div></div><div class="footer-navigation-item"><a href="/use-cases/retail-and-consumer-goods" class="text-size-small">Retail &amp; CPG</a><div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div></div><div class="footer-navigation-item"><a href="/use-cases/manufacturing" class="text-size-small">Manufacturing</a><div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div></div></div></div><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">by role<br></div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/use-cases/analyst" class="text-size-small">Analyst</a></div><div class="footer-navigation-item"><a href="/use-cases/analytics-engineer" class="text-size-small">Analytics Engineer</a></div><div class="footer-navigation-item"><a href="/use-cases/finance" class="text-size-small">Finance</a></div><div class="footer-navigation-item"><a href="/use-cases/marketing" class="text-size-small">Marketing</a></div><div class="footer-navigation-item"><a href="/use-cases/product" class="text-size-small">Product</a></div><div class="footer-navigation-item"><a href="/use-cases/sales" class="text-size-small">Sales</a></div><div class="footer-navigation-item"><a href="/use-cases/supply-chain" class="text-size-small">Supply Chain</a></div></div></div><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">integrations<br></div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/partners/snowflake" class="text-size-small">Snowflake</a></div><div class="footer-navigation-item"><a href="/partners/databricks" class="text-size-small">Databricks</a></div><div class="footer-navigation-item"><a href="https://help.sigmacomputing.com/docs/aws-privatelink-connections" class="text-size-small">AWS</a></div><div class="footer-navigation-item"><a href="https://help.sigmacomputing.com/docs/azure-private-link-connections" class="text-size-small">Azure</a></div><div class="footer-navigation-item"><a href="https://help.sigmacomputing.com/docs/connect-to-bigquery" class="text-size-small">Google Cloud</a></div></div></div><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">CONTACT</div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/company/contact-us" class="text-size-small">Contact us</a></div><div class="footer-navigation-item"><a href="/go/request-a-demo" class="text-size-small">Request a demo</a><div class="footer-navigation-item-label-3"><div class="caption text-weight-semibold">Popular</div></div></div><div class="footer-navigation-item"><a href="/go/free-trial" class="text-size-small">Try Sigma free</a></div><div class="footer-navigation-item"><a href="https://help.sigmacomputing.com/docs/sigma-support" class="text-size-small">Get support</a></div></div></div></div><div class="footer-navigation"><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">RESOURCES</div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/blog" class="text-size-small">Blog</a></div><div class="footer-navigation-item"><a href="https://help.sigmacomputing.com/" class="text-size-small">Documentation</a></div><div class="footer-navigation-item"><a href="/resources/ebooks" class="text-size-small">eBooks</a></div><div class="footer-navigation-item"><a href="/resources/white-papers" class="text-size-small">White Papers</a></div><div class="footer-navigation-item"><a href="/resources/analyst-reports" class="text-size-small">Analyst reports</a></div><div class="footer-navigation-item"><a href="https://www.youtube.com/playlist?list=PLEPuTCV_4dNzbYjSmGbWUrPKvniXJzadQ" class="text-size-small">Lightboard videos</a></div><div class="footer-navigation-item"><a href="https://www.sigmacomputing.com/blog-category/learning" class="text-size-small">Learning Center</a></div><div class="footer-navigation-item"><a href="/resources" class="text-size-small">Resource Center</a></div></div></div><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Events</div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/resources/live-events" class="text-size-small">Community events</a></div><div class="footer-navigation-item"><a href="/resources/live-events" class="text-size-small">Live events</a></div><div class="footer-navigation-item"><a href="/resources/on-demand-webinars" class="text-size-small">On-demand webinars</a></div><div class="footer-navigation-item"><a href="/events/snowflake-summit-2026" class="text-size-small">Snowflake Summit</a></div><div class="footer-navigation-item"><a href="/events/databricks-summit-2026" class="text-size-small">Databricks Summit</a></div><div class="footer-navigation-item"><a href="https://www.sigmacomputing.com/resources/webinars-and-events/workflow-on-demand" class="text-size-small">Workflow Conference</a></div></div></div><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">LEGAL</div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/legal/subprocessors" class="text-size-small">Subprocessors</a></div><div class="footer-navigation-item"><a href="/legal" class="text-size-small">Trademarks</a></div><div class="footer-navigation-item"><a href="https://www.sigmacomputing.com/legal#patents" class="text-size-small">Patents</a></div></div></div><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">SUPPORT</div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="https://help.sigmacomputing.com/docs/sigma-support" class="text-size-small">Get support</a></div><div class="footer-navigation-item"><a href="https://community.sigmacomputing.com" class="text-size-small">Community</a></div><div class="footer-navigation-item"><a href="https://quickstarts.sigmacomputing.com" class="text-size-small">QuickStarts</a></div><div class="footer-navigation-item"><a href="https://help.sigmacomputing.com" class="text-size-small">Documentation</a></div><div class="footer-navigation-item"><a href="https://www.sigmacomputing.com/product/vdp" class="text-size-small">Bug Bounty</a></div><div class="footer-navigation-item"><a href="https://status.sigmacomputing.com" class="text-size-small">Sigma Status</a></div></div></div><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">COMPANY</div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/company" class="text-size-small">About us</a></div><div class="footer-navigation-item"><a href="/company/newsroom" class="text-size-small">Newsroom</a></div><div class="footer-navigation-item"><a href="https://security.sigmacomputing.com" class="text-size-small">Security Center</a></div><div class="footer-navigation-item"><a href="/customers" class="text-size-small">Customers</a></div><div class="footer-navigation-item"><a href="/product/why-sigma" class="text-size-small">Why Sigma?</a></div><div class="footer-navigation-item"><a href="/comparison" class="text-size-small">Comparison</a></div><div class="footer-navigation-item"><a href="/company/careers" class="text-size-small">Careers</a></div></div></div><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">PARTNERS</div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/partners" class="text-size-small">Program overview</a></div><div class="footer-navigation-item"><a href="/partners/technology" class="text-size-small">Technology partners</a></div><div class="footer-navigation-item"><a href="/partners/consulting" class="text-size-small">Consulting partners</a></div><div class="footer-navigation-item"><a href="/partners/integrations" class="text-size-small">Partner Integrations</a></div></div></div><div class="footer-navigation-col"><div class="footer-navigation-header"><div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">POLICIES</div></div><div class="footer-navigation-items"><div class="footer-navigation-item"><a href="/legal/privacy-policy" class="text-size-small">Privacy Policy</a></div><div class="footer-navigation-item"><a href="/legal/cookie-policy" class="text-size-small">Cookie Policy</a></div><div class="footer-navigation-item"><a href="/partners/consulting" class="text-size-small">Terms of Service</a></div><div class="footer-navigation-item"><a href="/site-index" class="text-size-small">Site Index</a></div><div class="footer-navigation-item"><a id="ot-sdk-btn" href="#" class="text-size-small">Cookie Settings</a></div></div></div></div><div class="footer-footnote"><a href="#" class="text-size-small-4 text-color-secondary">© 2026 Sigma Computing</a></div></div></div></section>
+<footer class="nf-root">
+  <div class="nf-outer">
+    <div class="nf-card">
+
+      <!-- Header: CTA left, logo+social right -->
+      <div class="nf-header">
+        <div class="nf-cta-block">
+          <p class="nf-headline">AI Apps. Analytics.</p>
+          <a href="https://www.sigmacomputing.com/go/free-trial" class="nf-cta-btn">
+            Try Sigma free
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="nf-logo-social">
+          <div class="nf-logo">
+            <svg width="104" height="32" viewBox="0 0 104 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#nf-clip)">
+                <path d="M14.4523 15.3524L0 0.833252L21.4587 7.77987L14.4523 15.3524Z" fill="#171717"/>
+                <path d="M15.2998 16.1905L26.9132 30.6246L22.2957 8.60608L15.2998 16.1905Z" fill="#171717"/>
+                <path d="M25.4969 30.751L9.08936 23.5399L19.6967 23.5435L25.4969 30.751Z" fill="#171717"/>
+                <path d="M27.84 0.98877L22.4184 6.85587L17.1924 5.16107L27.84 0.98877Z" fill="#171717"/>
+                <path d="M25.9214 4.6494L28.9928 1.49194L34.2845 4.80135L25.9214 4.6494Z" fill="#171717"/>
+                <path d="M47.7863 9.6079C48.8889 9.6079 49.7827 8.66864 49.7827 7.51C49.7827 6.35137 48.8889 5.41211 47.7863 5.41211C46.6838 5.41211 45.79 6.35137 45.79 7.51C45.79 8.66864 46.6838 9.6079 47.7863 9.6079Z" fill="#171717"/>
+                <path d="M89.5358 16.7473V24.3486H86.2427V17.0082C86.2427 14.8323 85.1256 13.7586 83.5791 13.7586C81.6606 13.7586 80.4578 15.2093 80.6012 17.6465L80.5723 17.5305V24.3486H77.2495V17.0082C77.2495 14.8323 76.1328 13.7586 74.7009 13.7586C73.1545 13.7586 71.6081 14.629 71.6081 17.2115V24.3486H68.2852V10.7991H71.6081V13.1203C72.0947 11.4086 73.9279 10.5068 75.5868 10.5068C77.5341 10.5068 79.1378 11.437 79.9108 13.1761C80.3369 12.3479 80.9847 11.6583 81.78 11.1861C82.5753 10.714 83.4859 10.4785 84.4072 10.5068C87.7598 10.509 89.5358 12.8013 89.5358 16.7473Z" fill="#171717"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M65.5836 22.4329V10.7992L62.3407 10.7966V12.5684C61.4182 11.1757 59.657 10.5082 57.9799 10.5082C54.5411 10.5082 51.5781 13.2068 51.5781 17.5589C51.5781 21.8818 54.5691 24.638 58.0079 24.638C59.6011 24.638 61.4182 23.9416 62.3407 22.5494V22.7523C62.3407 26.6109 60.7755 28.1197 58.2593 28.1197C57.5336 28.1103 56.8244 27.8998 56.2084 27.5111C55.5925 27.1224 55.0933 26.5703 54.765 25.9146L52.0813 27.1912C52.6239 28.3862 53.4955 29.3971 54.5914 30.1023C55.6874 30.8074 56.961 31.177 58.2593 31.1664C62.732 31.1664 65.5836 28.5259 65.5836 22.4329ZM62.0111 16.0522C62.1976 16.5221 62.2906 17.0246 62.2848 17.531C62.3012 18.0433 62.2157 18.5537 62.0335 19.0319C61.8513 19.5102 61.5759 19.9465 61.2239 20.3149C60.8718 20.6832 60.4502 20.976 59.9842 21.1758C59.5181 21.3757 59.0172 21.4786 58.5111 21.4783C56.4981 21.4783 54.8489 19.7954 54.8489 17.5323C54.8289 17.0312 54.9085 16.5312 55.0833 16.062C55.258 15.5928 55.5241 15.164 55.8659 14.8012C56.2076 14.4384 56.6179 14.149 57.0724 13.9503C57.5268 13.7515 58.0161 13.6475 58.5111 13.6444C59.0114 13.6468 59.5063 13.7494 59.9672 13.9464C60.4282 14.1435 60.8461 14.431 61.1969 14.7924C61.5477 15.1538 61.8244 15.582 62.0111 16.0522Z" fill="#171717"/>
+                <path d="M49.459 10.7992H46.1362V24.3487H49.459V10.7992Z" fill="#171717"/>
+                <path d="M36.1091 20.144H32.8076C32.8684 23.045 35.6867 24.6698 38.5037 24.6711C41.3806 24.6711 44.2579 23.2191 44.2579 20.463C44.2579 19.2151 43.6826 17.3006 40.5027 16.517L38.2291 15.9367C37.4115 15.7626 36.715 15.3564 36.715 14.6601C36.715 13.8189 37.4719 13.2386 38.5623 13.2386C39.5618 13.2386 40.4402 13.8189 40.4402 14.7761H43.8019C43.8325 11.7298 40.9854 10.54 38.4714 10.54C35.382 10.54 33.2016 12.397 33.2016 14.5152C33.2016 16.2277 34.0192 17.8516 37.1995 18.664L39.0773 19.1283C40.1372 19.3604 40.7431 19.7099 40.7431 20.463C40.7431 21.3334 39.8342 21.9424 38.4412 21.9424C36.9573 21.9424 36.1091 21.0742 36.1091 20.144Z" fill="#171717"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M104 24.3488V16.2536C104 12.5397 101.437 10.5087 97.9203 10.5078C95.4667 10.5078 93.2041 11.4943 92.1137 12.9743L93.9128 14.8892C94.5944 14.048 96.0936 13.4385 97.7022 13.4385C99.5831 13.4385 100.728 14.6283 100.728 16.3399V17.1523C99.4591 16.5097 98.0576 16.1816 96.6389 16.1951C93.6946 16.1951 91.3774 17.7034 91.3774 20.4307C91.3774 22.9849 93.3676 24.6389 96.1483 24.6389C97.9203 24.6389 99.8288 23.7973 100.728 22.5499V24.3488H104ZM100.728 19.4163V19.9674C99.9377 21.1572 98.2203 21.8823 96.7753 21.8832C95.3596 21.8832 94.4851 21.2475 94.4851 20.2885C94.4851 19.3295 95.3849 18.5167 97.2116 18.5167C98.441 18.5022 99.6529 18.8123 100.728 19.4163Z" fill="#171717"/>
+              </g>
+              <defs><clipPath id="nf-clip"><rect width="104" height="32" fill="white"/></clipPath></defs>
+            </svg>
+          </div>
+          <div class="nf-socials">
+            <a href="https://www.linkedin.com/company/sigmacomputing" target="_blank" rel="noopener" class="nf-social-icon" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" fill="currentColor"/>
+                <path d="M6 9H2V21H6V9Z" fill="currentColor"/>
+                <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/c/sigmacomputing" target="_blank" rel="noopener" class="nf-social-icon" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nf-sep"></div>
+
+      <!-- Nav grid 1: Features, Capabilities, By Industry, By Role, Integrations, Contact -->
+      <nav aria-label="Footer navigation" class="nf-nav">
+        <div class="nf-col">
+          <div class="nf-col-header">Features</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/architecture">Architecture</a><span class="nf-badge nf-badge-popular">Popular</span></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/ai">AI Toolkit</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/python-sql">Python / SQL</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/data-modeling">Data modeling</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/spreadsheets">Spreadsheets &amp;&nbsp;Writeback</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/agents">Sigma Agents</a><span class="nf-badge nf-badge-new">New</span></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/data-discovery-reveal">Exploration</a><span class="nf-badge nf-badge-new">New</span></div>
+          </div>
+        </div>
+        <div class="nf-col">
+          <div class="nf-col-header">Capabilities</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/ai-applications">AI Applications</a><span class="nf-badge nf-badge-new">New</span></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/business-intelligence">Dashboards &amp;&nbsp;Analytics</a><span class="nf-badge nf-badge-new">New</span></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/reporting">Pixel&nbsp;Perfect Reports</a><span class="nf-badge nf-badge-new">New</span></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/embedded-analytics">Embedded Analytics</a><span class="nf-badge nf-badge-new">New</span></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/self-service">Self-service</a><span class="nf-badge nf-badge-new">New</span></div>
+          </div>
+        </div>
+        <div class="nf-col">
+          <div class="nf-col-header">By Industry</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/use-cases/financial-services">Financial Services</a><span class="nf-badge nf-badge-popular">Popular</span></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/use-cases/healthcare">Healthcare</a><span class="nf-badge nf-badge-new">New</span></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/use-cases/retail-and-consumer-goods">Retail &amp; CPG</a><span class="nf-badge nf-badge-new">New</span></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/use-cases/manufacturing">Manufacturing</a><span class="nf-badge nf-badge-new">New</span></div>
+          </div>
+        </div>
+        <div class="nf-col">
+          <div class="nf-col-header">By Role</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/use-cases/analyst">Analyst</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/use-cases/analytics-engineer">Analytics Engineer</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/use-cases/finance">Finance</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/use-cases/marketing">Marketing</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/use-cases/product">Product</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/use-cases/sales">Sales</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/use-cases/supply-chain">Supply Chain</a></div>
+          </div>
+        </div>
+        <div class="nf-col">
+          <div class="nf-col-header">Integrations</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/partners/snowflake">Snowflake</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/partners/databricks">Databricks</a></div>
+            <div class="nf-col-item"><a href="https://help.sigmacomputing.com/docs/aws-privatelink-connections">AWS</a></div>
+            <div class="nf-col-item"><a href="https://help.sigmacomputing.com/docs/azure-private-link-connections">Azure</a></div>
+            <div class="nf-col-item"><a href="https://help.sigmacomputing.com/docs/connect-to-bigquery">Google Cloud</a></div>
+          </div>
+        </div>
+        <div class="nf-col">
+          <div class="nf-col-header">Contact</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/company/contact-us">Contact us</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/go/request-a-demo">Request a demo</a><span class="nf-badge nf-badge-popular">Popular</span></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/go/free-trial">Try Sigma free</a></div>
+            <div class="nf-col-item"><a href="https://help.sigmacomputing.com/docs/sigma-support">Get support</a></div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="nf-sep"></div>
+
+      <!-- Nav grid 2: Resources, Events, Legal, Support, Company, Partners -->
+      <div class="nf-nav">
+        <div class="nf-col">
+          <div class="nf-col-header">Resources</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/blog">Blog</a></div>
+            <div class="nf-col-item"><a href="https://help.sigmacomputing.com/">Documentation</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/resources/ebooks">eBooks</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/resources/white-papers">White Papers</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/resources/analyst-reports">Analyst reports</a></div>
+            <div class="nf-col-item"><a href="https://www.youtube.com/playlist?list=PLEPuTCV_4dNzbYjSmGbWUrPKvniXJzadQ">Lightboard videos</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/resources">Resource Center</a></div>
+          </div>
+        </div>
+        <div class="nf-col">
+          <div class="nf-col-header">Events</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/resources/live-events">Live events</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/resources/on-demand-webinars">On-demand webinars</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/events/snowflake-summit-2026">Snowflake Summit</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/events/databricks-summit-2026">Databricks Summit</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/resources/webinars-and-events/workflow-on-demand">Workflow Conference</a></div>
+          </div>
+        </div>
+        <div class="nf-col">
+          <div class="nf-col-header">Legal</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/legal/privacy-policy">Privacy Policy</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/legal/cookie-policy">Cookie Policy</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/legal/subprocessors">Subprocessors</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/legal">Trademarks</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/legal#patents">Patents</a></div>
+          </div>
+        </div>
+        <div class="nf-col">
+          <div class="nf-col-header">Support</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://help.sigmacomputing.com/docs/sigma-support">Get support</a></div>
+            <div class="nf-col-item"><a href="https://community.sigmacomputing.com">Community</a></div>
+            <div class="nf-col-item"><a href="https://quickstarts.sigmacomputing.com">QuickStarts</a></div>
+            <div class="nf-col-item"><a href="https://help.sigmacomputing.com">Documentation</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/vdp">Bug Bounty</a></div>
+            <div class="nf-col-item"><a href="https://status.sigmacomputing.com">Sigma Status</a></div>
+          </div>
+        </div>
+        <div class="nf-col">
+          <div class="nf-col-header">Company</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/company">About us</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/company/newsroom">Newsroom</a></div>
+            <div class="nf-col-item"><a href="https://security.sigmacomputing.com">Security Center</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/customers">Customers</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/product/why-sigma">Why Sigma?</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/comparison">Comparison</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/company/careers">Careers</a></div>
+          </div>
+        </div>
+        <div class="nf-col">
+          <div class="nf-col-header">Partners</div>
+          <div class="nf-col-items">
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/partners">Program overview</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/partners/technology">Technology partners</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/partners/consulting">Consulting partners</a></div>
+            <div class="nf-col-item"><a href="https://www.sigmacomputing.com/partners/integrations">Partner Integrations</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nf-sep"></div>
+
+      <!-- Copyright -->
+      <div class="nf-copyright">
+        <p>© 2026 Sigma Computing</p>
+      </div>
+
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
