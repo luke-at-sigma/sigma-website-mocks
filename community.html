@@ -1063,7 +1063,6 @@
 
 <!-- ══════════════ FOOTER ══════════════ -->
 <style>
-  /* Webflow footer overrides — fill gaps where the CDN CSS may not cover dark-bg context */
   .footer-7 { background-color: #1c1c1c; }
   .footer_component { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
   .footer_component-inner { padding: 3rem 0 0; }
@@ -1102,10 +1101,10 @@
     transition: opacity .15s;
   }
   .footer-header-right .button.is-icon:hover { opacity: .88; }
-  .icon-embed-small { display: flex; align-items: center; }
+  .icon-embed-small { display: flex; align-items: center; width: 1.25rem; height: 1.25rem; }
 
   .footer-header-left { display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
-  .footer-header-logo-wrapper svg { height: 22px; width: auto; }
+  .footer-header-logo-wrapper svg { height: 22px; width: auto; filter: brightness(0) invert(1); }
   .footer-header-social-icons { display: flex; gap: .5rem; }
   .footer-header-social-icon-3 {
     display: flex; align-items: center; justify-content: center;
@@ -1117,6 +1116,7 @@
     transition: background .15s, color .15s;
   }
   .footer-header-social-icon-3:hover { background: rgba(255,255,255,.16); color: #fff; }
+  .icon-1x1-xsmall { width: 1rem; height: 1rem; display: flex; align-items: center; justify-content: center; }
 
   .footer-navigation {
     display: grid;
@@ -1168,16 +1168,13 @@
     padding: .1rem .4rem;
     border-radius: 2rem;
     line-height: 1.4;
-  }
-  /* Popular badge — yellow */
-  .footer-navigation-item:has(.caption.text-weight-semibold:first-child) .footer-navigation-item-label-3 .caption.text-weight-semibold {
     background: #f0ff45;
     color: #1c1c1c;
   }
-  /* Fallback: Popular badge */
-  .badge-popular .caption.text-weight-semibold { background: #f0ff45; color: #1c1c1c; }
-  /* New badge — blue */
-  .badge-new .caption.text-weight-semibold { background: #1a70f1; color: #fff; }
+  .footer-navigation-item-label-3.is-new .caption.text-weight-semibold {
+    background: #1a70f1;
+    color: #fff;
+  }
 
   .footer-footnote {
     padding: 1.25rem 0;
@@ -1212,8 +1209,9 @@
           <a href="/go/free-trial" class="button is-icon w-inline-block">
             <div>Try Sigma free</div>
             <div class="icon-embed-small w-embed">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                <path d="M4.16675 10H15.8334" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M10 4.16669L15.8333 10L10 15.8334" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
             </div>
           </a>
@@ -1221,15 +1219,46 @@
         <div class="footer-header-left">
           <div class="footer-header-logo-wrapper">
             <div class="icon-embed-custom w-embed">
-              <img src="https://cdn.prod.website-files.com/666bbba4ff7240a20f4ccccf/666bbba4ff7240a20f4ccd33_logo-sigma-black.svg" alt="Sigma Computing" style="height:22px;width:auto;filter:brightness(0) invert(1);">
+              <svg width="104" height="32" viewBox="0 0 104 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1394_7905)">
+                  <path d="M14.4523 15.3524L0 0.833252L21.4587 7.77987L14.4523 15.3524Z" fill="#171717"></path>
+                  <path d="M15.2998 16.1905L26.9132 30.6246L22.2957 8.60608L15.2998 16.1905Z" fill="#171717"></path>
+                  <path d="M25.4969 30.751L9.08936 23.5399L19.6967 23.5435L25.4969 30.751Z" fill="#171717"></path>
+                  <path d="M27.84 0.98877L22.4184 6.85587L17.1924 5.16107L27.84 0.98877Z" fill="#171717"></path>
+                  <path d="M25.9214 4.6494L28.9928 1.49194L34.2845 4.80135L25.9214 4.6494Z" fill="#171717"></path>
+                  <path d="M47.7863 9.6079C48.8889 9.6079 49.7827 8.66864 49.7827 7.51C49.7827 6.35137 48.8889 5.41211 47.7863 5.41211C46.6838 5.41211 45.79 6.35137 45.79 7.51C45.79 8.66864 46.6838 9.6079 47.7863 9.6079Z" fill="#171717"></path>
+                  <path d="M38.6906 22.2538C38.6906 24.5576 40.2806 26.2466 42.8503 26.2466C44.4834 26.2466 45.6715 25.5679 46.4565 24.4427L44.8879 23.4759C44.4189 24.1546 43.7203 24.5576 42.8503 24.5576C41.4099 24.5576 40.4754 23.6134 40.4754 22.2538C40.4754 20.8942 41.4099 19.9501 42.8503 19.9501C43.7203 19.9501 44.4189 20.3531 44.8879 21.0318L46.4565 20.065C45.6715 18.9398 44.4834 18.261 42.8503 18.261C40.2806 18.261 38.6906 19.95 38.6906 22.2538Z" fill="#171717"></path>
+                  <path d="M46.918 26.0903H48.7028V18.4172H46.918V26.0903Z" fill="#171717"></path>
+                  <path d="M55.4053 18.4172V22.3557C55.4053 23.6247 54.6849 24.5013 53.4107 24.5013C52.2872 24.5013 51.6962 23.7775 51.6962 22.6298V18.4172H49.9114V22.8538C49.9114 24.8552 51.0564 26.2466 53.0349 26.2466C54.0125 26.2466 54.9255 25.8211 55.4053 25.0522V26.0903H57.19V18.4172H55.4053Z" fill="#171717"></path>
+                  <path d="M63.5139 18.261C62.5148 18.261 61.6663 18.6865 61.1219 19.4779V18.4172H59.3371V28.5628H61.1219V25.0747C61.6663 25.8436 62.5148 26.2466 63.5139 26.2466C65.6861 26.2466 67.1695 24.5576 67.1695 22.2538C67.1695 19.95 65.6861 18.261 63.5139 18.261ZM63.1741 24.5576C61.8138 24.5576 61.0719 23.5458 61.0719 22.2538C61.0719 20.9618 61.8138 19.9501 63.1741 19.9501C64.5345 19.9501 65.3194 20.9843 65.3194 22.2538C65.3194 23.5233 64.5345 24.5576 63.1741 24.5576Z" fill="#171717"></path>
+                  <path d="M72.7949 18.261C71.4561 18.261 70.4355 18.8946 69.9126 19.8388V18.4172H68.1278V26.0903H69.9126V22.0973C69.9126 20.8953 70.7406 19.9501 71.9717 19.9501C73.0737 19.9501 73.7077 20.6513 73.7077 21.7991V26.0903H75.4924V21.5301C75.4924 19.5512 74.3044 18.261 72.7949 18.261Z" fill="#171717"></path>
+                  <path d="M77.0617 22.2538C77.0617 24.5576 78.7163 26.2466 81.0807 26.2466C82.5426 26.2466 83.7522 25.5904 84.4939 24.4877L83.012 23.521C82.5857 24.1546 81.9087 24.5576 81.0807 24.5576C79.9141 24.5576 79.1937 23.8113 78.9014 22.8988H84.9168C84.9599 22.6973 84.9815 22.4733 84.9815 22.2538C84.9815 19.95 83.4335 18.261 81.0161 18.261C78.7163 18.261 77.0617 19.95 77.0617 22.2538ZM81.0161 19.9051C82.1181 19.9051 82.9246 20.5162 83.1954 21.5079H78.9229C79.1937 20.4937 79.9572 19.9051 81.0161 19.9051Z" fill="#171717"></path>
+                  <path d="M85.9399 24.4202C85.9399 25.3868 86.7034 26.0903 87.8485 26.0903H90.4827V24.4878H88.3751C88.0397 24.4878 87.7906 24.2638 87.7906 23.9723V20.0401H90.4827V18.4172H87.7906V16.3483H86.0059V18.4172H84.7748V20.0401H86.0059V23.9723C86.0059 24.1288 85.9831 24.2788 85.9399 24.4202Z" fill="#171717"></path>
+                  <path d="M96.3959 18.4172V19.4779C95.8514 18.6865 95.003 18.261 94.0039 18.261C91.8317 18.261 90.3483 19.95 90.3483 22.2538C90.3483 24.5576 91.8317 26.2466 94.0039 26.2466C95.003 26.2466 95.8514 25.8436 96.3959 25.0747V26.0903H98.1807V18.4172H96.3959ZM94.3437 24.5576C92.9834 24.5576 92.1984 23.5233 92.1984 22.2538C92.1984 20.9843 92.9834 19.9501 94.3437 19.9501C95.7041 19.9501 96.446 20.9618 96.446 22.2538C96.446 23.5458 95.7041 24.5576 94.3437 24.5576Z" fill="#171717"></path>
+                  <path d="M99.318 26.0903H101.103V18.4172H99.318V26.0903Z" fill="#171717"></path>
+                  <path d="M103.979 26.0903V23.5908H101.48V26.0903H103.979Z" fill="#171717"></path>
+                </g>
+                <defs><clipPath id="clip0_1394_7905"><rect width="104" height="32" fill="white"></rect></clipPath></defs>
+              </svg>
             </div>
           </div>
           <div class="footer-header-social-icons">
-            <a href="https://www.linkedin.com/company/sigmacomputing" class="footer-header-social-icon-3 w-inline-block" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            <a href="https://www.linkedin.com/company/sigmacomputing" target="_blank" class="footer-header-social-icon-3 w-inline-block">
+              <div class="icon-1x1-xsmall w-embed">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+                  <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" fill="currentColor"></path>
+                  <path d="M6 9H2V21H6V9Z" fill="currentColor"></path>
+                  <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" fill="currentColor"></path>
+                </svg>
+              </div>
             </a>
-            <a href="https://www.youtube.com/c/sigmacomputing" class="footer-header-social-icon-3 w-inline-block" target="_blank" rel="noopener" aria-label="YouTube">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <a href="https://www.youtube.com/c/sigmacomputing" target="_blank" class="footer-header-social-icon-3 w-inline-block">
+              <div class="icon-1x1-xsmall w-embed">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+                  <path d="M22.54 6.42A2.78 2.78 0 0 0 20.59 4.46C18.88 4 12 4 12 4C12 4 5.12 4 3.41 4.46A2.78 2.78 0 0 0 1.46 6.42C1 8.14 1 11.73 1 11.73C1 11.73 1 15.32 1.46 17.04A2.78 2.78 0 0 0 3.41 19C5.12 19.46 12 19.46 12 19.46C12 19.46 18.88 19.46 20.59 19A2.78 2.78 0 0 0 22.54 17.04C23 15.32 23 11.73 23 11.73C23 11.73 23 8.14 22.54 6.42Z" fill="currentColor"></path>
+                  <path d="M9.75 15.02L15.5 11.73L9.75 8.44V15.02Z" fill="#1C1C1C"></path>
+                </svg>
+              </div>
             </a>
           </div>
         </div>
@@ -1245,19 +1274,19 @@
           <div class="footer-navigation-items">
             <div class="footer-navigation-item">
               <a href="/product/architecture" class="text-size-small">Architecture</a>
-              <div class="footer-navigation-item-label-3 badge-popular"><div class="caption text-weight-semibold">Popular</div></div>
+              <div class="footer-navigation-item-label-3"><div class="caption text-weight-semibold">Popular</div></div>
             </div>
-            <div class="footer-navigation-item"><a href="/product/ai-toolkit" class="text-size-small">AI Toolkit</a></div>
+            <div class="footer-navigation-item"><a href="/product/ai" class="text-size-small">AI Toolkit</a></div>
             <div class="footer-navigation-item"><a href="/product/python-sql" class="text-size-small">Python/SQL</a></div>
             <div class="footer-navigation-item"><a href="/product/data-modeling" class="text-size-small">Data modeling</a></div>
             <div class="footer-navigation-item"><a href="/product/spreadsheets" class="text-size-small">Spreadsheets &amp; Writeback</a></div>
             <div class="footer-navigation-item">
-              <a href="/product/sigma-agents" class="text-size-small">Sigma Agents</a>
-              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+              <a href="/product/agents" class="text-size-small">Sigma Agents</a>
+              <div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div>
             </div>
             <div class="footer-navigation-item">
-              <a href="/product/exploration" class="text-size-small">Exploration</a>
-              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+              <a href="/product/data-discovery-reveal" class="text-size-small">Exploration</a>
+              <div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div>
             </div>
           </div>
         </div>
@@ -1269,23 +1298,23 @@
           <div class="footer-navigation-items">
             <div class="footer-navigation-item">
               <a href="/product/ai-applications" class="text-size-small">AI Applications</a>
-              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+              <div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div>
             </div>
             <div class="footer-navigation-item">
               <a href="/product/dashboards" class="text-size-small">Dashboards &amp; Analytics</a>
-              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+              <div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div>
             </div>
             <div class="footer-navigation-item">
               <a href="/product/pixel-perfect" class="text-size-small">Pixel Perfect Reports</a>
-              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+              <div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div>
             </div>
             <div class="footer-navigation-item">
               <a href="/product/embedded-analytics" class="text-size-small">Embedded Analytics</a>
-              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+              <div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div>
             </div>
             <div class="footer-navigation-item">
               <a href="/product/self-service" class="text-size-small">Self-service</a>
-              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+              <div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div>
             </div>
           </div>
         </div>
@@ -1296,20 +1325,20 @@
           </div>
           <div class="footer-navigation-items">
             <div class="footer-navigation-item">
-              <a href="/solutions/financial-services" class="text-size-small">Financial Services</a>
-              <div class="footer-navigation-item-label-3 badge-popular"><div class="caption text-weight-semibold">Popular</div></div>
+              <a href="/use-cases/financial-services" class="text-size-small">Financial Services</a>
+              <div class="footer-navigation-item-label-3"><div class="caption text-weight-semibold">Popular</div></div>
             </div>
             <div class="footer-navigation-item">
-              <a href="/solutions/healthcare" class="text-size-small">Healthcare</a>
-              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+              <a href="/use-cases/healthcare" class="text-size-small">Healthcare</a>
+              <div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div>
             </div>
             <div class="footer-navigation-item">
-              <a href="/solutions/retail-cpg" class="text-size-small">Retail &amp; CPG</a>
-              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+              <a href="/use-cases/retail-and-consumer-goods" class="text-size-small">Retail &amp; CPG</a>
+              <div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div>
             </div>
             <div class="footer-navigation-item">
-              <a href="/solutions/manufacturing" class="text-size-small">Manufacturing</a>
-              <div class="footer-navigation-item-label-3 badge-new"><div class="caption text-weight-semibold">New</div></div>
+              <a href="/use-cases/manufacturing" class="text-size-small">Manufacturing</a>
+              <div class="footer-navigation-item-label-3 is-new"><div class="caption text-weight-semibold">New</div></div>
             </div>
           </div>
         </div>
@@ -1347,10 +1376,10 @@
             <div class="navbar-label text-style-allcaps text-color-secondary text-weight-bold">Contact</div>
           </div>
           <div class="footer-navigation-items">
-            <div class="footer-navigation-item"><a href="/contact" class="text-size-small">Contact us</a></div>
+            <div class="footer-navigation-item"><a href="/company/contact-us" class="text-size-small">Contact us</a></div>
             <div class="footer-navigation-item">
-              <a href="/go/request-demo" class="text-size-small">Request a demo</a>
-              <div class="footer-navigation-item-label-3 badge-popular"><div class="caption text-weight-semibold">Popular</div></div>
+              <a href="/go/request-a-demo" class="text-size-small">Request a demo</a>
+              <div class="footer-navigation-item-label-3"><div class="caption text-weight-semibold">Popular</div></div>
             </div>
             <div class="footer-navigation-item"><a href="/go/free-trial" class="text-size-small">Try Sigma free</a></div>
             <div class="footer-navigation-item"><a href="https://help.sigmacomputing.com/docs/sigma-support" class="text-size-small">Get support</a></div>
@@ -1388,7 +1417,7 @@
             <div class="footer-navigation-item"><a href="/resources/on-demand-webinars" class="text-size-small">On-demand webinars</a></div>
             <div class="footer-navigation-item"><a href="/events/snowflake-summit" class="text-size-small">Snowflake Summit</a></div>
             <div class="footer-navigation-item"><a href="/events/databricks-summit" class="text-size-small">Databricks Summit</a></div>
-            <div class="footer-navigation-item"><a href="/events/workflow-conference" class="text-size-small">Workflow Conference</a></div>
+            <div class="footer-navigation-item"><a href="https://www.sigmacomputing.com/resources/webinars-and-events/workflow-on-demand" class="text-size-small">Workflow Conference</a></div>
           </div>
         </div>
 
@@ -1398,8 +1427,8 @@
           </div>
           <div class="footer-navigation-items">
             <div class="footer-navigation-item"><a href="/legal/subprocessors" class="text-size-small">Subprocessors</a></div>
-            <div class="footer-navigation-item"><a href="/legal/trademarks" class="text-size-small">Trademarks</a></div>
-            <div class="footer-navigation-item"><a href="/legal/patents" class="text-size-small">Patents</a></div>
+            <div class="footer-navigation-item"><a href="/legal" class="text-size-small">Trademarks</a></div>
+            <div class="footer-navigation-item"><a href="/legal#patents" class="text-size-small">Patents</a></div>
           </div>
         </div>
 
@@ -1424,7 +1453,7 @@
           <div class="footer-navigation-items">
             <div class="footer-navigation-item"><a href="/company" class="text-size-small">About us</a></div>
             <div class="footer-navigation-item"><a href="/company/newsroom" class="text-size-small">Newsroom</a></div>
-            <div class="footer-navigation-item"><a href="https://security.sigmacomputing.com/" class="text-size-small">Security Center</a></div>
+            <div class="footer-navigation-item"><a href="https://security.sigmacomputing.com" class="text-size-small">Security Center</a></div>
             <div class="footer-navigation-item"><a href="/customers" class="text-size-small">Customers</a></div>
             <div class="footer-navigation-item"><a href="/product/why-sigma" class="text-size-small">Why Sigma?</a></div>
             <div class="footer-navigation-item"><a href="/comparison" class="text-size-small">Comparison</a></div>
@@ -1453,7 +1482,7 @@
             <div class="footer-navigation-item"><a href="/legal/cookie-policy" class="text-size-small">Cookie Policy</a></div>
             <div class="footer-navigation-item"><a href="/legal" class="text-size-small">Terms of Service</a></div>
             <div class="footer-navigation-item"><a href="/site-index" class="text-size-small">Site Index</a></div>
-            <div class="footer-navigation-item"><a href="#" class="text-size-small">Cookie Settings</a></div>
+            <div class="footer-navigation-item"><a id="ot-sdk-btn" href="#" class="text-size-small">Cookie Settings</a></div>
           </div>
         </div>
 
