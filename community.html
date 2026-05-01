@@ -286,7 +286,7 @@
     /* ─── PILLAR GRID ─── */
     .pillar-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 1rem;
     }
     .pillar-card {
@@ -599,7 +599,7 @@
       .router-grid { grid-template-columns: 1fr; }
       .router-card { border-right: none; border-bottom: 1px solid var(--neutral-6); }
       .router-card:last-child { border-bottom: none; }
-      .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+      .pillar-grid { grid-template-columns: repeat(3, 1fr); }
       .featured-grid, .public-grid { grid-template-columns: 1fr; }
       .community-hero { padding: 3rem 1.5rem; }
       .community-cta-section { padding: 3.5rem 1.5rem; }
@@ -799,7 +799,7 @@
       <div>
         <p class="section-kicker">Resources</p>
         <h2 class="section-h2">Explore by format</h2>
-        <p class="section-desc">Four ways to learn — pick what fits how you think.</p>
+        <p class="section-desc">Five ways to learn — pick what fits how you think.</p>
       </div>
     </div>
     <div class="pillar-grid">
@@ -807,34 +807,57 @@
       <a class="pillar-card" href="https://quickstarts.sigmacomputing.com/">
         <div class="pillar-icon-wrap" style="background:#e5eefa;">📄</div>
         <div class="pillar-title">QuickStarts</div>
-        <div class="pillar-desc">Written step-by-step guides for specific tasks. Follow along at your own pace with real screenshots and code.</div>
-        <span class="pillar-link">Browse all guides <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="pillar-desc">Written step-by-step guides for specific tasks, organized by topic.</div>
+        <span class="pillar-link">Browse guides <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="pillar-card" href="https://help.sigmacomputing.com/">
+        <div class="pillar-icon-wrap" style="background:#e8f4fd;">📚</div>
+        <div class="pillar-title">Documentation</div>
+        <div class="pillar-desc">The full Sigma reference — concepts, features, and how-tos for every part of the product.</div>
+        <span class="pillar-link">Open docs <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
       <a class="pillar-card" href="https://www.sigmacomputing.com/resources/training-videos">
         <div class="pillar-icon-wrap" style="background:#fbeaca;">🎬</div>
         <div class="pillar-title">Training Videos</div>
-        <div class="pillar-desc">Short, focused lessons built for quick skill reps. Find the exact topic you need and get up to speed fast.</div>
+        <div class="pillar-desc">Short focused lessons for quick skill reps. Find the exact topic you need, fast.</div>
         <span class="pillar-link">Watch videos <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
       <a class="pillar-card" href="https://www.sigmacomputing.com/resources/on-demand-webinars?*=jumpstart">
         <div class="pillar-icon-wrap" style="background:#f3eafc;">🎓</div>
         <div class="pillar-title">Jumpstart Trainings</div>
-        <div class="pillar-desc">Longform video courses covering Sigma end to end. Ideal for onboarding a team or going from zero to proficient.</div>
-        <span class="pillar-link">View all courses <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="pillar-desc">Longform video courses covering Sigma end to end — ideal for onboarding or going zero to proficient.</div>
+        <span class="pillar-link">View courses <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
       <a class="pillar-card" href="https://community.sigmacomputing.com/">
         <div class="pillar-icon-wrap" style="background:#cffcdd;">💬</div>
         <div class="pillar-title">Community Forum</div>
-        <div class="pillar-desc">Ask questions, share solutions, and connect with 10,000+ analysts, admins, and developers using Sigma every day.</div>
+        <div class="pillar-desc">Ask questions, share solutions, and connect with analysts, admins, and developers using Sigma every day.</div>
         <span class="pillar-link">Join the conversation <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
     </div>
   </div>
 </section>
+
+<!-- ══════════════ DATACAMP CALLOUT ══════════════ -->
+<div style="background:#f8f9fb; border-top:1px solid #e2e6ec; border-bottom:1px solid #e2e6ec; padding:1.25rem 2rem;">
+  <div style="max-width:76rem; margin:0 auto; display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+    <div style="flex:1; min-width:200px;">
+      <span style="font-family:Dmsans,sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#5a6475;">Also on DataCamp</span>
+      <p style="font-family:Dmsans,sans-serif; font-size:.9375rem; color:#1c1c1c; margin:.25rem 0 0; line-height:1.5;">
+        <strong>Introduction to Sigma</strong> — 2-hour beginner course covering data exploration, interactive dashboards, and real-time analytics. No SQL required.
+      </p>
+    </div>
+    <a href="https://www.datacamp.com/courses/introduction-to-sigma" target="_blank" rel="noopener" style="font-family:Dmsans,sans-serif; font-size:.875rem; font-weight:600; color:#1a70f1; text-decoration:none; white-space:nowrap; display:inline-flex; align-items:center; gap:.375rem; flex-shrink:0;">
+      View course
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</div>
 
 <!-- ══════════════ FEATURED ══════════════ -->
 <section class="community-section">
@@ -852,47 +875,47 @@
     </div>
     <div class="featured-grid">
 
-      <a class="featured-card" href="https://www.sigmacomputing.com/resources/on-demand-webinars?*=jumpstart">
-        <div class="featured-thumb" style="background:linear-gradient(135deg,#292929,#3d3d3d);">
-          🎓
-          <span class="featured-type-tag tag-course">Course</span>
-        </div>
-        <div class="featured-body">
-          <div class="featured-title">Sigma Fundamentals — Jumpstart Training</div>
-          <div class="featured-blurb">A full walkthrough of Sigma from scratch: workbooks, visualizations, formulas, and sharing.</div>
-          <div class="featured-meta">
-            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.25"/><path d="M5.5 3.5v2.5l1.5.875" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
-            ~3 hours <span class="meta-sep"></span> Beginner
-          </div>
-        </div>
-      </a>
-
-      <a class="featured-card" href="https://quickstarts.sigmacomputing.com/">
+      <a class="featured-card" href="https://quickstarts.sigmacomputing.com/guide/fundamentals-1-overview/">
         <div class="featured-thumb" style="background:linear-gradient(135deg,#051630,#08377e);">
           📄
           <span class="featured-type-tag tag-guide">QuickStart</span>
         </div>
         <div class="featured-body">
-          <div class="featured-title">Build Your First Workbook</div>
-          <div class="featured-blurb">Connect to data, add a table, create calculations, and build your first chart — step by step.</div>
+          <div class="featured-title">Fundamentals 01: Overview</div>
+          <div class="featured-blurb">The definitive starting point — covers Sigma's core concepts, interface, and how to navigate the platform.</div>
           <div class="featured-meta">
             <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.25"/><path d="M5.5 3.5v2.5l1.5.875" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
-            ~20 min <span class="meta-sep"></span> Beginner
+            ~30 min <span class="meta-sep"></span> Beginner
           </div>
         </div>
       </a>
 
-      <a class="featured-card" href="https://www.sigmacomputing.com/resources/training-videos">
-        <div class="featured-thumb" style="background:linear-gradient(135deg,#3b0b0b,#7a2000);">
-          🎬
-          <span class="featured-type-tag tag-video">Video</span>
+      <a class="featured-card" href="https://quickstarts.sigmacomputing.com/guide/ai-apps-fundamentals/">
+        <div class="featured-thumb" style="background:linear-gradient(135deg,#0d1a3a,#1a3a6e);">
+          📄
+          <span class="featured-type-tag tag-guide">QuickStart</span>
         </div>
         <div class="featured-body">
-          <div class="featured-title">Admin Overview — Managing Your Sigma Org</div>
-          <div class="featured-blurb">User management, permissions, audit logging, and org settings — everything admins need.</div>
+          <div class="featured-title">AI Apps Fundamentals</div>
+          <div class="featured-blurb">Learn how to build AI-powered applications in Sigma — from AI prompt boxes to automated workflows.</div>
           <div class="featured-meta">
             <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.25"/><path d="M5.5 3.5v2.5l1.5.875" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
-            ~15 min <span class="meta-sep"></span> Intermediate
+            ~45 min <span class="meta-sep"></span> Intermediate
+          </div>
+        </div>
+      </a>
+
+      <a class="featured-card" href="https://community.sigmacomputing.com/">
+        <div class="featured-thumb" style="background:linear-gradient(135deg,#0e2a1a,#1a5c38);">
+          💬
+          <span class="featured-type-tag tag-course">Community</span>
+        </div>
+        <div class="featured-body">
+          <div class="featured-title">From Dashboards to AI Apps: Practical Patterns for Building AI‑Powered Workflows</div>
+          <div class="featured-blurb">Real-world techniques for turning Sigma workbooks into AI-driven apps — from the Knowledge Hub.</div>
+          <div class="featured-meta">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.25"/><path d="M5.5 3.5v2.5l1.5.875" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
+            ~10 min read <span class="meta-sep"></span> Intermediate
           </div>
         </div>
       </a>
@@ -909,17 +932,54 @@
       <h2 class="section-h2" style="font-size:1.375rem;">Browse by topic</h2>
     </div>
     <div class="topic-chips">
-      <a class="topic-chip is-active" href="#">Fundamentals</a>
-      <a class="topic-chip" href="#">Visualizations</a>
-      <a class="topic-chip" href="#">Data Modeling</a>
-      <a class="topic-chip" href="#">Administration</a>
-      <a class="topic-chip" href="#">AI &amp; Apps</a>
-      <a class="topic-chip" href="#">Embedding</a>
-      <a class="topic-chip" href="#">Formulas &amp; Functions</a>
-      <a class="topic-chip" href="#">Input Tables</a>
-      <a class="topic-chip" href="#">Security</a>
-      <a class="topic-chip" href="#">Templates</a>
-      <a class="topic-chip" href="#">Developers &amp; API</a>
+      <a class="topic-chip is-active" href="https://quickstarts.sigmacomputing.com/?cat=fundamentals">Fundamentals</a>
+      <a class="topic-chip" href="https://quickstarts.sigmacomputing.com/?cat=ai-apps">AI Apps</a>
+      <a class="topic-chip" href="https://quickstarts.sigmacomputing.com/?cat=embedding">Embedding</a>
+      <a class="topic-chip" href="https://quickstarts.sigmacomputing.com/?cat=functions">Functions</a>
+      <a class="topic-chip" href="https://quickstarts.sigmacomputing.com/?cat=administration">Administration</a>
+      <a class="topic-chip" href="https://quickstarts.sigmacomputing.com/?cat=security">Security</a>
+      <a class="topic-chip" href="https://quickstarts.sigmacomputing.com/?cat=tables">Data Modeling</a>
+      <a class="topic-chip" href="https://quickstarts.sigmacomputing.com/?cat=use-cases">Use Cases</a>
+      <a class="topic-chip" href="https://quickstarts.sigmacomputing.com/?cat=developers">Developers</a>
+      <a class="topic-chip" href="https://quickstarts.sigmacomputing.com/?cat=partners">Partners</a>
+      <a class="topic-chip" href="https://quickstarts.sigmacomputing.com/?cat=templates">Templates</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ COMMUNITY TRENDING ══════════════ -->
+<section class="community-section community-section--compact">
+  <div class="community-container">
+    <div class="section-header-row">
+      <div>
+        <p class="section-kicker">From the community</p>
+        <h2 class="section-h2" style="font-size:1.5rem;">Trending discussions</h2>
+      </div>
+      <a href="https://community.sigmacomputing.com/" style="font-family:Dmsans,sans-serif; font-size:.875rem; font-weight:600; color:#1a70f1; text-decoration:none; display:inline-flex; align-items:center; gap:.375rem; white-space:nowrap;">
+        Browse all discussions
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
+
+      <a href="https://community.sigmacomputing.com/" style="display:flex; flex-direction:column; gap:.625rem; padding:1.25rem 1.5rem; background:#fff; border:1px solid #e2e6ec; border-radius:.5rem; text-decoration:none; color:inherit; transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(28,28,28,.08)'" onmouseout="this.style.boxShadow=''">
+        <span style="font-family:Dmsans,sans-serif; font-size:.6875rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#1a70f1;">Formulas &amp; Functions</span>
+        <span style="font-family:Advercase,sans-serif; font-size:.9375rem; font-weight:700; color:#1c1c1c; line-height:1.35;">How to implement XIRR in Sigma</span>
+        <span style="font-family:Dmsans,sans-serif; font-size:.8125rem; color:#5a6475; margin-top:auto; display:inline-flex; align-items:center; gap:.25rem;">Read <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5h8M6.5 2l3 3.5-3 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a href="https://community.sigmacomputing.com/" style="display:flex; flex-direction:column; gap:.625rem; padding:1.25rem 1.5rem; background:#fff; border:1px solid #e2e6ec; border-radius:.5rem; text-decoration:none; color:inherit; transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(28,28,28,.08)'" onmouseout="this.style.boxShadow=''">
+        <span style="font-family:Dmsans,sans-serif; font-size:.6875rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#1a70f1;">Knowledge Hub</span>
+        <span style="font-family:Advercase,sans-serif; font-size:.9375rem; font-weight:700; color:#1c1c1c; line-height:1.35;">Speed Up Slow-Loading List Controls</span>
+        <span style="font-family:Dmsans,sans-serif; font-size:.8125rem; color:#5a6475; margin-top:auto; display:inline-flex; align-items:center; gap:.25rem;">Read <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5h8M6.5 2l3 3.5-3 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a href="https://community.sigmacomputing.com/" style="display:flex; flex-direction:column; gap:.625rem; padding:1.25rem 1.5rem; background:#fff; border:1px solid #e2e6ec; border-radius:.5rem; text-decoration:none; color:inherit; transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(28,28,28,.08)'" onmouseout="this.style.boxShadow=''">
+        <span style="font-family:Dmsans,sans-serif; font-size:.6875rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#1a70f1;">Knowledge Hub</span>
+        <span style="font-family:Advercase,sans-serif; font-size:.9375rem; font-weight:700; color:#1c1c1c; line-height:1.35;">From Dashboards to AI Apps: Practical Patterns for Building AI‑Powered Workflows</span>
+        <span style="font-family:Dmsans,sans-serif; font-size:.8125rem; color:#5a6475; margin-top:auto; display:inline-flex; align-items:center; gap:.25rem;">Read <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5h8M6.5 2l3 3.5-3 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
     </div>
   </div>
 </section>
@@ -993,7 +1053,7 @@
 <div class="community-cta-section">
   <div style="position:relative; z-index:1; max-width:520px; margin:0 auto;">
     <h2 class="cta-h2">Have a question?<br>The community has answers.</h2>
-    <p class="cta-sub">10,000+ Sigma users sharing tips, solutions, and ideas — every day.</p>
+    <p class="cta-sub">Ask questions, share solutions, and connect with Sigma users — from formulas to AI apps.</p>
     <div class="cta-buttons">
       <a class="button-insight" href="https://community.sigmacomputing.com/">Join the community</a>
       <a class="button-secondary cc-white" href="https://community.sigmacomputing.com/">Browse discussions</a>
