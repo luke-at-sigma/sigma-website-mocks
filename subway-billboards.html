@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sigma — NYC subway billboard concepts</title>
+<style>
+  :root {
+    --sigma-blue: #1A70F1;
+    --sigma-light-blue: #DEE8F8;
+    --sigma-dark-blue: #08367A;
+    --shadow-black: #1C1E1E;
+    --bg-cream: #FAFAFA;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 32px 80px;
+    background: #ECECEC;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: #1C1E1E;
+  }
+  .page { max-width: 1400px; margin: 0 auto; }
+  h1.deck-title {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.2;
+    margin: 0 0 8px;
+  }
+  p.deck-sub {
+    margin: 0 0 40px;
+    color: #767474;
+    font-size: 14px;
+    max-width: 780px;
+    line-height: 1.5;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sigma-blue);
+    margin: 32px 0 12px;
+  }
+  .concept { margin-bottom: 56px; }
+  .concept-label { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .concept-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    color: var(--sigma-blue);
+  }
+  .concept-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1C1E1E;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .concept-meta {
+    font-size: 12px;
+    color: #767474;
+    margin-bottom: 18px;
+    line-height: 1.5;
+    max-width: 920px;
+  }
+  .board {
+    width: 100%;
+    aspect-ratio: 70 / 11;
+    background: white;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 3.2%;
+    gap: 2.5%;
+  }
+  .board.bg-blue { background: var(--sigma-blue); color: white; }
+  .board.bg-cream { background: var(--bg-cream); }
+  .board::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 0.45%;
+    background: var(--sigma-blue);
+  }
+  .board.bg-blue::before { display: none; }
+  .brand-block {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.9%;
+    width: 17%;
+  }
+  .logo {
+    height: 38%;
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(18px, 2.4vw, 42px);
+    font-weight: 400;
+    line-height: 1;
+    color: #292929;
+    display: flex;
+    align-items: center;
+  }
+  .board.bg-blue .logo { color: white; }
+  .positioning {
+    font-weight: 500;
+    font-size: clamp(8px, 1.05vw, 17px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--sigma-blue);
+  }
+  .board.bg-blue .positioning { color: white; }
+  .headline {
+    flex: 1 1 auto;
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(20px, 4.0vw, 72px);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    text-align: left;
+  }
+  .headline .accent { color: var(--sigma-blue); }
+  .board.bg-blue .headline .accent { color: #A8CBFF; }
+  .url {
+    flex: 0 0 auto;
+    font-weight: 500;
+    font-size: clamp(8px, 0.9vw, 14px);
+    letter-spacing: -0.01em;
+    align-self: flex-end;
+    padding-bottom: 1.2%;
+  }
+  .board.bg-cream .url { color: var(--sigma-blue); }
+  .board.bg-blue .url { color: white; }
+
+  /* Placeholder notice */
+  .placeholder-notice {
+    background: #fff;
+    border: 2px solid var(--sigma-blue);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1C1E1E;
+  }
+  .placeholder-notice strong { color: var(--sigma-blue); }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="deck-title">NYC subway billboard concepts</h1>
+  <p class="deck-sub">11"H × 70"W interior car cards. 26 concepts: refreshes the originals with product subtext below the logo, plus new ideas focused on agentic analytics, subway-native voice, pain-as-brand, and customer proof.</p>
+
+  <div class="placeholder-notice">
+    <strong>Layout preview only.</strong> This is a simplified version of the deck — the live concepts use the Advercase display face and embedded Sigma SVG logos. Replace the placeholder logo div and font references with the production assets before publishing.
+  </div>
+
+  <div class="section-label">— Round 1 (originals with product subtext)</div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">01</span><span class="concept-name">The hallucination punch</span></div>
+    <div class="concept-meta">Bridges the CEO's "trust layer" ask in plain English. Speaks to the #2 objection in the call data (AI accuracy). Buyer reads governance; rider reads honesty.</div>
+    <div class="board bg-cream">
+      <div class="brand-block">
+        <div class="logo">Sigma</div>
+        <div class="positioning">Governed AI on your warehouse</div>
+      </div>
+      <div class="headline">AI that doesn't lie about <span class="accent">your data</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">02</span><span class="concept-name">The subway native</span></div>
+    <div class="concept-meta">Built for virality. The MTA arrival-board joke earns the rider's attention; "live data" carries the buyer message. Most likely to get screenshotted and posted.</div>
+    <div class="board bg-cream">
+      <div class="brand-block">
+        <div class="logo">Sigma</div>
+        <div class="positioning">Live warehouse analytics</div>
+      </div>
+      <div class="headline"><span class="accent">Live data</span>. Unlike this train's ETA</div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">03</span><span class="concept-name">The agentic translation</span></div>
+    <div class="concept-meta">Carries the CEO's "agents" word forward without the buzzword baggage. Calls out demoware AI in a way NYC pros will instantly recognize.</div>
+    <div class="board bg-blue">
+      <div class="brand-block">
+        <div class="logo">Sigma</div>
+        <div class="positioning">Analytics. Apps. Agents.</div>
+      </div>
+      <div class="headline">AI agents that ship <span class="accent">reports</span>, not promises</div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="section-label">— Round 2 first wave: agentic + Dave</div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">04</span><span class="concept-name">Agents that finish the work</span></div>
+    <div class="concept-meta">Direct CEO bridge for agentic analytics. Names the gap between AI demos and production work — the gap Sigma closes by running agents inside the warehouse where governance lives.</div>
+    <div class="board bg-cream">
+      <div class="brand-block">
+        <div class="logo">Sigma</div>
+        <div class="positioning">Analytics. Apps. Agents.</div>
+      </div>
+      <div class="headline">Most AI just answers. Sigma's agents <span class="accent">finish the work</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">05</span><span class="concept-name">The 47-ticket pain</span></div>
+    <div class="concept-meta">Pain-as-brand. The data-team backlog is the universal NYC-tech complaint. Manhattan Mini Storage school of advertising.</div>
+    <div class="board bg-cream">
+      <div class="brand-block">
+        <div class="logo">Sigma</div>
+        <div class="positioning">Self-service analytics on your warehouse</div>
+      </div>
+      <div class="headline">Your data team has 47 tickets. <span class="accent">Yours is #48</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">06</span><span class="concept-name">Dave is on PTO</span></div>
+    <div class="concept-meta">Pain-as-brand on a true insight from the call data: a single Excel workbook is a single-person dependency. Every CFO in Midtown has a Dave.</div>
+    <div class="board bg-blue">
+      <div class="brand-block">
+        <div class="logo">Sigma</div>
+        <div class="positioning">Sigma agents don't take vacation</div>
+      </div>
+      <div class="headline">Dave built the model. <span class="accent">Dave is on PTO</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="section-label">— Live data / freshness</div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">07</span><span class="concept-name">Refreshes more often than the M train</span></div>
+    <div class="concept-meta">Subway-native riff on the freshness/live-data wedge. Riders chuckle, buyers register live data.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Live warehouse analytics</div></div>
+      <div class="headline">Refreshes more often than the <span class="accent">M train</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">08</span><span class="concept-name">Yesterday's dashboard is wrong today</span></div>
+    <div class="concept-meta">Direct freshness pain. Validates the universal experience of opening a dashboard and not trusting it.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Live data on your warehouse</div></div>
+      <div class="headline">If your dashboard is from yesterday, <span class="accent">it's wrong today</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">09</span><span class="concept-name">Stand clear of the closing dashboards</span></div>
+    <div class="concept-meta">Subway PA-system riff. Doors closing. Dashboards closing. Same energy.</div>
+    <div class="board bg-blue">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Live warehouse analytics</div></div>
+      <div class="headline">Stand clear of the <span class="accent">closing dashboards</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="section-label">— Pain as brand</div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">10</span><span class="concept-name">v_FINAL_v3_USE_THIS</span></div>
+    <div class="concept-meta">Universal pain. Every analyst, finance person, and ops lead has named a file like this.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Spreadsheet analytics on your warehouse</div></div>
+      <div class="headline">v_FINAL_v3_<span class="accent">USE_THIS</span>.xlsx</div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">11</span><span class="concept-name">11:47 pm, board deck due</span></div>
+    <div class="concept-meta">Late-night exec pain. Specific time = real. Targets every CFO, COO, and BD lead who has lived this Monday morning.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Sigma agents work nights</div></div>
+      <div class="headline">It's 11:47 pm. The board deck is <span class="accent">due tomorrow</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">12</span><span class="concept-name">You CSV'd it to yourself</span></div>
+    <div class="concept-meta">Calls out the most-shameful-and-most-common analyst behavior. Funny because the rider is doing it on their phone right now.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Live data, no CSV required</div></div>
+      <div class="headline">You exported to CSV. Then <span class="accent">sent it to yourself</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">13</span><span class="concept-name">Pivot opens in 47 seconds</span></div>
+    <div class="concept-meta">Speed pain with a specific number. Buyer reads scale on Snowflake. Rider reads "I have been there".</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Billion-row pivots, in seconds</div></div>
+      <div class="headline">Pivot tables open in 47 seconds. <span class="accent">The meeting starts in 30</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="section-label">— Subway native</div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">14</span><span class="concept-name">Q4 closes in 3 weeks</span></div>
+    <div class="concept-meta">Seasonal pain that lands hardest in October–December. Pull this concept Q-end heavy.</div>
+    <div class="board bg-blue">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Sigma agents handle the pulls</div></div>
+      <div class="headline">Q4 closes in 3 weeks. <span class="accent">So does the panic</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">15</span><span class="concept-name">More accurate than the announcement</span></div>
+    <div class="concept-meta">Pure subway meta-joke. The PA system just made a claim. Sigma is calling it.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Live warehouse analytics</div></div>
+      <div class="headline">More accurate than <span class="accent">the announcement you just heard</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">16</span><span class="concept-name">Service change</span></div>
+    <div class="concept-meta">MTA service-change board energy. "Your data is now live" is the punch.</div>
+    <div class="board bg-blue">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Analytics on your warehouse, no extracts</div></div>
+      <div class="headline">Service change: your data is <span class="accent">now live</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="section-label">— Agentic analytics (extended)</div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">17</span><span class="concept-name">Can't fix the L. Can fix the reports</span></div>
+    <div class="concept-meta">Confessional brand voice. The L is permanent. Your reporting doesn't have to be.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Analytics. Apps. Agents.</div></div>
+      <div class="headline">We can't fix the L train. But we can <span class="accent">fix your reports</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">18</span><span class="concept-name">Hire an agent</span></div>
+    <div class="concept-meta">HR-energy headline. Targets ops and finance leaders thinking about hiring contractors.</div>
+    <div class="board bg-blue">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Analytics. Apps. Agents.</div></div>
+      <div class="headline">Hire an agent. <span class="accent">Skip the onboarding</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">19</span><span class="concept-name">Stop watching agents type</span></div>
+    <div class="concept-meta">Calls out demoware where you watch a chatbot stream tokens for 90 seconds. Sigma agents do the work, not the typing.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Sigma agents finish the work</div></div>
+      <div class="headline">Stop watching agents <span class="accent">type</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">20</span><span class="concept-name">An agent that can't see Q4</span></div>
+    <div class="concept-meta">Governance through specificity. The exact thing every CFO wants to hear. "Can't see Q4" = row-level security working.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Governed AI on your warehouse</div></div>
+      <div class="headline">An agent that knows <span class="accent">it can't see Q4</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="section-label">— Trust and governance</div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">21</span><span class="concept-name">Insight to action</span></div>
+    <div class="concept-meta">Direct substance. Closes the gap between AI demos and AI doing.</div>
+    <div class="board bg-blue">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Analytics. Apps. Agents.</div></div>
+      <div class="headline">From insight to action. <span class="accent">No human required</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">22</span><span class="concept-name">One screenshot from the SEC</span></div>
+    <div class="concept-meta">Risk-as-pain, dialed for NYC FinServ. Every compliance lead in Midtown reads this and nods.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Governed AI on your warehouse</div></div>
+      <div class="headline">Your AI is one screenshot <span class="accent">from the SEC</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">23</span><span class="concept-name">AI that won't get you fired</span></div>
+    <div class="concept-meta">Plain-language version of the trust-layer pitch. Hits the buyer's actual fear.</div>
+    <div class="board bg-blue">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Governed AI on your warehouse</div></div>
+      <div class="headline">AI that won't <span class="accent">get you fired</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="section-label">— Proof / customer outcomes</div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">24</span><span class="concept-name">Audit-log AI</span></div>
+    <div class="concept-meta">Specific, defensible, and quietly devastating to ungoverned AI tools.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Governed AI on your warehouse</div></div>
+      <div class="headline">AI you can put in your <span class="accent">audit log</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">25</span><span class="concept-name">Zumper: 38 min → 38 sec</span></div>
+    <div class="concept-meta">Customer proof point with a number that does the work. Zumper is NYC-recognizable.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Same data, with Sigma</div></div>
+      <div class="headline">Zumper went from 38 minutes to <span class="accent">38 seconds</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">26</span><span class="concept-name">Cvent cut tickets 95%</span></div>
+    <div class="concept-meta">Proof-as-headline. Curiosity hook closes it.</div>
+    <div class="board bg-cream">
+      <div class="brand-block"><div class="logo">Sigma</div><div class="positioning">Self-service analytics on your warehouse</div></div>
+      <div class="headline">Cvent cut reporting tickets 95%. <span class="accent">Now ask why</span></div>
+      <div class="url">sigmacomputing.com</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
