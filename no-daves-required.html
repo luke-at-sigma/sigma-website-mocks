@@ -1949,378 +1949,736 @@
   <div class="section-header">
     <div class="section-eyebrow">10 — Talent brief</div>
     <div class="section-title">The Daves.</div>
-    <div class="section-desc">Celebrity talent evaluation for "No Daves Required." — Q3 2026 shoot · Q4 2026 launch · $500K talent cap (production &amp; media separate). Photos to be sourced by production under approved licensing.</div>
+    <div class="section-desc">Celebrity talent evaluation for "No Daves Required." — Q3 2026 shoot · Q4 2026 launch · $500K talent cap (production &amp; media separate). Photos load automatically from Wikipedia — requires internet connection.</div>
   </div>
 
   <style>
-    .talent-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; margin-bottom:48px; }
-    .talent-card { background:#141414; border-radius:8px; overflow:hidden; display:flex; flex-direction:column; }
-    .talent-photo { aspect-ratio:4/3; background:#1a1a1a; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
-    .talent-photo .monogram { font-family:'Advercase',serif; font-size:clamp(40px,8vw,80px); color:#fff; letter-spacing:-0.04em; opacity:.1; user-select:none; position:absolute; }
-    .talent-photo .dave-badge { position:absolute; top:14px; left:14px; background:var(--blue); color:#fff; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 9px; border-radius:3px; }
-    .talent-photo .fee-badge { position:absolute; bottom:14px; right:14px; background:rgba(0,0,0,.75); color:#fff; font-size:11px; font-weight:600; padding:5px 10px; border-radius:3px; backdrop-filter:blur(4px); }
-    .talent-photo .role-chip { position:absolute; bottom:14px; left:14px; background:rgba(26,112,241,.85); color:#fff; font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:4px 9px; border-radius:3px; backdrop-filter:blur(4px); }
-    .talent-body { padding:20px; display:flex; flex-direction:column; gap:14px; flex:1; }
-    .talent-name { font-family:'Advercase',serif; font-size:clamp(16px,2.2vw,24px); color:#fff; line-height:1.1; }
-    .talent-name em { color:var(--blue); font-style:normal; }
-    .talent-meta { font-size:11px; color:#555; letter-spacing:1.5px; text-transform:uppercase; font-weight:600; }
-    .talent-credits { font-size:13px; color:#888; line-height:1.6; }
-    .talent-credits strong { color:#aaa; }
-    .talent-angle { background:#1f1f1f; border-radius:6px; padding:14px; }
-    .talent-angle .angle-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:6px; }
-    .talent-angle p { font-size:13px; color:#bbb; line-height:1.6; margin:0; }
-    .talent-tags { display:flex; gap:6px; flex-wrap:wrap; }
-    .talent-tag { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:4px 8px; border-radius:3px; }
+    /* ── Talent grid ── */
+    .talent-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin:0 0 40px; }
+    .talent-card { background:#111; border:1px solid #222; border-radius:12px; overflow:hidden; transition:border-color .2s; }
+    .talent-card:hover { border-color:#333; }
+    .talent-card.tier1 { border-color:#1A70F1; }
+    .talent-card.tier1:hover { border-color:#4a90f5; }
+
+    /* ── Photo area ── */
+    .talent-photo {
+      width:100%; aspect-ratio:1/1; position:relative; overflow:hidden;
+      background-size:cover; background-position:center top; background-repeat:no-repeat;
+    }
+    .talent-photo-loading { background:#151515; }
+    .talent-photo img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+    .talent-photo-fallback { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:48px; background:#111; }
+
+    /* ── Tier badge ── */
+    .tier-badge {
+      position:absolute; top:10px; left:10px; font-size:9px; font-weight:700; letter-spacing:1.5px;
+      text-transform:uppercase; padding:3px 8px; border-radius:4px; backdrop-filter:blur(6px);
+    }
+    .tier1 .tier-badge { background:rgba(26,112,241,0.85); color:#fff; }
+    .tier2 .tier-badge { background:rgba(62,207,142,0.85); color:#000; }
+    .tier3 .tier-badge { background:rgba(245,166,35,0.85); color:#000; }
+    .parked .tier-badge { background:rgba(80,80,80,0.85); color:#999; }
+
+    /* ── Card body ── */
+    .talent-info { padding:16px; }
+    .talent-name { font-size:17px; font-weight:700; color:#fff; margin:0 0 2px; letter-spacing:-.2px; }
+    .talent-role { font-size:11px; color:#666; text-transform:uppercase; letter-spacing:1px; margin:0 0 10px; }
+    .talent-pitch { font-size:13px; color:#aaa; line-height:1.55; margin:0 0 12px; }
+    .talent-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+    .talent-tag { font-size:10px; font-weight:600; letter-spacing:.8px; padding:3px 8px; border-radius:4px; text-transform:uppercase; }
+    .talent-tag.blue { background:#0d1a2a; color:#5ba3f5; }
     .talent-tag.green { background:#0d2a1a; color:#3ecf8e; }
     .talent-tag.amber { background:#2a1f0a; color:#f5a623; }
     .talent-tag.red { background:#2a0d0d; color:#e05252; }
-    .talent-tag.blue { background:#0d1a2a; color:#5ba3f5; }
-    .parked-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-bottom:48px; }
-    .parked-card { background:#141414; border-radius:6px; padding:18px; display:flex; flex-direction:column; gap:10px; }
-    .parked-avatar { width:48px; height:48px; border-radius:50%; background:#1f1f1f; display:flex; align-items:center; justify-content:center; font-family:'Advercase',serif; font-size:18px; color:var(--blue); font-weight:700; flex-shrink:0; }
-    .parked-name { font-size:14px; font-weight:700; color:#fff; line-height:1.2; }
-    .parked-name em { color:var(--blue); font-style:normal; }
-    .parked-meta { font-size:11px; color:#555; letter-spacing:1px; text-transform:uppercase; }
-    .parked-fee { font-size:12px; color:#aaa; font-weight:600; }
-    .parked-note { font-size:12px; color:#777; line-height:1.5; border-top:1px solid #222; padding-top:10px; }
-    .parked-note strong { color:var(--blue); }
-    .budget-table { width:100%; border-collapse:collapse; font-size:13px; }
-    .budget-table th { text-align:left; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#555; padding:8px 12px; border-bottom:1px solid #222; }
-    .budget-table td { padding:12px; color:#bbb; border-bottom:1px solid #1a1a1a; vertical-align:top; }
+    .talent-tag.grey { background:#1a1a1a; color:#666; }
+
+    /* ── Strengths list ── */
+    .talent-strengths { list-style:none; padding:0; margin:0; }
+    .talent-strengths li { font-size:12px; color:#888; padding:3px 0; padding-left:14px; position:relative; }
+    .talent-strengths li::before { content:"→"; position:absolute; left:0; color:#444; }
+
+    /* ── Fee ── */
+    .talent-fee { margin-top:12px; padding-top:12px; border-top:1px solid #1a1a1a; display:flex; justify-content:space-between; align-items:center; }
+    .fee-label { font-size:10px; color:#444; text-transform:uppercase; letter-spacing:1px; }
+    .fee-value { font-size:13px; font-weight:700; color:#5ba3f5; }
+    .fee-value.amber { color:#f5a623; }
+    .fee-value.red { color:#e05252; }
+    .fee-value.grey { color:#555; }
+
+    /* ── Section headers ── */
+    .talent-tier-label {
+      font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+      color:#444; padding:8px 0 12px; border-bottom:1px solid #1a1a1a; margin-bottom:20px;
+    }
+    .talent-tier-label span { color:#1A70F1; }
+
+    /* ── Budget table ── */
+    .budget-table { width:100%; border-collapse:collapse; font-size:13px; margin:20px 0; }
+    .budget-table th { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#555; font-weight:600; padding:8px 12px; text-align:left; border-bottom:1px solid #1a1a1a; }
+    .budget-table td { padding:10px 12px; border-bottom:1px solid #111; color:#aaa; vertical-align:top; }
     .budget-table tr:last-child td { border-bottom:none; }
-    .budget-table .name-cell { color:#fff; font-weight:600; }
-    .budget-table .fee-cell { color:var(--blue); font-family:monospace; white-space:nowrap; }
-    .budget-table .note-cell { color:#666; font-size:12px; }
-    .ensemble-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin-bottom:48px; }
-    .ensemble-card { background:#141414; border-radius:8px; padding:22px; }
-    .ensemble-title { font-family:'Advercase',serif; font-size:clamp(14px,1.8vw,20px); color:#fff; margin-bottom:4px; }
-    .ensemble-budget { font-size:11px; color:var(--blue); font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px; }
-    .ensemble-members { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
-    .ensemble-member { display:flex; align-items:center; gap:10px; }
-    .member-dot { width:8px; height:8px; border-radius:50%; background:var(--blue); flex-shrink:0; }
-    .member-info { font-size:13px; color:#aaa; }
-    .member-info strong { color:#fff; }
-    .ensemble-note { font-size:12px; color:#666; line-height:1.5; border-top:1px solid #222; padding-top:12px; }
-    .timeline { display:flex; flex-direction:column; gap:0; }
-    .timeline-item { display:flex; gap:20px; }
-    .timeline-line { display:flex; flex-direction:column; align-items:center; flex-shrink:0; width:32px; }
-    .timeline-dot { width:12px; height:12px; border-radius:50%; background:var(--blue); flex-shrink:0; margin-top:4px; }
-    .timeline-bar { width:2px; background:#222; flex:1; min-height:32px; }
-    .timeline-content { padding-bottom:28px; }
-    .timeline-date { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:4px; }
-    .timeline-desc { font-size:13px; color:#888; line-height:1.5; }
-    .timeline-desc strong { color:#bbb; }
-    .questions-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
-    .question-card { background:#141414; border-radius:6px; padding:16px; }
-    .question-num { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:6px; }
-    .question-text { font-size:13px; color:#bbb; line-height:1.5; }
-    .photo-chang { background: linear-gradient(135deg, #1a2a1a 0%, #0d1a0d 60%, #0a140a 100%); }
-    .photo-bromstad { background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1f 60%, #080812 100%); }
-    .photo-wain { background: linear-gradient(135deg, #2a1a0a 0%, #1a0d05 60%, #120800 100%); }
-    .photo-note { position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,.6); backdrop-filter:blur(4px); font-size:10px; color:#444; text-align:center; padding:8px; letter-spacing:1px; text-transform:uppercase; font-weight:600; }
+    .budget-table td:first-child { color:#fff; font-weight:500; }
+    .budget-table td:last-child { text-align:right; font-weight:700; color:#5ba3f5; }
+
+    /* ── Open questions ── */
+    .open-questions { background:#0a0a0a; border:1px solid #1a1a1a; border-radius:10px; padding:24px; margin:30px 0; }
+    .open-questions h3 { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#444; margin:0 0 16px; }
+    .open-questions li { font-size:13px; color:#888; margin-bottom:8px; padding-left:16px; position:relative; }
+    .open-questions li::before { content:"?"; position:absolute; left:0; color:#1A70F1; font-weight:700; font-size:11px; }
+
+    /* ── Timeline ── */
+    .timeline { display:flex; gap:0; margin:30px 0; overflow:hidden; border-radius:8px; }
+    .timeline-step { flex:1; padding:16px; background:#111; border-right:1px solid #0a0a0a; }
+    .timeline-step:last-child { border-right:none; }
+    .tl-date { font-size:10px; color:#444; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+    .tl-event { font-size:12px; color:#aaa; font-weight:500; }
+
+    /* ── Parked grid ── */
+    .parked-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; margin:20px 0; }
+    .parked-card { background:#0c0c0c; border:1px solid #1a1a1a; border-radius:10px; overflow:hidden; display:flex; gap:0; flex-direction:column; }
+    .parked-photo { width:100%; aspect-ratio:3/2; background-size:cover; background-position:center top; }
+    .parked-photo img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+    .parked-info { padding:12px; }
+    .parked-name { font-size:14px; font-weight:700; color:#666; margin:0 0 3px; }
+    .parked-why { font-size:11px; color:#444; }
+
+    /* ── Loading state ── */
+    .photo-loading {
+      background: linear-gradient(135deg, #111 0%, #161616 50%, #111 100%);
+      background-size: 200% 200%;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
   </style>
 
-  <!-- SHORTLIST -->
-  <div class="section-sub-label" style="margin-bottom:24px;">Shortlist — 3 primaries</div>
+  <!-- ─── TIER 1: PRIMARY SHORTLIST ─── -->
+  <div class="talent-tier-label">Tier 1 — <span>Primary shortlist</span> · Currently in evaluation · Q3 2026</div>
   <div class="talent-grid">
 
-    <div class="talent-card">
-      <div class="talent-photo photo-chang">
-        <div class="monogram">DC</div>
-        <div class="dave-badge">Shortlist #1</div>
-        <div class="role-chip">Chef · Filmmaker</div>
-        <div class="fee-badge">$300K–$600K</div>
-        <div class="photo-note">&#x1F4F8; Production to source approved press photo</div>
+    <!-- David Chang -->
+    <div class="talent-card tier1">
+      <div class="talent-photo photo-loading" id="photo-david-chang">
+        <div class="tier-badge">Shortlist</div>
       </div>
-      <div class="talent-body">
-        <div>
-          <div class="talent-name">David <em>Chang</em></div>
-          <div class="talent-meta">b. 1977 · Age 48 · Korean-American</div>
-        </div>
-        <div class="talent-credits">
-          <strong>Momofuku Restaurant Group</strong> — Ssäm Bar, Ko, Nishi, Majordomo<br>
-          <strong>Netflix:</strong> <em>Ugly Delicious</em> (2018–2020), The Dave Chang Show podcast<br>
-          <strong>Hulu:</strong> <em>The Next Thing You Eat</em> (2021)<br>
-          James Beard Award · Time 100 · GQ "Man of the Year"
-        </div>
-        <div class="talent-angle">
-          <div class="angle-label">The Dave angle</div>
-          <p>Displaced fine dining's gatekeepers by ignoring them. Built Momofuku from a 150-seat ramen shop without waiting for approval. He's the most intuitive metaphor: Dave didn't need a committee to approve his menu. Neither should your analytics.</p>
-        </div>
+      <div class="talent-info">
+        <div class="talent-name">David Chang</div>
+        <div class="talent-role">Chef · Restaurateur · Media personality</div>
+        <div class="talent-pitch">Built a food empire from nothing. Speaks in plain, exacting language about craft and systems. The anti-celebrity chef — no ego about tools, just results. Perfect embodiment of "built by anyone."</div>
         <div class="talent-tags">
-          <span class="talent-tag green">High cultural cachet</span>
-          <span class="talent-tag blue">Tech-curious</span>
-          <span class="talent-tag amber">Fee at ceiling</span>
-          <span class="talent-tag blue">ICP resonance</span>
+          <span class="talent-tag blue">Builder energy</span>
+          <span class="talent-tag green">High recognition</span>
+          <span class="talent-tag green">Authentic voice</span>
         </div>
+        <ul class="talent-strengths">
+          <li>Known for building scalable systems (Momofuku → global brand)</li>
+          <li>Comfortable on camera, dry wit, zero pretension</li>
+          <li>Resonates with operators and technical audiences alike</li>
+          <li>Not "celebrity-adjacent" — he's the actual operator</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$150–250K</span></div>
       </div>
     </div>
 
-    <div class="talent-card">
-      <div class="talent-photo photo-bromstad">
-        <div class="monogram">DB</div>
-        <div class="dave-badge">Shortlist #2</div>
-        <div class="role-chip">Designer · TV Host</div>
-        <div class="fee-badge">$75K–$200K</div>
-        <div class="photo-note">&#x1F4F8; Production to source approved press photo</div>
+    <!-- David Bromstad -->
+    <div class="talent-card tier1">
+      <div class="talent-photo photo-loading" id="photo-david-bromstad">
+        <div class="tier-badge">Shortlist</div>
       </div>
-      <div class="talent-body">
-        <div>
-          <div class="talent-name">David <em>Bromstad</em></div>
-          <div class="talent-meta">b. 1973 · Age 52 · HGTV personality</div>
-        </div>
-        <div class="talent-credits">
-          <strong>HGTV:</strong> <em>Color Splash</em> (2007–2013), <em>My Lottery Dream Home</em> (2015–present)<br>
-          <strong>Design Star:</strong> Season 1 winner<br>
-          Licensed Disney illustrator · Brand ambassador experience
-        </div>
-        <div class="talent-angle">
-          <div class="angle-label">The Dave angle</div>
-          <p>Professional optimist who transforms spaces people had written off. Reads warm and approachable — non-threatening to buyers skittish about "AI." Great for a softer "even Dave can see it" framing. Budget-friendly; leaves room for ensemble or a bigger media buy.</p>
-        </div>
+      <div class="talent-info">
+        <div class="talent-name">David Bromstad</div>
+        <div class="talent-role">Designer · HGTV host · TV personality</div>
+        <div class="talent-pitch">Exuberant, accessible, not afraid to be excited about things. His energy is infectious without being exhausting. The Daves concept could lean into his name-as-personality dynamic — he's built a whole brand on being "Dave."</div>
         <div class="talent-tags">
-          <span class="talent-tag green">Budget friendly</span>
-          <span class="talent-tag green">Brand-safe</span>
-          <span class="talent-tag blue">Warm tone</span>
-          <span class="talent-tag amber">Lower prestige ceiling</span>
+          <span class="talent-tag blue">Name recognition</span>
+          <span class="talent-tag green">High warmth</span>
+          <span class="talent-tag amber">HGTV audience skew</span>
         </div>
+        <ul class="talent-strengths">
+          <li>Literally sells the Dave name — his entire brand is "Bromstad"</li>
+          <li>Comfortable pitching products (HGTV background = ad-ready)</li>
+          <li>Broad appeal beyond tech demographic</li>
+          <li>Color/design instincts → visual storytelling fit</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$80–120K</span></div>
       </div>
     </div>
 
-    <div class="talent-card">
-      <div class="talent-photo photo-wain">
-        <div class="monogram">DW</div>
-        <div class="dave-badge">Shortlist #3</div>
-        <div class="role-chip">Director · Writer · Actor</div>
-        <div class="fee-badge">$75K–$175K</div>
-        <div class="photo-note">&#x1F4F8; Production to source approved press photo</div>
+    <!-- David Harbour -->
+    <div class="talent-card tier1">
+      <div class="talent-photo photo-loading" id="photo-david-harbour">
+        <div class="tier-badge">Shortlist</div>
       </div>
-      <div class="talent-body">
-        <div>
-          <div class="talent-name">David <em>Wain</em></div>
-          <div class="talent-meta">b. 1969 · Age 56 · Comedy filmmaker</div>
-        </div>
-        <div class="talent-credits">
-          <strong>Film:</strong> <em>Wet Hot American Summer</em>, <em>Role Models</em>, <em>They Came Together</em><br>
-          <strong>TV:</strong> <em>Stella</em> (Comedy Central), <em>Children's Hospital</em><br>
-          The State (MTV) · Comedy industry cult figure
-        </div>
-        <div class="talent-angle">
-          <div class="angle-label">The Dave angle</div>
-          <p>Self-aware meta-comedian. Pitches himself as "a random Dave" with total sincerity — ideal straight man for ads that wink at their own premise. The campaign's "No Daves Required" irony lands hardest with someone who <em>is</em> a Dave and fully gets the joke. Can also direct, reducing production overhead.</p>
-        </div>
+      <div class="talent-info">
+        <div class="talent-name">David Harbour</div>
+        <div class="talent-role">Actor · Jim Hopper, Stranger Things</div>
+        <div class="talent-pitch">The loveable, slightly-behind-the-curve everyman who wins in the end. Hopper is the audience surrogate for anyone who's ever felt left behind by technology — and then triumphed anyway. That's this campaign.</div>
         <div class="talent-tags">
-          <span class="talent-tag green">Budget friendly</span>
-          <span class="talent-tag blue">Comedy credibility</span>
-          <span class="talent-tag blue">Can direct</span>
-          <span class="talent-tag amber">Niche recognition</span>
+          <span class="talent-tag blue">Massive recognition</span>
+          <span class="talent-tag green">Comedy range</span>
+          <span class="talent-tag green">Cultural moment</span>
         </div>
+        <ul class="talent-strengths">
+          <li>Netflix cultural ubiquity — known across all demographics</li>
+          <li>Proven comedic timing (SNL appearances, dry interview persona)</li>
+          <li>The "guy who figures it out" archetype maps perfectly</li>
+          <li>Strong social following — organic amplification potential</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$300–500K</span></div>
       </div>
     </div>
 
-  </div>
+  </div><!-- /tier1 grid -->
 
-  <!-- PARKED -->
-  <div class="section-sub-label" style="margin-bottom:20px;">Parked — top alternatives</div>
+  <!-- ─── TIER 2: STRONG CONTENDERS (NEW RECOMMENDATIONS) ─── -->
+  <div class="talent-tier-label" style="margin-top:40px;">Tier 2 — <span>Strong contenders</span> · New recommendations · High fit + availability</div>
+  <div class="talent-grid">
+
+    <!-- Dave Grohl -->
+    <div class="talent-card tier2">
+      <div class="talent-photo photo-loading" id="photo-dave-grohl">
+        <div class="tier-badge">Recommended</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">Dave Grohl</div>
+        <div class="talent-role">Musician · Foo Fighters · Former Nirvana drummer</div>
+        <div class="talent-pitch">The most beloved man in rock, named Dave, known for his approachability and work ethic. Built the Foo Fighters himself after Kurt Cobain died — the ultimate "I'll just do it myself" energy. Universally liked across demographics.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Universal appeal</span>
+          <span class="talent-tag green">Literally named Dave</span>
+          <span class="talent-tag green">Self-starter story</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>"Dave" is literally his primary identity — the name is the brand</li>
+          <li>Known for being funny, self-deprecating, and real</li>
+          <li>Builder narrative: recorded entire first Foo Fighters album himself</li>
+          <li>No brand baggage — clean record for B2B use</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$200–400K</span></div>
+      </div>
+    </div>
+
+    <!-- David Duchovny -->
+    <div class="talent-card tier2">
+      <div class="talent-photo photo-loading" id="photo-david-duchovny">
+        <div class="tier-badge">Recommended</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">David Duchovny</div>
+        <div class="talent-role">Actor · Mulder, The X-Files · Novelist</div>
+        <div class="talent-pitch">The original data-obsessed character. Mulder spent 9 seasons chasing the truth through patterns and anomalies — that's basically what Sigma agents do. Duchovny's dry, intellectual delivery is perfect for the straight-man role in the ensemble.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Data narrative fit</span>
+          <span class="talent-tag green">Dry wit</span>
+          <span class="talent-tag green">90s–2000s cultural icon</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>Mulder = "The truth is out there" → data-as-truth narrative</li>
+          <li>Known for genuine intellectual curiosity (Yale, Princeton PhD candidate)</li>
+          <li>Understated delivery = perfect deadpan</li>
+          <li>Resonates with 30–50 demo who grew up with X-Files</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$150–250K</span></div>
+      </div>
+    </div>
+
+    <!-- David Tennant -->
+    <div class="talent-card tier2">
+      <div class="talent-photo photo-loading" id="photo-david-tennant">
+        <div class="tier-badge">Recommended</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">David Tennant</div>
+        <div class="talent-role">Actor · Doctor Who · Good Omens</div>
+        <div class="talent-pitch">The geek world's most beloved actor. Tennant's manic energy and expressive face can sell wonder, confusion, and delight in the same beat — the exact emotional arc of "I built something incredible and I'm not even a developer." An ensemble wildcard that would generate immediate social conversation.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Geek royalty</span>
+          <span class="talent-tag green">Massive social following</span>
+          <span class="talent-tag green">Ensemble chemistry</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>Doctor Who → inherently "intelligence as the superpower" narrative</li>
+          <li>Outstanding physical comedy and reaction performance</li>
+          <li>Extremely online fan base = organic social amplification</li>
+          <li>Cross-demographic: kids, parents, geeks, mainstream</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$250–400K</span></div>
+      </div>
+    </div>
+
+    <!-- David Hyde Pierce -->
+    <div class="talent-card tier2">
+      <div class="talent-photo photo-loading" id="photo-david-hyde-pierce">
+        <div class="tier-badge">Recommended</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">David Hyde Pierce</div>
+        <div class="talent-role">Actor · Niles Crane, Frasier · Tony-winning stage actor</div>
+        <div class="talent-pitch">The intellectual who thinks he's more sophisticated than everyone else — until the tool shows him up. Niles Crane is the platonic ideal of the over-credentialed knowledge worker who discovers something better exists. The dry understatement lands every single time.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Nerd-chic archetype</span>
+          <span class="talent-tag green">Master of understatement</span>
+          <span class="talent-tag amber">Frasier reboot timing</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>Frasier reboot (2024) = current cultural moment, back in conversation</li>
+          <li>The "I went to all this trouble and there was an easier way" face</li>
+          <li>Highly specific niche appeal that would be catnip for LinkedIn</li>
+          <li>Zero controversy, spotless record</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$100–200K</span></div>
+      </div>
+    </div>
+
+    <!-- David Cross -->
+    <div class="talent-card tier2">
+      <div class="talent-photo photo-loading" id="photo-david-cross">
+        <div class="tier-badge">Recommended</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">David Cross</div>
+        <div class="talent-role">Comedian · Actor · Tobias Fünke, Arrested Development</div>
+        <div class="talent-pitch">The alt-comedy choice that signals taste. Cross's work in Arrested Development — playing a man permanently confused about his own competence — is essentially the character brief for the "No Devs Required" campaign. Beloved by creative directors and tech executives who remember the show obsessively.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Alt comedy credibility</span>
+          <span class="talent-tag green">Arrested Dev nostalgia</span>
+          <span class="talent-tag amber">Niche recognition risk</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>Tobias = "confident in skills he doesn't have" → perfect for the concept</li>
+          <li>Appeals strongly to creative/tech audience who love the show</li>
+          <li>Known for self-aware, meta-comedy</li>
+          <li>Lower cost than bigger names, higher conceptual impact</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$75–150K</span></div>
+      </div>
+    </div>
+
+    <!-- David Letterman -->
+    <div class="talent-card tier2">
+      <div class="talent-photo photo-loading" id="photo-david-letterman">
+        <div class="tier-badge">Recommended</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">David Letterman</div>
+        <div class="talent-role">TV host · The Late Show · Netflix's My Next Guest</div>
+        <div class="talent-pitch">The original sardonic everyman. Letterman's specific gift — the weary raise of the eyebrow, the "what is this thing and why does it exist" energy — would be devastating in the ensemble. His current Netflix show proves he's still actively engaged with the world and willing to be surprised by it.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Cultural institution</span>
+          <span class="talent-tag green">Dry deadpan</span>
+          <span class="talent-tag amber">Boomer demo skew</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>The definitive "confused but game" face in American TV history</li>
+          <li>Would be surreal and surprising casting — earns earned media</li>
+          <li>Name recognition floor is extremely high (decades of cultural saturation)</li>
+          <li>Signals that the brand has confidence and doesn't take itself too seriously</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$300–600K</span></div>
+      </div>
+    </div>
+
+  </div><!-- /tier2 grid -->
+
+  <!-- ─── TIER 3: LONG LIST / WORTH EVALUATING ─── -->
+  <div class="talent-tier-label" style="margin-top:40px;">Tier 3 — <span>Long list</span> · Worth evaluating · Maximizing the Dave pool</div>
+  <div class="talent-grid">
+
+    <!-- David Spade -->
+    <div class="talent-card tier3">
+      <div class="talent-photo photo-loading" id="photo-david-spade">
+        <div class="tier-badge">Long list</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">David Spade</div>
+        <div class="talent-role">Comedian · SNL · Just Shoot Me</div>
+        <div class="talent-pitch">Spade's persona is built on being the smallest guy in the room who wins anyway through wit. The "I don't need your fancy tools, wait — oh, this tool is incredible" arc is perfect for his delivery.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">SNL credibility</span>
+          <span class="talent-tag amber">Snarky delivery</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>Compact, dry, sarcastic — always the underdog</li>
+          <li>Well-known but not overexposed in ads</li>
+          <li>Strong comedy timing in short formats</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$100–175K</span></div>
+      </div>
+    </div>
+
+    <!-- Dave Bautista -->
+    <div class="talent-card tier3">
+      <div class="talent-photo photo-loading" id="photo-dave-bautista">
+        <div class="tier-badge">Long list</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">Dave Bautista</div>
+        <div class="talent-role">Actor · Drax, Guardians · WWE · Blade Runner 2049</div>
+        <div class="talent-pitch">Six-foot-six, 290 pounds, certified gentle giant. The contrast of a physically enormous man calmly building a Sigma agent with zero frustration while a developer panics nearby is physically funny before a line is spoken.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Visual contrast comedy</span>
+          <span class="talent-tag green">Unexpected intellectual depth</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>Known for being disarmingly thoughtful in interviews</li>
+          <li>Visual comedy potential = purely physical, no dialogue needed</li>
+          <li>Marvel fans are the exact Sigma buyer persona</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$200–350K</span></div>
+      </div>
+    </div>
+
+    <!-- David Byrne -->
+    <div class="talent-card tier3">
+      <div class="talent-photo photo-loading" id="photo-david-byrne">
+        <div class="tier-badge">Long list</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">David Byrne</div>
+        <div class="talent-role">Musician · Talking Heads · Visual artist · Author</div>
+        <div class="talent-pitch">The art-tech crossover pick. Byrne exists at the intersection of creativity, curiosity, and process — he's literally written books about how music works. Niche choice that would earn significant creative industry and tech press coverage.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Creative/tech crossover</span>
+          <span class="talent-tag amber">Niche appeal</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>"How Music Works" — curiosity-as-brand is deeply resonant</li>
+          <li>Unique, unexpected, earns press attention by existing</li>
+          <li>Strong with NYC/creative director audience</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$100–200K</span></div>
+      </div>
+    </div>
+
+    <!-- David Oyelowo -->
+    <div class="talent-card tier3">
+      <div class="talent-photo photo-loading" id="photo-david-oyelowo">
+        <div class="tier-badge">Long list</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">David Oyelowo</div>
+        <div class="talent-role">Actor · Selma · Jack Reacher · Peter Rabbit</div>
+        <div class="talent-pitch">Gravitas and range. Oyelowo can play the disbelieving skeptic who becomes a convert — his Selma work proves he can make anything feel earned and meaningful. A more prestige choice that elevates the campaign tone if the comedy direction is softened.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Prestige credibility</span>
+          <span class="talent-tag green">Range</span>
+          <span class="talent-tag amber">Less comedy-forward</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>Broad cross-demographic recognition post-Selma</li>
+          <li>Signals campaign has substance beyond gag</li>
+          <li>Strong with enterprise/executive decision-maker audience</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$150–300K</span></div>
+      </div>
+    </div>
+
+    <!-- Dave Chappelle -->
+    <div class="talent-card tier3">
+      <div class="talent-photo photo-loading" id="photo-dave-chappelle">
+        <div class="tier-badge">Long list</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">Dave Chappelle</div>
+        <div class="talent-role">Comedian · Chappelle's Show · Netflix specials</div>
+        <div class="talent-pitch">The highest-recognition Dave in America, and a genuinely legendary comedic mind. The campaign's concept would give his dry, observational style a perfect vehicle. However, brand risk considerations apply — needs legal and PR review before proceeding.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Maximum recognition</span>
+          <span class="talent-tag red">Brand risk — review req'd</span>
+          <span class="talent-tag red">High fee</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>Unmatched name recognition — "Dave" = Chappelle in the cultural lexicon</li>
+          <li>Comedic presence would guarantee social sharing</li>
+          <li>But: controversial statements = brand adjacency risk</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value fee-value red">$1M+ · flag for review</span></div>
+      </div>
+    </div>
+
+    <!-- David Beckham -->
+    <div class="talent-card tier3">
+      <div class="talent-photo photo-loading" id="photo-david-beckham">
+        <div class="tier-badge">Long list</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">David Beckham</div>
+        <div class="talent-role">Footballer · Icon · Netflix documentary subject</div>
+        <div class="talent-pitch">Global recognition floor is essentially unlimited. Post-Netflix documentary, Beckham is in a cultural renaissance. However, the comedy angle is a stretch — his value is aspiration and status, not self-deprecating wit. Better fit if the campaign evolves away from pure comedy.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Global recognition</span>
+          <span class="talent-tag amber">Comedy fit uncertain</span>
+          <span class="talent-tag red">High fee</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>Netflix Beckham doc = currently at peak cultural relevance</li>
+          <li>Would make the campaign genuinely international</li>
+          <li>Drives aspirational brand positioning</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value fee-value red">$800K–2M</span></div>
+      </div>
+    </div>
+
+    <!-- David Sedaris -->
+    <div class="talent-card tier3">
+      <div class="talent-photo photo-loading" id="photo-david-sedaris">
+        <div class="tier-badge">Long list</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">David Sedaris</div>
+        <div class="talent-role">Humorist · Author · NPR contributor</div>
+        <div class="talent-pitch">The cult choice. Sedaris's fandom is intensely loyal, highly educated, and employed — exactly the Sigma buyer profile. His deadpan self-deprecation and observational precision would be utterly unique in B2B advertising. Low cost, extremely high taste signal.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Cult fandom</span>
+          <span class="talent-tag green">Low cost / high signal</span>
+          <span class="talent-tag amber">Niche mainstream crossover</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>NPR / creative-class audience = Sigma's exact buyer persona</li>
+          <li>Master of the mundane detail elevated to absurdity</li>
+          <li>Never done an ad — guaranteed press coverage for first one</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$50–100K</span></div>
+      </div>
+    </div>
+
+    <!-- Dave Matthews -->
+    <div class="talent-card tier3">
+      <div class="talent-photo photo-loading" id="photo-dave-matthews">
+        <div class="tier-badge">Long list</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">Dave Matthews</div>
+        <div class="talent-role">Musician · Dave Matthews Band</div>
+        <div class="talent-pitch">The band is literally named "Dave" — the campaign's central conceit made literal. High recognition with the 30–50 demographic that makes enterprise software buying decisions. Affable, funny in interviews, known for being genuinely unassuming about his own fame.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Literally named Dave</span>
+          <span class="talent-tag green">30–50 demo</span>
+          <span class="talent-tag amber">Music not ad-native</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>DMB = nostalgia trigger for exact Sigma buying demographic</li>
+          <li>The "Dave who literally has his name on his company" meta-joke writes itself</li>
+          <li>Known for low ego, high warmth</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$200–350K</span></div>
+      </div>
+    </div>
+
+    <!-- David Alan Grier -->
+    <div class="talent-card tier3">
+      <div class="talent-photo photo-loading" id="photo-david-alan-grier">
+        <div class="tier-badge">Long list</div>
+      </div>
+      <div class="talent-info">
+        <div class="talent-name">David Alan Grier</div>
+        <div class="talent-role">Comedian · Actor · In Living Color · Tony Award winner</div>
+        <div class="talent-pitch">Character versatility and comedic precision in a single package. Grier's background in In Living Color means he can inhabit any Dave archetype needed. Underused in advertising relative to his talent — the surprise factor works in the campaign's favor.</div>
+        <div class="talent-tags">
+          <span class="talent-tag blue">Character range</span>
+          <span class="talent-tag green">Underused in ads</span>
+          <span class="talent-tag green">Strong ensemble player</span>
+        </div>
+        <ul class="talent-strengths">
+          <li>Can do the straight man and the chaos agent with equal ease</li>
+          <li>Broadway background = extremely disciplined on set</li>
+          <li>Gen X recognition is excellent</li>
+        </ul>
+        <div class="talent-fee"><span class="fee-label">Est. talent fee</span><span class="fee-value">$75–150K</span></div>
+      </div>
+    </div>
+
+  </div><!-- /tier3 grid -->
+
+  <!-- ─── PARKED ─── -->
+  <div class="talent-tier-label" style="margin-top:40px;">Parked — <span>Initially considered · Not advancing</span></div>
+
   <div class="parked-grid">
 
     <div class="parked-card">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <div class="parked-avatar">DK</div>
-        <div>
-          <div class="parked-name">David <em>Krumholtz</em></div>
-          <div class="parked-meta">b. 1978 · Age 47 · Actor</div>
+      <div class="parked-photo photo-loading" id="photo-david-schwimmer"></div>
+      <div class="parked-info">
+        <div class="parked-name">David Schwimmer</div>
+        <div class="parked-why">Rationale for pass: "Ross" from Friends is too culturally loaded. Every line he delivers gets heard in that voice. The character overshadows the talent. Revisit if the campaign explicitly leans into sitcom nostalgia.</div>
+        <div class="talent-tags" style="margin-top:8px;">
+          <span class="talent-tag grey">Friends baggage</span>
+          <span class="talent-tag grey">Character override risk</span>
         </div>
       </div>
-      <div class="parked-fee">$150K–$300K</div>
-      <div class="parked-note"><strong>"Sleeper pick."</strong> <em>Numb3rs</em>, <em>10 Things I Hate About You</em>, <em>The Santa Clause</em>. Relatable every-Dave with nerd credibility. Undervalued name recognition relative to fee. Best ensemble role: "let me explain the math" Dave.</div>
-      <div class="talent-tags"><span class="talent-tag green">Strong ensemble pick</span><span class="talent-tag blue">Nerd cred</span></div>
     </div>
 
     <div class="parked-card">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <div class="parked-avatar">DH</div>
-        <div>
-          <div class="parked-name">David <em>Harbour</em></div>
-          <div class="parked-meta">b. 1975 · Age 51 · Actor</div>
+      <div class="parked-photo photo-loading" id="photo-david-krumholtz"></div>
+      <div class="parked-info">
+        <div class="parked-name">David Krumholtz</div>
+        <div class="parked-why">Sleeper pick. Charlie from CBS's Numb3rs was literally a mathematician who solved crimes using data visualization — this is almost too on-the-nose for Sigma. Parked for recognition concerns, but worth revisiting for a more targeted technical audience campaign.</div>
+        <div class="talent-tags" style="margin-top:8px;">
+          <span class="talent-tag amber">Low mainstream recognition</span>
+          <span class="talent-tag green">Numb3rs data angle</span>
         </div>
       </div>
-      <div class="parked-fee">$400K–$700K</div>
-      <div class="parked-note"><strong>Hopper energy.</strong> <em>Stranger Things</em>, <em>Black Widow</em>, <em>Violent Night</em>. Massive Gen Z + millennial awareness. Reads authority + gruff charm. Fee approaches Chang — needs to be the solo centerpiece to justify. Likely requires budget exception.</div>
-      <div class="talent-tags"><span class="talent-tag green">Huge recognition</span><span class="talent-tag amber">Fee at ceiling</span></div>
     </div>
 
     <div class="parked-card">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <div class="parked-avatar">DM</div>
-        <div>
-          <div class="parked-name">David <em>Mitchell</em> <span style="font-size:11px;color:#444;">(UK)</span></div>
-          <div class="parked-meta">b. 1974 · Age 51 · Comedian</div>
+      <div class="parked-photo photo-loading" id="photo-david-mitchell-uk"></div>
+      <div class="parked-info">
+        <div class="parked-name">David Mitchell (UK)</div>
+        <div class="parked-why">Brilliant for a UK/European campaign — his "exasperated intelligent person who can't believe this is happening" delivery is perfect for the concept. No US recognition. Flag for international market expansion.</div>
+        <div class="talent-tags" style="margin-top:8px;">
+          <span class="talent-tag grey">US recognition: low</span>
+          <span class="talent-tag amber">UK/EU market flag</span>
         </div>
       </div>
-      <div class="parked-fee">$150K–$300K</div>
-      <div class="parked-note"><strong>"Quintessential Excel-Dave."</strong> <em>Peep Show</em>, <em>QI</em>, <em>Would I Lie To You?</em> Exasperated intellectual — perfect for "I've been doing this in a spreadsheet for 12 years" character. US recognition limited; strongest in UK/EU campaigns.</div>
-      <div class="talent-tags"><span class="talent-tag blue">Excel-Dave archetype</span><span class="talent-tag amber">US recognition gap</span></div>
     </div>
 
     <div class="parked-card">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <div class="parked-avatar">DS</div>
-        <div>
-          <div class="parked-name">David <em>Schwimmer</em></div>
-          <div class="parked-meta">b. 1966 · Age 59 · Actor</div>
+      <div class="parked-photo photo-loading" id="photo-dave-annable"></div>
+      <div class="parked-info">
+        <div class="parked-name">Dave Annable</div>
+        <div class="parked-why">Brothers &amp; Sisters recognition has aged out. Good on camera, professional, but doesn't bring a strong enough identity hook for the campaign concept. Could work as a supporting ensemble member but not a lead Dave.</div>
+        <div class="talent-tags" style="margin-top:8px;">
+          <span class="talent-tag grey">Recognition too low</span>
+          <span class="talent-tag grey">No identity hook</span>
         </div>
       </div>
-      <div class="parked-fee">$400K–$750K</div>
-      <div class="parked-note"><strong>Ross-as-Dave.</strong> <em>Friends</em> (1994–2004), theater director, <em>American Crime Story</em>. Immediate resonance with 30–50 buyer demographic. "Could this BE any more manual?" writes itself. Fee near ceiling; historically slow negotiations.</div>
-      <div class="talent-tags"><span class="talent-tag green">ICP demographic fit</span><span class="talent-tag amber">Fee at ceiling</span><span class="talent-tag red">Negotiation risk</span></div>
     </div>
 
-    <div class="parked-card">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <div class="parked-avatar">DA</div>
-        <div>
-          <div class="parked-name">Dave <em>Annable</em></div>
-          <div class="parked-meta">b. 1979 · Age 46 · Actor</div>
-        </div>
-      </div>
-      <div class="parked-fee">$50K–$100K</div>
-      <div class="parked-note">Budget anchor for ensemble builds. <em>Brothers &amp; Sisters</em>. Handsome, earnest, reads "mid-level manager Dave who's genuinely excited about the dashboard." Carries a scene without dominating — ideal supporting Dave.</div>
-      <div class="talent-tags"><span class="talent-tag green">Budget anchor</span><span class="talent-tag blue">Ensemble glue</span></div>
-    </div>
+  </div><!-- /parked grid -->
 
-    <div class="parked-card">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <div class="parked-avatar">JM</div>
-        <div>
-          <div class="parked-name">James <em>Marrs</em></div>
-          <div class="parked-meta">Micro-influencer · Analytics</div>
-        </div>
-      </div>
-      <div class="parked-fee">$25K–$50K</div>
-      <div class="parked-note">Analytics influencer &amp; author. Not named Dave — plays "the non-Dave who replaced him." Authentic community credibility with data practitioners. Strongest in Tight Budget ensemble; provides legitimacy without celebrity premium.</div>
-      <div class="talent-tags"><span class="talent-tag green">Community authentic</span><span class="talent-tag blue">Low risk</span></div>
-    </div>
-
-  </div>
-
-  <!-- ENSEMBLE STRUCTURES -->
-  <div class="section-sub-label" style="margin-bottom:20px;">Ensemble structures</div>
-  <div class="ensemble-grid">
-
-    <div class="ensemble-card">
-      <div class="ensemble-title">Tight Budget Ensemble</div>
-      <div class="ensemble-budget">Est. $225K–$550K total</div>
-      <div class="ensemble-members">
-        <div class="ensemble-member"><div class="member-dot"></div><div class="member-info"><strong>David Bromstad</strong> — the optimistic transformation Dave ($75K–$200K)</div></div>
-        <div class="ensemble-member"><div class="member-dot" style="background:#888;"></div><div class="member-info"><strong>James Marrs</strong> — the authentic data practitioner replacement ($25K–$50K)</div></div>
-        <div class="ensemble-member"><div class="member-dot" style="background:#888;"></div><div class="member-info"><strong>David Krumholtz</strong> — the sleeper nerd-Dave ($150K–$300K)</div></div>
-      </div>
-      <div class="ensemble-note">Best narrative range for the money. Bromstad = emotional warmth, Krumholtz = technical credibility, Marrs = practitioner authenticity. Stays comfortably under $500K cap with room for production.</div>
-    </div>
-
-    <div class="ensemble-card">
-      <div class="ensemble-title">Comedy Credibility Ensemble</div>
-      <div class="ensemble-budget">Est. $300K–$575K total</div>
-      <div class="ensemble-members">
-        <div class="ensemble-member"><div class="member-dot"></div><div class="member-info"><strong>David Wain</strong> — the meta-aware comedic Dave ($75K–$175K)</div></div>
-        <div class="ensemble-member"><div class="member-dot" style="background:#888;"></div><div class="member-info"><strong>David Krumholtz</strong> — the explains-the-math Dave ($150K–$300K)</div></div>
-        <div class="ensemble-member"><div class="member-dot" style="background:#888;"></div><div class="member-info"><strong>Dave Annable</strong> — the sincere mid-level-manager Dave ($50K–$100K)</div></div>
-      </div>
-      <div class="ensemble-note">Strongest for social/digital-first execution. Wain's self-awareness + Krumholtz's earnest nerdiness creates genuine tonal contrast. Annable anchors it in relatable reality. Wain can also direct, reducing production overhead.</div>
-    </div>
-
-    <div class="ensemble-card">
-      <div class="ensemble-title">Solo Premium — Chang</div>
-      <div class="ensemble-budget">$300K–$600K (talent only)</div>
-      <div class="ensemble-members">
-        <div class="ensemble-member"><div class="member-dot"></div><div class="member-info"><strong>David Chang</strong> — sole talent, maximum cultural cachet</div></div>
-      </div>
-      <div class="ensemble-note">Highest prestige ceiling. Chang's story is the campaign brief — he didn't wait for approval to build Momofuku. Requires creative that earns his name; he won't do generic. Best for a flagship launch spot that other creative orbits around.</div>
-    </div>
-
-    <div class="ensemble-card">
-      <div class="ensemble-title">Solo Premium — Harbour</div>
-      <div class="ensemble-budget">$400K–$700K (talent only)</div>
-      <div class="ensemble-members">
-        <div class="ensemble-member"><div class="member-dot"></div><div class="member-info"><strong>David Harbour</strong> — sole talent, maximum Gen Z / millennial reach</div></div>
-      </div>
-      <div class="ensemble-note">Largest raw awareness footprint of any candidate. "Hopper" brand halo skews younger — useful for digital-first strategy. Fee likely exceeds $500K cap; requires budget exception or media trade-off. Contingency option.</div>
-    </div>
-
-  </div>
-
-  <!-- BUDGET TABLE -->
-  <div class="section-sub-label" style="margin-bottom:20px;">Talent fee overview</div>
-  <div style="background:#141414;border-radius:8px;overflow:hidden;margin-bottom:48px;">
+  <!-- ─── BUDGET TABLE ─── -->
+  <div style="margin-top:48px;">
+    <div class="talent-tier-label">Budget overview — <span>All tiers</span></div>
     <table class="budget-table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Handle</th>
-          <th>Fee range</th>
-          <th>Status</th>
-          <th>Notes</th>
+          <th>Dave</th>
+          <th>Tier</th>
+          <th>Concept fit</th>
+          <th>Recognition</th>
+          <th>Est. fee range</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td class="name-cell">David Chang</td><td style="color:#888;">Chef · Filmmaker</td><td class="fee-cell">$300K–$600K</td><td><span class="talent-tag blue" style="display:inline-block;">Shortlist</span></td><td class="note-cell">Flagship solo or anchors premium ensemble. Requires bespoke creative.</td></tr>
-        <tr><td class="name-cell">David Harbour</td><td style="color:#888;">Actor (Hopper)</td><td class="fee-cell">$400K–$700K</td><td><span class="talent-tag amber" style="display:inline-block;">Parked</span></td><td class="note-cell">Contingency solo; likely requires budget exception.</td></tr>
-        <tr><td class="name-cell">David Schwimmer</td><td style="color:#888;">Actor (Ross)</td><td class="fee-cell">$400K–$750K</td><td><span class="talent-tag amber" style="display:inline-block;">Parked</span></td><td class="note-cell">Strong ICP fit; historically slow negotiations.</td></tr>
-        <tr><td class="name-cell">David Krumholtz</td><td style="color:#888;">Actor (Numb3rs)</td><td class="fee-cell">$150K–$300K</td><td><span class="talent-tag amber" style="display:inline-block;">Parked</span></td><td class="note-cell">Sleeper pick. Best ensemble nerd-Dave.</td></tr>
-        <tr><td class="name-cell">David Mitchell (UK)</td><td style="color:#888;">Comedian (Peep Show)</td><td class="fee-cell">$150K–$300K</td><td><span class="talent-tag amber" style="display:inline-block;">Parked</span></td><td class="note-cell">UK/EU strong; limited US recognition.</td></tr>
-        <tr><td class="name-cell">David Bromstad</td><td style="color:#888;">HGTV host</td><td class="fee-cell">$75K–$200K</td><td><span class="talent-tag blue" style="display:inline-block;">Shortlist</span></td><td class="note-cell">Budget-friendly ensemble anchor.</td></tr>
-        <tr><td class="name-cell">David Wain</td><td style="color:#888;">Director · Comedian</td><td class="fee-cell">$75K–$175K</td><td><span class="talent-tag blue" style="display:inline-block;">Shortlist</span></td><td class="note-cell">Can direct; reduces production cost.</td></tr>
-        <tr><td class="name-cell">Dave Annable</td><td style="color:#888;">Actor (B&amp;S)</td><td class="fee-cell">$50K–$100K</td><td><span class="talent-tag amber" style="display:inline-block;">Parked</span></td><td class="note-cell">Ensemble glue. "Manager Dave" archetype.</td></tr>
-        <tr><td class="name-cell">James Marrs</td><td style="color:#888;">Data influencer</td><td class="fee-cell">$25K–$50K</td><td><span class="talent-tag amber" style="display:inline-block;">Parked</span></td><td class="note-cell">Not a Dave — plays "the non-Dave replacement."</td></tr>
-        <tr style="background:#1a1a1a;"><td class="name-cell" colspan="2" style="color:#1A70F1;font-weight:700;">Total budget cap</td><td class="fee-cell" style="font-size:15px;">$500K</td><td colspan="2" class="note-cell">Talent only. Production, media &amp; agency fees are separate.</td></tr>
+        <tr><td>David Harbour</td><td><span class="talent-tag blue" style="font-size:9px;">Tier 1</span></td><td>Everyman triumph</td><td>★★★★★</td><td style="color:#f5a623;text-align:right;">$300–500K</td></tr>
+        <tr><td>David Chang</td><td><span class="talent-tag blue" style="font-size:9px;">Tier 1</span></td><td>Builder/operator</td><td>★★★★☆</td><td style="color:#5ba3f5;text-align:right;">$150–250K</td></tr>
+        <tr><td>David Bromstad</td><td><span class="talent-tag blue" style="font-size:9px;">Tier 1</span></td><td>Brand = name</td><td>★★★☆☆</td><td style="color:#5ba3f5;text-align:right;">$80–120K</td></tr>
+        <tr><td>David Letterman</td><td><span class="talent-tag green" style="font-size:9px;">Tier 2</span></td><td>Sardonic skeptic</td><td>★★★★★</td><td style="color:#f5a623;text-align:right;">$300–600K</td></tr>
+        <tr><td>David Tennant</td><td><span class="talent-tag green" style="font-size:9px;">Tier 2</span></td><td>Wonder + confusion</td><td>★★★★☆</td><td style="color:#f5a623;text-align:right;">$250–400K</td></tr>
+        <tr><td>Dave Grohl</td><td><span class="talent-tag green" style="font-size:9px;">Tier 2</span></td><td>Self-starter builder</td><td>★★★★★</td><td style="color:#f5a623;text-align:right;">$200–400K</td></tr>
+        <tr><td>David Duchovny</td><td><span class="talent-tag green" style="font-size:9px;">Tier 2</span></td><td>Truth-seeker data</td><td>★★★★☆</td><td style="color:#5ba3f5;text-align:right;">$150–250K</td></tr>
+        <tr><td>David Hyde Pierce</td><td><span class="talent-tag green" style="font-size:9px;">Tier 2</span></td><td>Over-credentialed convert</td><td>★★★★☆</td><td style="color:#5ba3f5;text-align:right;">$100–200K</td></tr>
+        <tr><td>David Cross</td><td><span class="talent-tag green" style="font-size:9px;">Tier 2</span></td><td>Confident incompetence</td><td>★★★☆☆</td><td style="color:#5ba3f5;text-align:right;">$75–150K</td></tr>
+        <tr><td>Dave Bautista</td><td><span class="talent-tag amber" style="font-size:9px;">Tier 3</span></td><td>Visual contrast</td><td>★★★★☆</td><td style="color:#f5a623;text-align:right;">$200–350K</td></tr>
+        <tr><td>Dave Matthews</td><td><span class="talent-tag amber" style="font-size:9px;">Tier 3</span></td><td>Literally "Dave"</td><td>★★★★☆</td><td style="color:#f5a623;text-align:right;">$200–350K</td></tr>
+        <tr><td>David Oyelowo</td><td><span class="talent-tag amber" style="font-size:9px;">Tier 3</span></td><td>Prestige convert</td><td>★★★★☆</td><td style="color:#5ba3f5;text-align:right;">$150–300K</td></tr>
+        <tr><td>David Spade</td><td><span class="talent-tag amber" style="font-size:9px;">Tier 3</span></td><td>Underdog wins</td><td>★★★☆☆</td><td style="color:#5ba3f5;text-align:right;">$100–175K</td></tr>
+        <tr><td>David Alan Grier</td><td><span class="talent-tag amber" style="font-size:9px;">Tier 3</span></td><td>Ensemble utility</td><td>★★★☆☆</td><td style="color:#5ba3f5;text-align:right;">$75–150K</td></tr>
+        <tr><td>David Byrne</td><td><span class="talent-tag amber" style="font-size:9px;">Tier 3</span></td><td>Art-tech curiosity</td><td>★★★☆☆</td><td style="color:#5ba3f5;text-align:right;">$100–200K</td></tr>
+        <tr><td>David Sedaris</td><td><span class="talent-tag amber" style="font-size:9px;">Tier 3</span></td><td>Cult/prestige</td><td>★★★☆☆</td><td style="color:#3ecf8e;text-align:right;">$50–100K</td></tr>
+        <tr><td>Dave Chappelle</td><td><span class="talent-tag amber" style="font-size:9px;">Tier 3</span></td><td>Maximum recognition</td><td>★★★★★</td><td style="color:#e05252;text-align:right;">$1M+ · brand review req'd</td></tr>
+        <tr><td>David Beckham</td><td><span class="talent-tag amber" style="font-size:9px;">Tier 3</span></td><td>Global aspiration</td><td>★★★★★</td><td style="color:#e05252;text-align:right;">$800K–2M</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- OPEN QUESTIONS -->
-  <div class="section-sub-label" style="margin-bottom:20px;">Open questions</div>
-  <div class="questions-grid" style="margin-bottom:48px;">
-    <div class="question-card"><div class="question-num">Q1 — Positioning</div><div class="question-text">Do we want the Dave to be self-aware (knows he's in a Sigma ad, winks at the camera) or oblivious (sincerely defending his spreadsheets)? The former needs a comedian. The latter needs an actor.</div></div>
-    <div class="question-card"><div class="question-num">Q2 — Solo vs. ensemble</div><div class="question-text">One iconic Dave who "is" the campaign, or a rotating bench of Daves each embodying a different archetype? Solo = more cohesive. Ensemble = more social content and longevity.</div></div>
-    <div class="question-card"><div class="question-num">Q3 — Chang conflict check</div><div class="question-text">Does Chang have existing tech/SaaS commitments that would conflict? No known exclusivity blockers as of Q1 2026 — but a formal check is required before any outreach begins.</div></div>
-    <div class="question-card"><div class="question-num">Q4 — UK distribution</div><div class="question-text">If David Mitchell (UK) is pursued, does Sigma have sufficient EU/UK distribution to justify the US recognition trade-off? Or does he run in a Europe-specific cut only?</div></div>
-    <div class="question-card"><div class="question-num">Q5 — Wain directing</div><div class="question-text">If Wain talent-directs, does that create an awkward dual role in production? Has real value (reduces director cost, better self-direction) but may need a separate director of record for deliverable accountability.</div></div>
-    <div class="question-card"><div class="question-num">Q6 — Marrs positioning</div><div class="question-text">Marrs is the non-Dave in a Dave campaign — does that confuse the premise or strengthen it? "We replaced Dave with someone who actually knows data" is a strong message if handled carefully.</div></div>
+  <!-- ─── OPEN QUESTIONS ─── -->
+  <div class="open-questions">
+    <h3>Open questions</h3>
+    <ul>
+      <li>Does the ensemble approach (multiple Daves) or single-talent lead work better for the :30 TV spots? Ensemble is funnier but costlier; single talent is cheaper and more focused.</li>
+      <li>For Tier 2 picks — Tennant and Duchovny in particular — is the UK/90s reference clear enough for the current audience? Recommend concept testing with 25–35 demo.</li>
+      <li>Dave Grohl angle: does the musician-as-operator narrative resonate with enterprise buyers, or does it feel off-brand? High upside if it lands, minor disconnect risk.</li>
+      <li>Chappelle: if we are not advancing due to brand risk, do we need a formal internal decision documented? Recommend a brief note for the record.</li>
+      <li>David Krumholtz (Numb3rs) is the most on-brand data-narrative pick of the entire list — is there a targeted conference or Sigma-for-analysts campaign where his lower recognition is acceptable?</li>
+      <li>Production timeline assumes Q3 2026 shoot. If Harbour or Letterman have scheduling conflicts, what is the fallback? Recommend identifying a confirmed backup before contracting lead talent.</li>
+    </ul>
   </div>
 
-  <!-- TIMELINE -->
-  <div class="section-sub-label" style="margin-bottom:20px;">Timeline</div>
-  <div style="background:#141414;border-radius:8px;padding:28px;margin-bottom:32px;">
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-bar"></div></div>
-        <div class="timeline-content"><div class="timeline-date">Now → May 30</div><div class="timeline-desc"><strong>Internal alignment.</strong> Lock preferred structure (solo vs. ensemble). Align on budget envelope. Approve shortlist for outreach.</div></div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-bar"></div></div>
-        <div class="timeline-content"><div class="timeline-date">June 2026</div><div class="timeline-desc"><strong>Talent outreach &amp; conflict checks.</strong> Agency contacts reps for shortlisted Daves. Formal LOI to primary pick. Begin conflict &amp; availability verification.</div></div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-bar"></div></div>
-        <div class="timeline-content"><div class="timeline-date">July 2026</div><div class="timeline-desc"><strong>Negotiation &amp; deal close.</strong> Execute talent agreements. Confirm shoot dates. Finalize creative brief with talent team. Begin pre-production.</div></div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-bar"></div></div>
-        <div class="timeline-content"><div class="timeline-date">Q3 2026 (Aug–Sep)</div><div class="timeline-desc"><strong>Production shoot.</strong> NYC or LA. 2–3 shoot days for solo; 3–5 for ensemble. Deliverables: broadcast spot(s), social cutdowns, OOH photography, event stills.</div></div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-bar"></div></div>
-        <div class="timeline-content"><div class="timeline-date">Oct–Nov 2026</div><div class="timeline-desc"><strong>Post-production &amp; media plan.</strong> Edit, color, sound. Final approvals. Coordinate with media agency on placement strategy (OOH, digital, social, event).</div></div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-line"><div class="timeline-dot" style="background:#3ecf8e;"></div></div>
-        <div class="timeline-content" style="padding-bottom:0;"><div class="timeline-date" style="color:#3ecf8e;">Q4 2026 — Launch</div><div class="timeline-desc"><strong>"No Daves Required." goes live.</strong> NYC subway, LinkedIn, social, event activations. 100 Gong call target begins.</div></div>
-      </div>
+  <!-- ─── PRODUCTION TIMELINE ─── -->
+  <div class="timeline">
+    <div class="timeline-step">
+      <div class="tl-date">May 2026</div>
+      <div class="tl-event">Shortlist finalized. Talent agency outreach begins. LOIs sent to top 3.</div>
+    </div>
+    <div class="timeline-step">
+      <div class="tl-date">Jun 2026</div>
+      <div class="tl-event">Deals closed, schedules confirmed. Creative development locked with confirmed talent.</div>
+    </div>
+    <div class="timeline-step">
+      <div class="tl-date">Jul 2026</div>
+      <div class="tl-event">Production shoot. Table read + rehearsal day 1. :30 spots + social cutdowns in 3-day shoot block.</div>
+    </div>
+    <div class="timeline-step">
+      <div class="tl-date">Aug 2026</div>
+      <div class="tl-event">Post-production, color, sound, legal clearance. Q2 campaign assets finalized.</div>
+    </div>
+    <div class="timeline-step">
+      <div class="tl-date">Sep 2026</div>
+      <div class="tl-event">Campaign goes live. NYC subway, LinkedIn, social, event activations. Talent social posts coordinated.</div>
     </div>
   </div>
 
 </div><!-- /talent section -->
+
+<!-- Wikipedia photo loader — fetches thumbnails client-side from public API -->
+<script>
+(function() {
+  // Map: element ID → Wikipedia article title
+  var photoMap = {
+    'photo-david-chang':        'David_Chang',
+    'photo-david-bromstad':     'David_Bromstad',
+    'photo-david-harbour':      'David_Harbour',
+    'photo-dave-grohl':         'Dave_Grohl',
+    'photo-david-duchovny':     'David_Duchovny',
+    'photo-david-tennant':      'David_Tennant_(actor)',
+    'photo-david-hyde-pierce':  'David_Hyde_Pierce',
+    'photo-david-cross':        'David_Cross',
+    'photo-david-letterman':    'David_Letterman',
+    'photo-david-spade':        'David_Spade',
+    'photo-dave-bautista':      'Dave_Bautista',
+    'photo-david-byrne':        'David_Byrne',
+    'photo-david-oyelowo':      'David_Oyelowo',
+    'photo-dave-chappelle':     'Dave_Chappelle',
+    'photo-david-beckham':      'David_Beckham',
+    'photo-david-sedaris':      'David_Sedaris',
+    'photo-dave-matthews':      'Dave_Matthews',
+    'photo-david-alan-grier':   'David_Alan_Grier',
+    'photo-david-schwimmer':    'David_Schwimmer',
+    'photo-david-krumholtz':    'David_Krumholtz',
+    'photo-david-mitchell-uk':  'David_Mitchell_(comedian)',
+    'photo-dave-annable':       'Dave_Annable',
+  };
+
+  function loadPhoto(elId, wikiTitle) {
+    var el = document.getElementById(elId);
+    if (!el) return;
+    var url = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(wikiTitle);
+    fetch(url)
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (d.thumbnail && d.thumbnail.source) {
+          var img = document.createElement('img');
+          img.src = d.thumbnail.source;
+          img.alt = d.title || wikiTitle.replace(/_/g,' ');
+          img.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:top center;display:block;';
+          el.classList.remove('photo-loading');
+          el.appendChild(img);
+        }
+      })
+      .catch(function() {});
+  }
+
+  // Stagger loads to avoid rate limiting
+  var entries = Object.entries(photoMap);
+  entries.forEach(function(pair, i) {
+    setTimeout(function() { loadPhoto(pair[0], pair[1]); }, i * 120);
+  });
+})();
+</script>
+
 
 
 <!-- ===== :30 SPOTS ===== -->
@@ -2359,13 +2717,6 @@
     .notes-text { font-size:12px; color:#666; line-height:1.6; }
     .notes-text strong { color:#888; }
 
-    /* Spot 4 — text only, slightly dimmer treatment */
-    .spot4-wrapper { background:#0f0f0f; border:1px solid #1f1f1f; border-radius:8px; padding:28px; }
-    .spot4-label { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#444; margin-bottom:8px; }
-    .spot4-title { font-family:'Advercase',serif; font-size:clamp(16px,2vw,24px); color:#aaa; margin-bottom:14px; }
-    .spot4-body { font-size:13px; color:#666; line-height:1.7; }
-    .spot4-body strong { color:#888; }
-    .spot4-body em { color:#555; }
   </style>
 
   <!-- ══════════════════════════════════════════════════════ -->
@@ -2375,12 +2726,12 @@
     <div class="spot-header">
       <div class="spot-meta">
         <div class="spot-num">Spot 01 — :30</div>
-        <div class="spot-title">"Dave Builds the Daves"</div>
-        <div class="spot-logline">A celebrity Dave creates agent after agent — and names every single one Dave. The Daves execute. The Daves have opinions about this. Governed, accessible, tangible AI.</div>
+        <div class="spot-title">"They Know Which Dave I Mean"</div>
+        <div class="spot-logline">Chang names every agent Dave. His colleague cannot handle this. The Daves can.</div>
       </div>
       <div class="spot-tags">
-        <span class="talent-tag blue">Ensemble cast</span>
-        <span class="talent-tag green">Brand comedy</span>
+        <span class="talent-tag blue">Two-hander</span>
+        <span class="talent-tag green">Escalation comedy</span>
         <span class="talent-tag blue">Agent showcase</span>
       </div>
     </div>
@@ -2389,51 +2740,53 @@
       <div class="scene-block">
         <div class="scene-time">:00</div>
         <div class="scene-content">
-          <div class="scene-slug">INT. CLEAN OFFICE — DAY</div>
-          <div class="scene-action">David Chang sits at a desk, laptop open. Focused. He types, hits enter.</div>
-          <div class="scene-dialogue"><div class="speaker">Chang</div>"I need an agent. I'll call it... Dave."</div>
-          <div class="scene-action">A title card pops up on screen: <em>Dave — Sales Pipeline Agent.</em> David Bromstad materializes beside him, smiling, ready to work.</div>
-          <div class="scene-dialogue"><div class="speaker">Bromstad (Dave #1)</div>"On it."</div>
+          <div class="scene-slug">INT. OPEN OFFICE — DAY</div>
+          <div class="scene-action">Chang at his laptop. He creates an agent, hits enter. A colleague walks over, glances at the screen.</div>
+          <div class="scene-dialogue"><div class="speaker">Colleague</div>"You named your agent Dave?"</div>
+          <div class="scene-dialogue"><div class="speaker">Chang</div>"It monitors pipeline. Its name is Dave."</div>
+          <div class="scene-dialogue"><div class="speaker">Colleague</div>"...Okay."</div>
         </div>
       </div>
 
       <div class="scene-block">
         <div class="scene-time">:07</div>
         <div class="scene-content">
-          <div class="scene-action">Chang types again. Another agent spins up: <em>Dave — Customer Health Agent.</em> David Wain appears.</div>
-          <div class="scene-dialogue"><div class="speaker">Chang</div>"This one's also Dave."</div>
-          <div class="scene-dialogue"><div class="speaker">Wain (Dave #2)</div>"Okay. Sure."</div>
-          <div class="scene-action">Bromstad glances at Wain. Wain glances back.</div>
-          <div class="scene-dialogue"><div class="speaker">Bromstad</div>"You're also Dave?"</div>
-          <div class="scene-dialogue"><div class="speaker">Wain</div>"Yeah."</div>
-          <div class="scene-dialogue"><div class="speaker">Bromstad</div>"Cool."</div>
+          <div class="scene-action">Chang creates a second agent. Types. Hits enter. The colleague is still standing there.</div>
+          <div class="scene-dialogue"><div class="speaker">Colleague</div>"Is that one also Dave?"</div>
+          <div class="scene-dialogue"><div class="speaker">Chang</div>"That's Dave. It does customer health."</div>
+          <div class="scene-dialogue"><div class="speaker">Colleague</div>"You have two agents both named Dave."</div>
+          <div class="scene-dialogue"><div class="speaker">Chang</div><em>(not looking up)</em> "They know which one I'm talking to."</div>
+          <div class="scene-dialogue"><div class="speaker">Colleague</div>"Do they?"</div>
         </div>
       </div>
 
       <div class="scene-block">
-        <div class="scene-time">:14</div>
+        <div class="scene-time">:15</div>
         <div class="scene-content">
-          <div class="scene-action">A third agent: <em>Dave — Exec Reporting Agent.</em> David Krumholtz materializes.</div>
-          <div class="scene-dialogue"><div class="speaker">Krumholtz (Dave #3)</div>"I'm guessing I'm Dave."</div>
-          <div class="scene-dialogue"><div class="speaker">Chang</div><em>(not looking up)</em> "You're Dave."</div>
-          <div class="scene-action">All three Daves are now moving in different directions — pulling data, building dashboards, scheduling reports. Efficient. Purposeful.</div>
-        </div>
-      </div>
-
-      <div class="scene-block">
-        <div class="scene-time">:20</div>
-        <div class="scene-content">
-          <div class="scene-action">Brief cross-talk as they work:</div>
-          <div class="scene-dialogue"><div class="speaker">Wain (Dave #2)</div>"Did you check with IT before spinning me up?"</div>
-          <div class="scene-dialogue"><div class="speaker">Chang</div>"IT can see everything you're doing."</div>
-          <div class="scene-dialogue"><div class="speaker">Wain</div>"...Honestly that's fine."</div>
+          <div class="scene-action">Chang creates a third agent. The colleague stares at the screen. A beat.</div>
+          <div class="scene-dialogue"><div class="speaker">Colleague</div>"Chang."</div>
+          <div class="scene-dialogue"><div class="speaker">Chang</div>"That one schedules the exec report."</div>
+          <div class="scene-dialogue"><div class="speaker">Colleague</div>"That is also Dave."</div>
+          <div class="scene-dialogue"><div class="speaker">Chang</div>"Yes."</div>
+          <div class="scene-action">Long beat. Three agent cards on screen, all labeled Dave.</div>
+          <div class="scene-dialogue"><div class="speaker">Colleague</div>"I just — how do they know—"</div>
+          <div class="scene-dialogue"><div class="speaker">All three Daves</div><em>(in unison, off-screen)</em> "We know."</div>
         </div>
       </div>
 
       <div class="scene-block">
         <div class="scene-time">:24</div>
         <div class="scene-content">
-          <div class="scene-vo"><div class="vo-label">VO</div>"Sigma agents. Governed and accessible. Build them. Trust them. Name them whatever you want."</div>
+          <div class="scene-action">The colleague slowly turns to look at Chang. Chang finally looks up.</div>
+          <div class="scene-dialogue"><div class="speaker">Chang</div>"IT can see all of them, by the way."</div>
+          <div class="scene-dialogue"><div class="speaker">Colleague</div><em>(quietly)</em> "That's actually reassuring."</div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <div class="scene-time">:28</div>
+        <div class="scene-content">
+          <div class="scene-vo"><div class="vo-label">VO</div>"Sigma agents. Governed. Accessible. Name them whatever you want."</div>
         </div>
       </div>
 
@@ -2444,13 +2797,14 @@
 
       <div class="spot-notes">
         <div class="notes-label">Director notes</div>
-        <div class="notes-text">Pace is quick but not frantic — think <em>The Office</em> matter-of-fact energy. Each Dave materializes as a <strong>title card / agent card UI element</strong> that resolves into the person, reinforcing "these are literally agents." Cross-talk should feel improvised. Chang never breaks focus — he's just building. The Daves are fully capable and autonomous; the comedy is in the naming, not the competence.</div>
+        <div class="notes-text">The whole thing lives on Chang's <strong>absolute, unshakeable confidence</strong> in his naming convention — zero defensiveness, zero humor about it, complete conviction. The colleague is the audience surrogate: confused but not hostile. "We know." from the three off-screen Daves is the button — it should land like a jump scare but matter-of-fact. The IT line at the end is almost an afterthought, which makes it land harder. No music until end card.</div>
       </div>
     </div>
   </div>
 
 
-  <!-- ══════════════════════════════════════════════════════ -->
+
+    <!-- ══════════════════════════════════════════════════════ -->
   <!-- SPOT 2                                                -->
   <!-- ══════════════════════════════════════════════════════ -->
   <div class="spot-card">
@@ -2612,29 +2966,77 @@
 
 
   <!-- ══════════════════════════════════════════════════════ -->
-  <!-- SPOT 4 — TEXT ONLY                                    -->
+  <!-- SPOT 4                                                -->
   <!-- ══════════════════════════════════════════════════════ -->
-  <div class="section-sub-label" style="margin-bottom:16px;">Spot 04 — captured for reference (not yet in production)</div>
-  <div class="spot4-wrapper">
-    <div class="spot4-label">Spot 04 — :30 · Text treatment only</div>
-    <div class="spot4-title">"No Daves Allowed" / The Dave/Dev Mix-Up</div>
-    <div class="spot4-body">
-      <p>The celebrity Daves are congregating somewhere — a lobby, a green room, a hallway outside a conference. They're chatting amongst themselves, comparing their analytics outputs, easy and collegial. A <strong>security type</strong> approaches.</p>
-      <p><strong>Security:</strong> <em>"I'm sorry — no Daves allowed."</em></p>
-      <p>The Daves look at each other, confused. One raises a hand: <em>"But... we're all Dave."</em></p>
-      <p><strong>Security:</strong> <em>"Exactly."</em></p>
-      <p>They're escorted — politely but firmly — toward the exit. One Dave, over his shoulder: <em>"But I thought we were—"</em> Another cuts in: <em>"Wait. Wait wait wait."</em></p>
-      <p>He stops. Turns. Very slowly.</p>
-      <p><strong>Dave:</strong> <em>"It's not 'No Daves.'"</em></p>
-      <p>Beat. The other Daves stop walking.</p>
-      <p><strong>Dave:</strong> <em>"It's 'No <strong>Devs</strong>.' No devs required."</em></p>
-      <p>Very long beat. They're all absorbing this. One Dave, quietly, to no one in particular: <em>"We've been Dave this whole time."</em></p>
-      <p>The security guard softens. Looks down. <em>"I... yeah. I think that's right."</em></p>
-      <p><strong>VO:</strong> <em>"No devs required. Sigma agents — build them without engineering."</em></p>
-      <p style="margin-top:16px;color:#555;font-style:italic;font-size:12px;">End card: "No <strong>Daves</strong> Required." — with a subtle asterisk or fine print reading <em>*or devs</em></p>
-      <p style="margin-top:12px;color:#555;font-size:12px;"><strong>Note on casting:</strong> This spot works best with Wain (he'll understand the meta-ness of being a Dave mistaken for a conceptual stand-in for Dev) or with Krumholtz doing the slow-dawning-realization beat. The security guard is a non-Dave — could be played by a recognizable face for extra punch, or kept anonymous. The "We've been Dave this whole time" line is the one that needs a great delivery; it's either the best line in the spot or it kills the room.</p>
+  <div class="spot-card">
+    <div class="spot-header">
+      <div class="spot-meta">
+        <div class="spot-num">Spot 04 — :30 <span style="font-size:10px;color:#444;font-weight:400;letter-spacing:1px;">· captured for reference</span></div>
+        <div class="spot-title">"No Daves Allowed"</div>
+        <div class="spot-logline">The Daves get thrown out. On the way to the exit, one of them cracks it: it was never "No Daves." It's "No Devs." They've been Dave this whole time.</div>
+      </div>
+      <div class="spot-tags">
+        <span class="talent-tag blue">Ensemble cast</span>
+        <span class="talent-tag green">Dave/Dev mix-up</span>
+        <span class="talent-tag amber">Not yet in production</span>
+      </div>
+    </div>
+    <div class="spot-body">
+
+      <div class="scene-block">
+        <div class="scene-time">:00</div>
+        <div class="scene-content">
+          <div class="scene-slug">INT. OFFICE LOBBY — DAY</div>
+          <div class="scene-action">Bromstad, Wain, and Krumholtz are hanging around — easy, collegial, comparing outputs like people who've just had a good day. A security guard approaches.</div>
+          <div class="scene-dialogue"><div class="speaker">Security</div>"I'm sorry — no Daves allowed."</div>
+          <div class="scene-action">The Daves look at each other.</div>
+          <div class="scene-dialogue"><div class="speaker">Bromstad</div>"But... we're all Dave."</div>
+          <div class="scene-dialogue"><div class="speaker">Security</div>"Exactly."</div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <div class="scene-time">:08</div>
+        <div class="scene-content">
+          <div class="scene-action">They're guided — politely but firmly — toward the exit. Wain glances back over his shoulder.</div>
+          <div class="scene-dialogue"><div class="speaker">Wain</div>"But I thought we were— I mean, we ran the pipeline report. We did the CEO dashboard. We sent the—"</div>
+          <div class="scene-dialogue"><div class="speaker">Krumholtz</div>"Wait."</div>
+          <div class="scene-action">Krumholtz stops walking. Turns slowly.</div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <div class="scene-time">:15</div>
+        <div class="scene-content">
+          <div class="scene-dialogue"><div class="speaker">Krumholtz</div>"It's not 'No Daves.'"</div>
+          <div class="scene-action">Beat. Bromstad and Wain stop.</div>
+          <div class="scene-dialogue"><div class="speaker">Krumholtz</div>"It's 'No <em>Devs</em>.' No devs required."</div>
+          <div class="scene-action">Very long beat. They're all absorbing this. The security guard looks at the floor.</div>
+          <div class="scene-dialogue"><div class="speaker">Bromstad</div><em>(quietly, to himself)</em> "We've been Dave this whole time."</div>
+          <div class="scene-dialogue"><div class="speaker">Security</div>"...Yeah. That's right."</div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <div class="scene-time">:24</div>
+        <div class="scene-content">
+          <div class="scene-action">The Daves slowly turn around. Walk back in. The security guard holds the door.</div>
+          <div class="scene-vo"><div class="vo-label">VO</div>"No devs required. Sigma agents — built by anyone."</div>
+        </div>
+      </div>
+
+      <div class="spot-endcard">
+        <div class="endcard-label">End card</div>
+        <div class="endcard-text">No <em>Daves</em> Required.<span style="font-size:12px;color:#555;"> *or devs</span></div>
+      </div>
+
+      <div class="spot-notes">
+        <div class="notes-label">Director notes</div>
+        <div class="notes-text">The security guard should be <strong>completely sincere</strong> — not a villain, not playing it for laughs, genuinely just enforcing a policy he misread. The comedy is the dawning realization playing completely straight. <strong>Krumholtz owns the pivot</strong> — his "It's 'No Devs'" should feel like a detective solving a case, not a punchline setup. "We've been Dave this whole time" is Bromstad's moment; it needs to land quiet and small. The asterisk on the end card (<em>*or devs</em>) is the button — leave it on screen long enough to read.</div>
+      </div>
     </div>
   </div>
+
 
 </div><!-- /spots section -->
 
