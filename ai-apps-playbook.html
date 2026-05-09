@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The AI Apps Playbook | Sigma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Advercase';
+    src: url('advercase-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Advercase';
+    src: url('advercase-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root {
+    --sigma-blue: #1A70F1;
+    --sigma-dark-blue: #08367A;
+    --sigma-light-blue: #DEE8F8;
+    --sigma-ink: #1C1E1E;
+    --sigma-neutral: #F7F8FA;
+    --sigma-rule: #E5E7EB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  html, body { background: #FFFFFF; color: var(--sigma-ink); font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; }
+  body { font-size: 18px; line-height: 1.55; font-variant-numeric: tabular-nums; }
+  img { max-width: 100%; height: auto; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+  .full { background: var(--sigma-blue); color: #FFFFFF; padding: 80px 0; }
+  .full-warm { background: var(--sigma-neutral); padding: 80px 0; }
+  .full-light { background: var(--sigma-light-blue); padding: 80px 0; }
+  .full-ink { background: #0B0F1A; color: #FFFFFF; padding: 80px 0; }
+  .section { padding: 80px 0; border-bottom: 1px solid var(--sigma-rule); }
+  h1, h2, h3, h4 { font-family: 'Advercase', 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
+  h1 { font-size: 96px; line-height: 0.95; margin-bottom: 32px; }
+  h2 { font-size: 64px; line-height: 1.0; margin-bottom: 28px; }
+  h3 { font-size: 36px; line-height: 1.1; margin-bottom: 16px; }
+  h4 { font-size: 26px; line-height: 1.2; margin-bottom: 12px; }
+  .eyebrow { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sigma-blue); margin-bottom: 20px; }
+  .full .eyebrow, .full-ink .eyebrow { color: #BFD8FB; }
+  p.lead { font-size: 24px; line-height: 1.45; max-width: 980px; }
+  p { font-size: 18px; max-width: 880px; }
+  p + p { margin-top: 14px; }
+  .cover { background: var(--sigma-blue); color: #FFFFFF; padding: 140px 0 120px; position: relative; }
+  .cover h1 { font-size: 140px; line-height: 0.92; max-width: 1200px; }
+  .cover .sub { font-size: 28px; max-width: 900px; margin-top: 32px; opacity: 0.92; }
+  .cover .meta { display: flex; gap: 60px; margin-top: 80px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.25); font-family: 'DM Sans', sans-serif; }
+  .cover .meta .label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; margin-bottom: 6px; }
+  .cover .meta .val { font-size: 18px; font-weight: 500; }
+  .cover .brand { position: absolute; top: 60px; left: 80px; }
+  .cover .brand img { height: 36px; width: auto; aspect-ratio: 351 / 100; object-fit: contain; display: block; }
+  .cover .ribbon { position: absolute; top: 70px; right: 80px; font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 18px; border: 1px solid rgba(255,255,255,0.4); border-radius: 64px; }
+  .logo-mark { height: 24px; width: auto; aspect-ratio: 351 / 100; object-fit: contain; display: inline-block; vertical-align: middle; }
+  .logo-mark.lg { height: 32px; }
+
+  .toc { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .toc h3 { color: var(--sigma-dark-blue); margin-bottom: 24px; }
+  .toc ol { list-style: none; counter-reset: chapter; }
+  .toc li { counter-increment: chapter; border-bottom: 1px solid var(--sigma-rule); }
+  .toc li a { display: flex; gap: 28px; align-items: baseline; padding: 14px 4px; text-decoration: none; color: inherit; transition: background 0.15s; }
+  .toc li a:hover { background: var(--sigma-light-blue); }
+  .toc li a::before { content: counter(chapter, decimal-leading-zero); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.12em; color: var(--sigma-blue); min-width: 44px; }
+  .toc li .ch-title { font-size: 19px; font-weight: 500; color: var(--sigma-ink); }
+  .toc li .ch-sub { display: block; font-size: 14px; color: #5A5A5A; font-weight: 400; margin-top: 4px; }
+  .toc li a:hover .ch-title { color: var(--sigma-blue); }
+
+  .chapter-num { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; color: var(--sigma-blue); padding: 6px 14px; border: 1px solid var(--sigma-blue); border-radius: 64px; margin-bottom: 24px; }
+  .full-ink .chapter-num { color: #BFD8FB; border-color: #BFD8FB; }
+  .full .chapter-num { color: #FFFFFF; border-color: rgba(255,255,255,0.5); }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 48px; }
+  .stat { padding: 32px; background: rgba(255,255,255,0.06); border-left: 4px solid #BFD8FB; }
+  .full-warm .stat { background: #FFFFFF; border-left-color: var(--sigma-blue); }
+  .stat .num { font-family: 'Advercase', 'Instrument Serif', serif; font-size: 76px; line-height: 1; color: #FFFFFF; }
+  .full-warm .stat .num { color: var(--sigma-blue); }
+  .stat .lbl { font-family: 'DM Sans', sans-serif; font-size: 15px; margin-top: 12px; opacity: 0.85; }
+
+  .quote { padding: 48px; background: #FFFFFF; border-left: 6px solid var(--sigma-blue); margin: 32px 0; max-width: 1100px; }
+  .quote p { font-family: 'Advercase', 'Instrument Serif', serif; font-size: 28px; line-height: 1.3; color: var(--sigma-ink); margin: 0; }
+  .quote .attr { font-family: 'DM Sans', sans-serif; font-size: 14px; color: #6B6B6B; margin-top: 16px; letter-spacing: 0.04em; }
+
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 48px; }
+  .four-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 48px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 48px; align-items: start; }
+  .card { padding: 36px; background: #FFFFFF; border: 1px solid var(--sigma-rule); }
+  .full-ink .card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.12); }
+  .card .num { font-family: 'Advercase', 'Instrument Serif', serif; font-size: 56px; color: var(--sigma-blue); line-height: 1; margin-bottom: 12px; }
+  .card h4 { color: var(--sigma-ink); }
+  .full-ink .card h4 { color: #FFFFFF; }
+  .card p { font-size: 15px; max-width: none; }
+  .card-link { display: inline-block; margin-top: 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--sigma-blue); text-decoration: none; letter-spacing: 0.02em; border-bottom: 1px solid var(--sigma-blue); padding-bottom: 1px; transition: opacity 0.15s; }
+  .card-link:hover { opacity: 0.7; }
+  .card-link::after { content: ' →'; }
+
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 48px; border: 1px solid var(--sigma-rule); }
+  .compare .col { padding: 48px; }
+  .compare .col.then { background: #FFFFFF; border-right: 1px solid var(--sigma-rule); }
+  .compare .col.now { background: var(--sigma-light-blue); }
+  .compare .label { font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+  .compare .then .label { color: #6B6B6B; }
+  .compare .now .label { color: var(--sigma-dark-blue); }
+  .compare h3 { font-size: 32px; }
+  .compare ul { list-style: none; margin-top: 24px; }
+  .compare li { padding: 14px 0; border-top: 1px solid rgba(0,0,0,0.08); font-size: 17px; }
+
+  .pattern { padding: 36px 40px; background: #FFFFFF; border: 1px solid var(--sigma-rule); margin-bottom: 16px; display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: start; }
+  .pattern .pnum { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: var(--sigma-blue); padding: 4px 12px; border: 1px solid var(--sigma-blue); border-radius: 64px; margin-bottom: 14px; }
+  .pattern h4 { font-size: 26px; margin-bottom: 10px; }
+  .pattern .pcustomer { font-family: 'DM Sans', sans-serif; font-size: 14px; color: #4A4A4A; padding: 18px; background: var(--sigma-neutral); border-left: 3px solid var(--sigma-blue); }
+  .pattern .pcustomer .ctitle { display: block; font-weight: 600; color: var(--sigma-ink); margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; font-size: 11px; }
+
+  .timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 64px; position: relative; }
+  .timeline.four-step { grid-template-columns: repeat(4, 1fr); }
+  .timeline::before { content: ''; position: absolute; top: 22px; left: 5%; right: 5%; height: 2px; background: var(--sigma-rule); z-index: 0; }
+  .step { position: relative; padding-top: 64px; padding-right: 24px; }
+  .step::before { content: ''; position: absolute; top: 12px; left: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--sigma-blue); z-index: 1; border: 4px solid #FFFFFF; }
+  .step .wk { font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sigma-blue); margin-bottom: 8px; }
+  .step h4 { font-size: 22px; margin-bottom: 8px; }
+  .step p { font-size: 14px; }
+
+  .objection { padding: 32px 40px; border-bottom: 1px solid var(--sigma-rule); display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .objection .obj-q { font-family: 'Advercase', 'Instrument Serif', serif; font-size: 28px; line-height: 1.25; color: var(--sigma-ink); }
+  .objection .obj-a { font-size: 16px; color: var(--sigma-ink); }
+  .objection .obj-a strong { color: var(--sigma-blue); }
+
+  .ad-block { background: var(--sigma-blue); color: #FFFFFF; padding: 64px; margin-bottom: 24px; border-radius: 0; }
+  .ad-block .ad-meta { font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; margin-bottom: 24px; }
+  .ad-block h3 { font-size: 44px; line-height: 1.1; margin-bottom: 20px; }
+  .ad-block p { font-size: 18px; max-width: 800px; opacity: 0.92; }
+
+  .cta-box { background: #FFFFFF; padding: 64px; border: 2px solid var(--sigma-blue); display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: center; }
+  .cta-box h3 { font-size: 48px; margin-bottom: 16px; color: var(--sigma-ink); }
+  .cta-box p { font-size: 17px; }
+  .pill { display: inline-block; padding: 14px 28px; height: 48px; line-height: 20px; background: var(--sigma-blue); color: #FFFFFF; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; border-radius: 64px; text-decoration: none; letter-spacing: -0.01em; cursor: pointer; transition: opacity 0.15s; }
+  .pill:hover { opacity: 0.9; }
+  .pill.outline { background: transparent; border: 1px solid var(--sigma-blue); color: var(--sigma-blue); }
+  .pill.outline-light { background: transparent; border: 1px solid #FFFFFF; color: #FFFFFF; }
+  .full .pill { background: #FFFFFF; color: var(--sigma-blue); }
+  .cta-actions { margin-top: 48px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .form-mock { background: var(--sigma-neutral); padding: 32px; }
+  .form-mock label { display: block; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6B6B; margin-bottom: 6px; }
+  .form-mock .field { background: #FFFFFF; border: 1px solid var(--sigma-rule); padding: 12px 16px; margin-bottom: 16px; font-size: 15px; color: #999; }
+
+  .footer { padding: 48px 0; background: #0B0F1A; color: #BFC4D0; font-size: 14px; font-family: 'DM Sans', sans-serif; }
+  .footer .wrap { display: flex; justify-content: space-between; align-items: center; }
+  .footer .brand img { height: 24px; width: auto; aspect-ratio: 351 / 100; object-fit: contain; display: block; }
+  .footer a { color: #BFC4D0; text-decoration: none; }
+
+  .source-note { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #6B6B6B; margin-top: 16px; max-width: 880px; }
+  .full .source-note { color: rgba(255,255,255,0.7); }
+  .full-ink .source-note { color: rgba(255,255,255,0.55); }
+
+  .arch { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 48px; }
+  .arch-layer { padding: 28px; background: #FFFFFF; border-top: 4px solid var(--sigma-blue); }
+  .arch-layer .layer-num { font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--sigma-blue); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+  .arch-layer h4 { font-size: 22px; margin-bottom: 10px; }
+  .arch-layer p { font-size: 14px; }
+
+  .marker { display: inline-block; padding: 4px 12px; background: var(--sigma-light-blue); color: var(--sigma-dark-blue); font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; margin-right: 8px; border-radius: 64px; }
+
+  .question-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+  .question-grid .q { padding: 28px; background: #FFFFFF; border-left: 4px solid var(--sigma-blue); }
+  .question-grid .q .qnum { font-family: 'Advercase', 'Instrument Serif', serif; font-size: 32px; color: var(--sigma-blue); line-height: 1; margin-bottom: 8px; }
+  .question-grid .q h4 { font-size: 22px; }
+  .question-grid .q p { font-size: 14px; }
+
+  .ai-app-defn { background: var(--sigma-light-blue); padding: 56px; margin-top: 48px; border-left: 6px solid var(--sigma-blue); }
+  .ai-app-defn .label { font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sigma-dark-blue); margin-bottom: 16px; }
+  .ai-app-defn p { font-family: 'Advercase', 'Instrument Serif', serif; font-size: 36px; line-height: 1.25; color: var(--sigma-ink); max-width: none; }
+
+  .anchor { scroll-margin-top: 24px; }
+
+  /* ===== CHECKLIST ===== */
+  .checklist { margin-top: 56px; display: flex; flex-direction: column; gap: 20px; }
+  .phase { padding: 36px 40px; background: #FFFFFF; border: 1px solid var(--sigma-rule); }
+  .phase-header { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 16px; border-bottom: 2px solid var(--sigma-blue); margin-bottom: 24px; gap: 24px; flex-wrap: wrap; }
+  .phase-header h3 { font-size: 28px; margin: 0; }
+  .phase-week { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sigma-blue); white-space: nowrap; }
+  .phase ul { list-style: none; }
+  .phase li { padding: 6px 0; }
+  .phase li label { display: flex; gap: 14px; cursor: pointer; align-items: flex-start; line-height: 1.5; font-size: 17px; }
+  .phase li label:hover .check-text { color: var(--sigma-blue); }
+  .phase input[type="checkbox"] { appearance: none; -webkit-appearance: none; -moz-appearance: none; width: 22px; height: 22px; border: 2px solid #B8BCC4; border-radius: 4px; cursor: pointer; flex-shrink: 0; margin-top: 4px; position: relative; background: #FFFFFF; transition: background 0.12s, border-color 0.12s; }
+  .phase input[type="checkbox"]:hover { border-color: var(--sigma-blue); }
+  .phase input[type="checkbox"]:checked { background: var(--sigma-blue); border-color: var(--sigma-blue); }
+  .phase input[type="checkbox"]:checked::after { content: ''; position: absolute; left: 6px; top: 1px; width: 6px; height: 12px; border: solid #FFFFFF; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .phase input[type="checkbox"]:checked + .check-text { color: #999; text-decoration: line-through; }
+  .check-text { transition: color 0.12s; }
+  .phase.stop { background: #0B0F1A; color: #FFFFFF; border: none; }
+  .phase.stop .phase-header { border-bottom-color: #BFD8FB; }
+  .phase.stop .phase-header h3 { color: #FFFFFF; }
+  .phase.stop .phase-week { color: #BFD8FB; }
+  .phase.stop input[type="checkbox"] { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.5); }
+  .phase.stop input[type="checkbox"]:checked { background: #FFFFFF; border-color: #FFFFFF; }
+  .phase.stop input[type="checkbox"]:checked::after { border-color: #0B0F1A; }
+  .phase.stop label:hover .check-text { color: #BFD8FB; }
+  .phase.stop input[type="checkbox"]:checked + .check-text { color: rgba(255,255,255,0.45); }
+
+  /* TOC numbering fix */
+  .toc ol.part-two { counter-reset: chapter 5; }
+
+  /* ===== RESPONSIVE ===== */
+
+  /* Tablet: ≤1024px */
+  @media (max-width: 1024px) {
+    .wrap { padding: 0 48px; }
+    .full, .full-warm, .full-light, .full-ink { padding: 64px 0; }
+    .section { padding: 64px 0; }
+    h1 { font-size: 72px; }
+    h2 { font-size: 52px; }
+    h3 { font-size: 30px; }
+    p.lead { font-size: 21px; }
+
+    .cover { padding: 120px 0 96px; }
+    .cover h1 { font-size: 96px; }
+    .cover .sub { font-size: 24px; max-width: 100%; }
+    .cover .ribbon { top: 48px; right: 48px; }
+    .cover .brand { top: 48px; left: 48px; }
+    .cover .meta { gap: 40px; flex-wrap: wrap; margin-top: 64px; }
+    .cover .meta > div { min-width: 180px; }
+
+    .toc { gap: 40px; }
+    .three-col, .four-col { gap: 24px; }
+    .stat-row { gap: 24px; }
+    .arch { gap: 16px; }
+    .timeline { gap: 8px; }
+
+    .pattern { grid-template-columns: 1fr 280px; gap: 32px; padding: 32px; }
+
+    .compare .col { padding: 36px; }
+    .cta-box { padding: 48px; gap: 40px; }
+
+    .chapter-num { font-size: 11px; }
+  }
+
+  /* Small tablet / large phone: ≤768px */
+  @media (max-width: 768px) {
+    .wrap { padding: 0 32px; max-width: 100%; }
+    .full, .full-warm, .full-light, .full-ink { padding: 56px 0; }
+    .section { padding: 56px 0; }
+    body { font-size: 16px; }
+    h1 { font-size: 56px; }
+    h2 { font-size: 40px; }
+    h3 { font-size: 26px; }
+    h4 { font-size: 22px; }
+    p.lead { font-size: 19px; line-height: 1.5; }
+
+    .cover { padding: 96px 0 72px; }
+    .cover h1 { font-size: 64px; line-height: 1; }
+    .cover .sub { font-size: 20px; }
+    .cover .ribbon { position: static; display: inline-block; margin-bottom: 24px; }
+    .cover .brand { position: static; padding: 0 32px; margin-bottom: 32px; }
+    .cover .brand img { height: 28px; }
+    .cover .meta { gap: 24px; padding-top: 24px; margin-top: 48px; }
+    .cover .meta > div { min-width: 140px; flex: 1 1 45%; }
+
+    /* Collapse all multi-column grids */
+    .toc { grid-template-columns: 1fr; gap: 32px; }
+    .three-col { grid-template-columns: 1fr; gap: 16px; }
+    .four-col { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .two-col { grid-template-columns: 1fr; gap: 32px; }
+    .arch { grid-template-columns: 1fr; gap: 16px; }
+    .question-grid { grid-template-columns: 1fr; gap: 16px; }
+    .stat-row { grid-template-columns: 1fr; gap: 16px; }
+
+    /* Stack pattern cards */
+    .pattern { grid-template-columns: 1fr; gap: 20px; padding: 28px; }
+
+    /* Stack compare grid */
+    .compare { grid-template-columns: 1fr; }
+    .compare .col.then { border-right: none; border-bottom: 1px solid var(--sigma-rule); }
+    .compare .col { padding: 32px; }
+
+    /* Stack timeline as vertical stack */
+    .timeline { display: flex; flex-direction: column; gap: 24px; }
+    .timeline::before { display: none; }
+    .step { padding-top: 0; padding-left: 32px; padding-right: 0; position: relative; }
+    .step::before { top: 4px; left: 0; }
+
+    /* Stack objections */
+    .objection { grid-template-columns: 1fr; gap: 16px; padding: 24px 0; }
+    .objection .obj-q { font-size: 22px; }
+
+    /* Stack CTA */
+    .cta-box { grid-template-columns: 1fr; padding: 32px; gap: 32px; }
+    .cta-box h3 { font-size: 32px; }
+
+    /* Cards: tighter padding */
+    .card { padding: 24px; }
+    .card .num { font-size: 44px; }
+
+    /* Checklist phases */
+    .checklist { margin-top: 40px; gap: 16px; }
+    .phase { padding: 24px; }
+    .phase-header h3 { font-size: 22px; }
+    .phase li label { font-size: 16px; }
+    .phase ul { padding: 0; }
+
+    /* Pattern customer voice card stays below the pattern body */
+    .pattern .pcustomer { padding: 16px; }
+
+    /* Big stat numbers */
+    .stat .num { font-size: 60px; }
+
+    /* Quote blocks */
+    .quote { padding: 28px; }
+    .quote p { font-size: 22px; }
+
+    /* AI App definition card */
+    .ai-app-defn { padding: 32px; }
+    .ai-app-defn p { font-size: 24px; }
+
+    /* Footer */
+    .footer .wrap { flex-direction: column; gap: 16px; align-items: flex-start; }
+
+    /* Ad blocks */
+    .ad-block { padding: 36px 28px; }
+    .ad-block h3 { font-size: 30px; }
+  }
+
+  /* ===== PRINT (Save as PDF) ===== */
+  @media print {
+    @page { size: letter; margin: 0.75in; }
+    html, body { background: #FFFFFF !important; color: #000000 !important; }
+    body { font-size: 11pt; line-height: 1.45; }
+    .nav, .cta-actions { display: none !important; }
+    section { page-break-inside: avoid; padding: 36pt 0 !important; border-bottom: 1px solid #DDDDDD; }
+    .full, .full-warm, .full-light, .full-ink, .blue { background: #FFFFFF !important; color: #000000 !important; }
+    .cover { padding: 36pt 0 !important; background: #FFFFFF !important; color: #000000 !important; }
+    .cover h1, .cover .sub, .cover .meta { color: #000000 !important; }
+    .cover .ribbon, .cover .meta { border-color: #CCCCCC !important; }
+    .cover .meta .label, .cover .meta .val { color: #000000 !important; }
+    .full .eyebrow, .full-ink .eyebrow, .cover .eyebrow { color: #1A70F1 !important; }
+    .full h2, .full-ink h2, .full p, .full-ink p, .full p.lead, .full-ink p.lead, .full h3, .full-ink h3, .full h4, .full-ink h4 { color: #000000 !important; opacity: 1 !important; }
+    .quote { background: #F7F8FA !important; border-left-color: #1A70F1 !important; }
+    .quote p, .quote .attr { color: #1C1E1E !important; }
+    .stat { background: #F7F8FA !important; border-left-color: #1A70F1 !important; }
+    .stat .num, .stat .lbl { color: #1C1E1E !important; }
+    .card { background: #FFFFFF !important; color: #000000 !important; border: 1px solid #CCCCCC !important; }
+    .card h4, .card .num, .card p { color: #000000 !important; }
+    .card .num { color: #1A70F1 !important; }
+    .pcustomer { background: #F7F8FA !important; color: #000000 !important; }
+    .phase { background: #FFFFFF !important; color: #000000 !important; border: 1px solid #CCCCCC !important; page-break-inside: avoid; }
+    .phase.stop { background: #1C1E1E !important; color: #FFFFFF !important; }
+    .phase.stop .check-text, .phase.stop h3, .phase.stop .phase-week { color: #FFFFFF !important; }
+    .phase input[type="checkbox"] { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    h1 { font-size: 32pt; }
+    h2 { font-size: 22pt; page-break-after: avoid; }
+    h3 { font-size: 16pt; page-break-after: avoid; }
+    h4 { font-size: 13pt; }
+    p, li { page-break-inside: avoid; }
+    a { color: #1A70F1 !important; text-decoration: underline; }
+    .anchor { scroll-margin-top: 0; }
+    .footer { background: #FFFFFF !important; color: #555555 !important; }
+    .footer .brand img { filter: invert(1) brightness(0.3); }
+  }
+
+  /* Phone: ≤480px */
+  @media (max-width: 480px) {
+    .wrap { padding: 0 20px; }
+    .full, .full-warm, .full-light, .full-ink { padding: 48px 0; }
+    .section { padding: 48px 0; }
+    h1 { font-size: 44px; }
+    h2 { font-size: 34px; line-height: 1.05; }
+    h3 { font-size: 24px; }
+    p.lead { font-size: 17px; }
+
+    .cover { padding: 72px 0 56px; }
+    .cover h1 { font-size: 48px; }
+    .cover .sub { font-size: 18px; }
+    .cover .meta { flex-direction: column; gap: 16px; }
+    .cover .meta > div { min-width: 0; flex: none; }
+
+    /* 4-col card grids fully collapse to single column on small phones */
+    .four-col { grid-template-columns: 1fr; }
+
+    /* Tighten compare blocks */
+    .compare .col { padding: 24px; }
+    .compare li { font-size: 16px; }
+
+    .pattern { padding: 22px; }
+    .pattern h4 { font-size: 22px; }
+
+    .objection .obj-q { font-size: 19px; }
+
+    .stat { padding: 22px; }
+    .stat .num { font-size: 48px; }
+
+    .ai-app-defn p { font-size: 20px; }
+
+    .ad-block h3 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="brand"><img src="sigma-logo-white.svg" alt="Sigma" /></div>
+  <div class="ribbon">In partnership with MIT Technology Review</div>
+  <div class="wrap">
+    <div class="eyebrow" style="color:#BFD8FB; margin-top:80px;">For the people who have to ship the next thing</div>
+    <h1>The AI Apps Playbook</h1>
+    <p class="sub">How to stop building dashboards and start building software that runs the business.</p>
+    <div class="meta">
+      <div><div class="label">Read by</div><div class="val">Data leaders, executives, builders</div></div>
+      <div><div class="label">Reading time</div><div class="val">22 minutes</div></div>
+      <div><div class="label">Edition</div><div class="val">2026.1</div></div>
+      <div><div class="label">Built from</div><div class="val">52,895 customer calls</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO / OPENING ARGUMENT -->
+<section class="full-warm">
+  <div class="wrap">
+    <div class="eyebrow">The argument</div>
+    <h2>BI told you what happened.<br>AI Apps decide what happens next.</h2>
+    <p class="lead">An AI App is software, built for one specific job, that runs directly on your data warehouse. It shows live numbers like a dashboard, but it also lets people change those numbers, kick off a workflow, and put AI to work inside the same security perimeter your warehouse already enforces. That's the shape we'll keep coming back to throughout this playbook.</p>
+    <p class="lead" style="margin-top:18px;">Business intelligence has been a window for twenty years, and the people on the other side of that window have been quietly losing patience. They look through it, read what's there, then open a spreadsheet and start typing. Most enterprises still operate this way, which leaves them with what is effectively a read-only company: one that can see itself in fine detail but cannot actually move on what it sees.</p>
+    <p class="lead" style="margin-top:18px;">AI Apps change that because they don't stop at showing the number. Users can edit it right there in the same screen, and that edit writes back to the warehouse with a full audit trail. The same AI that helps build the app reads the live data and surfaces what to do next, so the screen where the team sees the numbers becomes the screen where the team makes decisions and acts on them.</p>
+    <p class="lead" style="margin-top:18px;">This playbook is a practical guide to that shift. We cover why customers across finance, ops, and product are building AI Apps right now, what the four parts of one actually look like, and how to ship the first one in about four weeks.</p>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="num" style="color:var(--sigma-blue)">52,895</div>
+        <div class="lbl" style="color:#3A3A3A">customer sales calls analyzed in the last six months</div>
+      </div>
+      <div class="stat">
+        <div class="num" style="color:var(--sigma-blue)">6,109</div>
+        <div class="lbl" style="color:#3A3A3A">named AI Apps or agents as a top buying interest</div>
+      </div>
+      <div class="stat">
+        <div class="num" style="color:var(--sigma-blue)">2,099</div>
+        <div class="lbl" style="color:#3A3A3A">showed the full pattern. AI plus governed write-back.</div>
+      </div>
+    </div>
+    <p class="source-note">Source: Sigma analysis of customer sales calls from September 2025 through May 2026. Interest scores come from transcript analysis. Full methodology at the end.</p>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">What's inside</div>
+    <h2>Two parts. Eleven chapters.<br>Built from real sales calls.</h2>
+    <div class="toc" style="margin-top:64px">
+      <div>
+        <h3>Part one. Why this matters now.</h3>
+        <ol>
+          <li><a href="#ch1"><div><div class="ch-title">BI is the most expensive read-only software you own</div><div class="ch-sub">The hidden tax of dashboards that can't act</div></div></a></li>
+          <li><a href="#ch2"><div><div class="ch-title">What an AI App actually is</div><div class="ch-sub">Sigma's working definition and the four primitives</div></div></a></li>
+          <li><a href="#ch3"><div><div class="ch-title">What customers are building right now</div><div class="ch-sub">Five operational patterns from the field</div></div></a></li>
+          <li><a href="#ch4"><div><div class="ch-title">The proof</div><div class="ch-sub">Outcomes from customers across finance, ops, and revenue</div></div></a></li>
+          <li><a href="#ch5"><div><div class="ch-title">The economic case</div><div class="ch-sub">Cost of inaction, cost of rebuild, cost of waiting</div></div></a></li>
+        </ol>
+      </div>
+      <div>
+        <h3>Part two. How to ship one.</h3>
+        <ol class="part-two" start="6">
+          <li><a href="#ch6"><div><div class="ch-title">How to scope an AI App</div><div class="ch-sub">Five questions, one workflow, one weekend</div></div></a></li>
+          <li><a href="#ch7"><div><div class="ch-title">Reference architecture</div><div class="ch-sub">The three layers that keep an AI App governed end to end</div></div></a></li>
+          <li><a href="#ch8"><div><div class="ch-title">Five patterns to copy</div><div class="ch-sub">Spreadsheet replacement, approvals, embedded analytics, agentic ops, closed-loop forecasting</div></div></a></li>
+          <li><a href="#ch9"><div><div class="ch-title">A four-week rollout</div><div class="ch-sub">From workflow scope to production, in the time most teams take to scope</div></div></a></li>
+          <li><a href="#ch10"><div><div class="ch-title">The shipping checklist</div><div class="ch-sub">A line-by-line build list you can actually work from</div></div></a></li>
+          <li><a href="#ch11"><div><div class="ch-title">Where this leaves you</div><div class="ch-sub">A short conclusion, and what to do tomorrow morning</div></div></a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- PART 1: EXEC POV -->
+<!-- ============================================================== -->
+
+<!-- CHAPTER 1 -->
+<section class="full-ink anchor" id="ch1">
+  <div class="wrap">
+    <div class="chapter-num">Chapter one</div>
+    <h2 style="color:#FFFFFF">BI is the most expensive read-only software you own</h2>
+    <p class="lead" style="opacity:0.92">A dashboard is really the simplest possible kind of AI App, the version that shows you the signal and stops there. For most companies, the gap between seeing the number and actually acting on it costs more than the BI license itself, which is why we hear what we hear on customer calls.</p>
+
+    <div class="quote" style="background:rgba(255,255,255,0.05); border-left-color:#BFD8FB; margin-top:64px">
+      <p style="color:#FFFFFF">Power BI requires specialist expertise to deploy, creates slow ping-pong delivery cycles with unavailable business users, and lacks true self-service BI and integrated AI.</p>
+      <div class="attr" style="color:#9DB6E8">BI and analytics leader, financial services. Sigma sales call, 2026.</div>
+    </div>
+
+    <div class="quote" style="background:rgba(255,255,255,0.05); border-left-color:#BFD8FB">
+      <p style="color:#FFFFFF">Tableau extracts take two hours to refresh on a 13-billion-row dataset. 500 workbooks, 300 data sources. The team spends about 500 hours a month on ad-hoc requests. That blocks the data architecture work that needs to happen.</p>
+      <div class="attr" style="color:#9DB6E8">Head of analytics, software. Sigma sales call, 2026.</div>
+    </div>
+
+    <div class="quote" style="background:rgba(255,255,255,0.05); border-left-color:#BFD8FB">
+      <p style="color:#FFFFFF">My boss still has not received her February budget report. The delay keeps the team from adjusting spend or selling harder. Finance transformation is blocked by manual work and inconsistent data.</p>
+      <div class="attr" style="color:#9DB6E8">Finance line of business, services. Sigma sales call, 2026.</div>
+    </div>
+
+    <h3 style="margin-top:80px; color:#FFFFFF">Five symptoms show up in almost every call</h3>
+    <div class="four-col">
+      <div class="card">
+        <div class="num">01</div>
+        <h4>Spreadsheet sprawl</h4>
+        <p>Workbooks scattered across teams, dozens of variants of the same report, and add-ins that break whenever something upstream of them changes.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h4>Read-only dashboards</h4>
+        <p>BI shows the number but doesn't let you change it, and every small edit ends up as a ticket on someone else's queue.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h4>Bottlenecked data teams</h4>
+        <p>A small data team fielding more report requests than it can possibly complete, with new dashboards taking weeks to ship and self-service ending up as the wishful name on the queue.</p>
+      </div>
+      <div class="card">
+        <div class="num">04</div>
+        <h4>Tool fragmentation</h4>
+        <p>Two BI tools, a notebook layer, a spreadsheet layer, and a one-off scripting layer, all of them showing different numbers in different meetings on the same day.</p>
+      </div>
+    </div>
+    <p class="source-note">Themes drawn from sixty high-confidence pain points raised in real customer conversations, across data teams, line-of-business, executives, CTOs, and product.</p>
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="full-warm anchor" id="ch2">
+  <div class="wrap">
+    <div class="chapter-num">Chapter two</div>
+    <h2>What an AI App actually is</h2>
+    <p class="lead">The phrase gets thrown around loosely, which is part of why we wrote a definition narrow enough to disagree with. An AI App is built from four parts that have to work together, and the work they do together is what changes what a data tool can be.</p>
+
+    <div class="ai-app-defn">
+      <div class="label">Working definition</div>
+      <p>An AI App is software built for one job, powered by your data platform, that shows live data, writes back to the warehouse, and runs AI inside the same security perimeter your warehouse already enforces.</p>
+    </div>
+
+    <h3 style="margin-top:80px">The four parts</h3>
+    <p style="margin-top:8px">Miss any one of them and what you have is something else: a dashboard, a form, a chatbot, or a script that gets the job almost done. AI Apps need all four working together.</p>
+
+    <div class="four-col">
+      <div class="card">
+        <div class="num">01</div>
+        <h4>Live warehouse data</h4>
+        <p>The app queries the warehouse directly, with no extracts and no nightly copies, so the moment the warehouse updates, the app updates.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h4>Data capture in the app</h4>
+        <p>The people closest to the work can capture decisions, overrides, forecasts, and approvals directly in the screen they're already looking at, and every change flows back to the warehouse where it's logged and governed.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h4>Governed AI inside the perimeter</h4>
+        <p>AI helps build the app, reads the live data, and powers chat for end users, all of it operating inside the same security boundary the warehouse already enforces, so nothing leaves the perimeter your security team has approved.</p>
+      </div>
+      <div class="card">
+        <div class="num">04</div>
+        <h4>Action sequences</h4>
+        <p>A click or a change in the data kicks off a sequence that can insert a row, run a stored procedure, send a Slack alert, or fire an API.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:80px">From dashboard to AI App</h3>
+    <div class="compare">
+      <div class="col then">
+        <div class="label">A dashboard does this</div>
+        <h3 style="font-size:32px;color:#3A3A3A">Shows the signal</h3>
+        <ul>
+          <li>Pulls from the warehouse, usually through an extract.</li>
+          <li>Draws charts and tables.</li>
+          <li>Filters when someone clicks.</li>
+          <li>Exports a PDF or CSV when asked.</li>
+          <li>Stops there.</li>
+        </ul>
+      </div>
+      <div class="col now">
+        <div class="label">An AI App does all that, plus</div>
+        <h3 style="font-size:32px;color:var(--sigma-dark-blue)">Acts on the signal</h3>
+        <ul>
+          <li>Lets users edit, override, and submit values. The change goes back to the warehouse.</li>
+          <li>Kicks off an approval, a stored procedure, or an API call.</li>
+          <li>Calls Sigma Assistant or a custom Sigma agent. All inside the perimeter.</li>
+          <li>Keeps a full audit trail. Who changed what, and when.</li>
+          <li>Becomes the system the team actually uses to do the work.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="section anchor" id="ch3">
+  <div class="wrap">
+    <div class="chapter-num">Chapter three</div>
+    <h2>What customers are building right now</h2>
+    <p class="lead">We pulled the patterns customers described across 2,099 sales calls in the last six months, and five of them came up over and over again. None of these are theoretical exercises in a workshop deck; they show up in finance, operations, product, and engineering conversations every single week.</p>
+
+    <div style="margin-top:80px">
+      <div class="pattern">
+        <div>
+          <span class="pnum">Pattern 01</span>
+          <h4>Spreadsheet replacement, with write-back</h4>
+          <p>Take an Excel model that has to roll up across sites, funds, or SKUs and turn it into an input table inside an AI App. Edits now flow back into the warehouse where they're governed and audited, the macros disappear, and two people can edit the same data at the same time without colliding. Tariff pricing, loan books, reserves, and demand plans all sit in this pattern.</p>
+        </div>
+        <div class="pcustomer">
+          <span class="ctitle">Customer voice</span>
+          Thirteen siloed Excel spreadsheets across two brands with no central source, running an eight-month tariff cycle for 2,000 SKUs that represent 40 percent of revenue.
+        </div>
+      </div>
+
+      <div class="pattern">
+        <div>
+          <span class="pnum">Pattern 02</span>
+          <h4>Approval workflows on live data</h4>
+          <p>Someone sees a number that needs to change and proposes the change inside the app, where a manager approves or rejects it through an action sequence. The reviewer, the timestamp, and the new value all land in the warehouse together as a single audit row. This is how KPI scoring, expense overrides, and reserves approvals all run.</p>
+        </div>
+        <div class="pcustomer">
+          <span class="ctitle">Customer voice</span>
+          Manual Google Sheets workflows for KPI scoring are clunky and error-prone, and none of the changes ever write back to Snowflake or Salesforce.
+        </div>
+      </div>
+
+      <div class="pattern">
+        <div>
+          <span class="pnum">Pattern 03</span>
+          <h4>Embedded customer analytics with AI chat</h4>
+          <p>Sigma embeds inside your customer's product, the warehouse handles tenant isolation through row-level security, and Sigma Assistant answers customer questions in plain English. Customers build their own reports, schedule their own exports, and stop generating ticket queues for your services team.</p>
+        </div>
+        <div class="pcustomer">
+          <span class="ctitle">Customer voice</span>
+          A live AI chatbot with natural language queries, LLM-driven dashboard generation, semantic layers, and multi-tenant AI analytics for client portals.
+        </div>
+      </div>
+
+      <div class="pattern">
+        <div>
+          <span class="pnum">Pattern 04</span>
+          <h4>Agentic operations</h4>
+          <p>A Sigma agent watches the warehouse, and when something looks off, the app shows it with a suggested action and a button to approve, dismiss, or escalate. This is the shape billing audit takes, along with fraud flagging, claim validation, and the account-360 workflows where the next move comes attached to the alert.</p>
+        </div>
+        <div class="pcustomer">
+          <span class="ctitle">Customer voice</span>
+          AI-driven account summaries, AI-powered rep actioning, anomaly detection agents, and AI briefings. Repeatedly named as the biggest pain point to solve.
+        </div>
+      </div>
+
+      <div class="pattern">
+        <div>
+          <span class="pnum">Pattern 05</span>
+          <h4>Closed-loop forecasting and planning</h4>
+          <p>Forecasts and scenarios go into input tables, actuals come from the warehouse, and the compare lives in one workbook with versioning and approvals built in. The whole Excel-plus-PowerPoint cycle that breaks every quarter simply goes away, replaced by something that's queryable in SQL the moment a number changes.</p>
+        </div>
+        <div class="pcustomer">
+          <span class="ctitle">Customer voice</span>
+          A three-month pricing cycle today, mostly sequential and idle. With Sigma input tables, the team would get live, finance-ready outputs across acquired entities.
+        </div>
+      </div>
+    </div>
+    <p class="source-note">Patterns drawn from clustering call-level interest justifications across data warehouse fields that track AI, agents, and input table interest. Customer voice quotes are paraphrased syntheses of high-confidence transcript extractions, not attributable quotes.</p>
+  </div>
+</section>
+
+<!-- CHAPTER 4 -->
+<section class="full-warm anchor" id="ch4">
+  <div class="wrap">
+    <div class="chapter-num">Chapter four</div>
+    <h2>The proof</h2>
+    <p class="lead">A few specific numbers from customers running on Sigma, each one mapped to a pattern from the previous chapter. The numbers come directly from the customers themselves, and we publish them with permission.</p>
+
+    <div class="three-col" style="margin-top:64px">
+      <div class="card">
+        <div class="num">$500K+</div>
+        <h4>A Fortune 500 beverage distributor</h4>
+        <p>Unrecognized revenue surfaced inside the first thirty days of moving onto Sigma.</p>
+      </div>
+      <div class="card">
+        <div class="num">$5M</div>
+        <h4>A national office products retailer</h4>
+        <p>Annual savings from vendor renegotiations carried out inside Sigma workbooks.</p>
+      </div>
+      <div class="card">
+        <div class="num">800 hrs</div>
+        <h4>Jefferies</h4>
+        <p>Manual trade reconciliation cut every month, with adjustments dropping from thirty minutes down to thirty seconds.</p>
+        <a class="card-link" href="https://www.sigmacomputing.com/blog/announcing-sigmas-first-data-impact-award-winners" target="_blank" rel="noopener">Read the story</a>
+      </div>
+      <div class="card">
+        <div class="num">95%</div>
+        <h4>A leading event-management SaaS platform</h4>
+        <p>Drop in ad-hoc reporting requests, which gave the data team its calendar back for actual product work.</p>
+      </div>
+      <div class="card">
+        <div class="num">30k</div>
+        <h4>DoorDash</h4>
+        <p>Users onboarded, with ninety-two percent of them creating rather than just viewing, and query volume up about twenty-five percent on flat warehouse spend.</p>
+        <a class="card-link" href="https://www.sigmacomputing.com/customers/doordash-logs-a-30-increase-in-queries-while-keeping-the-snowflake-cost-constant-with-sigma" target="_blank" rel="noopener">Read the story</a>
+      </div>
+      <div class="card">
+        <div class="num">2.5 wks</div>
+        <h4>An ambulatory healthcare technology vendor</h4>
+        <p>From scope to shipped on a patient cohort builder, end to end inside Sigma.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:96px">The independent number</h3>
+    <div class="two-col" style="align-items:center">
+      <div>
+        <p style="font-size:22px; line-height:1.4">Forrester ran a Total Economic Impact study on Sigma in 2024, and the composite enterprise saw a <strong>321 percent</strong> return over three years with payback coming in under six months.</p>
+        <p style="margin-top:24px">Gartner Peer Insights scores Sigma 4.9 out of 5 for ease of use and data governance, Snowflake has named Sigma BI Partner of the Year three times, and Databricks named Sigma BI Partner of the Year for 2025.</p>
+      </div>
+      <div class="card" style="background:#FFFFFF; padding:48px; border-color:var(--sigma-blue); border-width:2px">
+        <div class="eyebrow">Forrester TEI, 2024</div>
+        <div style="font-family:'Instrument Serif',serif; font-size:96px; line-height:1; color:var(--sigma-blue); margin:16px 0">321%</div>
+        <p style="font-size:16px">Three-year ROI. Payback under six months.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 5 -->
+<section class="full anchor" id="ch5">
+  <div class="wrap">
+    <div class="chapter-num">Chapter five</div>
+    <h2 style="color:#FFFFFF">The economic case</h2>
+    <p class="lead" style="color:#FFFFFF; opacity:0.95">Three numbers worth putting in front of a CFO, all drawn from active customer conversations and meant to make the cost of inaction concrete enough to act on.</p>
+
+    <div class="three-col" style="margin-top:80px">
+      <div class="stat" style="background:rgba(255,255,255,0.07); border-left-color:#FFFFFF">
+        <div class="num">$20–40M</div>
+        <div class="lbl">One healthcare customer found this much in avoidable billing losses every year, all of it recoverable through a same-day audit AI App.</div>
+      </div>
+      <div class="stat" style="background:rgba(255,255,255,0.07); border-left-color:#FFFFFF">
+        <div class="num">~$1.6M</div>
+        <div class="lbl">A single utility customer plans to eliminate this much per year by replacing Microsoft Dynamics with a Sigma AI App pattern.</div>
+      </div>
+      <div class="stat" style="background:rgba(255,255,255,0.07); border-left-color:#FFFFFF">
+        <div class="num">12 sec</div>
+        <div class="lbl">Time to build a complete P&L in Sigma, used by a finance team that had been waiting weeks for the same report under their old stack.</div>
+      </div>
+    </div>
+
+    <p class="source-note" style="margin-top:64px">All figures come directly from customers, pulled from active sales conversations and reference accounts. Customer names are available under reference call agreements.</p>
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- PART 2: BUILDER POV -->
+<!-- ============================================================== -->
+
+<section class="full-warm" style="padding:64px 0; border-top: 8px solid var(--sigma-blue); border-bottom:1px solid var(--sigma-rule)">
+  <div class="wrap">
+    <div class="eyebrow">Part two</div>
+    <h2 style="margin-bottom:0">How to ship one</h2>
+  </div>
+</section>
+
+<!-- CHAPTER 6 -->
+<section class="section anchor" id="ch6">
+  <div class="wrap">
+    <div class="chapter-num">Chapter six</div>
+    <h2>How to scope an AI App</h2>
+    <p class="lead">Start with a workflow, not a dashboard, and pick a process that lives in spreadsheets, in tickets, or in someone's head. Answer the five questions below and you have a scope worth opening Sigma for.</p>
+
+    <div class="question-grid">
+      <div class="q">
+        <div class="qnum">01</div>
+        <h4>What decision is being made?</h4>
+        <p>Name the specific call that has to happen, whether it's approving a price, refunding a customer, or dispatching a technician. Real decisions always have verbs attached to them.</p>
+      </div>
+      <div class="q">
+        <div class="qnum">02</div>
+        <h4>Who has to act on it?</h4>
+        <p>One person on one screen, ideally walking one path through the data. If three different roles need three different views, you have three AI Apps to build, not one.</p>
+      </div>
+      <div class="q">
+        <div class="qnum">03</div>
+        <h4>What data already lives in the warehouse?</h4>
+        <p>Pull the schema and confirm the data is actually there, because if it isn't yet, the AI App isn't the first step. Sigma is not the place to land data the warehouse doesn't own.</p>
+      </div>
+      <div class="q">
+        <div class="qnum">04</div>
+        <h4>What needs to write back?</h4>
+        <p>Decisions, overrides, comments, approvals, scenario inputs, and anything else a person types that the warehouse should remember. The list you produce here is the list of input tables you'll build.</p>
+      </div>
+      <div class="q">
+        <div class="qnum">05</div>
+        <h4>Where does AI fit?</h4>
+        <p>Sigma Assistant handles build and analyze, Sigma agents handle in-app chat, and warehouse agents like Cortex, Genie, or Q handle retrieval over governed data. Pick one for the first version and add the others later.</p>
+      </div>
+      <div class="q" style="border-left-color:var(--sigma-dark-blue)">
+        <div class="qnum" style="color:var(--sigma-dark-blue)">+</div>
+        <h4>Stop test</h4>
+        <p>If any of the five answers feels fuzzy, that fuzziness is the scoping work itself. Don't open Sigma until each answer fits on a single line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 7 -->
+<section class="full-warm anchor" id="ch7">
+  <div class="wrap">
+    <div class="chapter-num">Chapter seven</div>
+    <h2>Reference architecture</h2>
+    <p class="lead">An AI App is built across three layers, and each layer answers a different question about governance and performance. The diagram below reads from the bottom up because the bottom is where the trust starts.</p>
+
+    <div class="arch" style="margin-top:80px">
+      <div class="arch-layer" style="border-top-color:var(--sigma-dark-blue)">
+        <div class="layer-num">Layer 1 · Foundation</div>
+        <h4>The data platform</h4>
+        <p>Snowflake, Databricks, BigQuery, or Redshift, holding the source tables, dbt models, and semantic views. Row-level security and write-back schemas are defined here, where the security team has already done its review.</p>
+        <p style="margin-top:14px"><span class="marker">Owns</span> lineage, access, audit.</p>
+      </div>
+      <div class="arch-layer">
+        <div class="layer-num">Layer 2 · Sigma</div>
+        <h4>Workbook, input tables, Assistant, agents, actions</h4>
+        <p>Live queries run against the warehouse, input tables write back to a governed schema, and Sigma Assistant builds and reads inside the warehouse perimeter. Sigma agents handle user-facing chat with whatever context you've given them.</p>
+        <p style="margin-top:14px"><span class="marker">Owns</span> the user surface and the write-back grammar.</p>
+      </div>
+      <div class="arch-layer" style="border-top-color:#08367A">
+        <div class="layer-num">Layer 3 · Action</div>
+        <h4>Triggers, sequences, integrations</h4>
+        <p>A click in the workbook or a change in the data kicks off an action sequence, stored procedures run against the warehouse, and APIs fire out to Salesforce, Slack, ServiceNow, or whatever services you run yourself.</p>
+        <p style="margin-top:14px"><span class="marker">Owns</span> the bridge from insight to system of record.</p>
+      </div>
+    </div>
+
+    <p class="source-note" style="margin-top:48px">All three layers share one identity, one permission model, and one audit trail, which means no user can touch the AI App without permission the warehouse already granted.</p>
+  </div>
+</section>
+
+<!-- CHAPTER 8 -->
+<section class="section anchor" id="ch8">
+  <div class="wrap">
+    <div class="chapter-num">Chapter eight</div>
+    <h2>Five patterns to copy</h2>
+    <p class="lead">Each pattern below lists the input tables you'll need, the actions you'll wire up, and where AI earns its keep. The right move is to pick one pattern, build it once, and save it as a template the rest of the team can clone.</p>
+
+    <div style="margin-top:80px">
+      <div class="pattern">
+        <div>
+          <span class="pnum">Pattern A</span>
+          <h4>Spreadsheet replacement</h4>
+          <p><strong>Inputs.</strong> Linked input tables backed by warehouse views, plus empty input tables for any new entries the workflow generates.</p>
+          <p><strong>Actions.</strong> Insert, update, and delete row, and a call to a stored procedure that commits the change to the right schema.</p>
+          <p><strong>AI.</strong> Sigma Assistant in build mode for the analyst, with an optional Sigma agent layered in for end-user lookups.</p>
+        </div>
+        <div class="pcustomer">
+          <span class="ctitle">Use when</span>
+          A workflow lives in Excel today: tariff models, loan books, reserves, demand plans, or asset tagging.
+        </div>
+      </div>
+
+      <div class="pattern">
+        <div>
+          <span class="pnum">Pattern B</span>
+          <h4>Approval workflows</h4>
+          <p><strong>Inputs.</strong> Input tables capturing the proposed change, the reviewer, the status field, and the decision timestamp.</p>
+          <p><strong>Actions.</strong> Conditional sequences keyed to status, plus email and Slack notifications and status transitions wired into the workflow.</p>
+          <p><strong>AI.</strong> Sigma Assistant in analyze mode, surfacing what's actually worth a closer look before the reviewer opens the queue.</p>
+        </div>
+        <div class="pcustomer">
+          <span class="ctitle">Use when</span>
+          A manual review queue exists: KPI scoring, expense overrides, claim validation, or manager-approved adjustments.
+        </div>
+      </div>
+
+      <div class="pattern">
+        <div>
+          <span class="pnum">Pattern C</span>
+          <h4>Embedded customer analytics with AI chat</h4>
+          <p><strong>Inputs.</strong> Tenant-scoped input tables for customer feedback, settings, and any overrides the customer can apply.</p>
+          <p><strong>Actions.</strong> JWT-based row-level security and webhook actions firing back to the host application.</p>
+          <p><strong>AI.</strong> Sigma agents for branded customer chat, with warehouse agents handling the context-rich answers underneath.</p>
+        </div>
+        <div class="pcustomer">
+          <span class="ctitle">Use when</span>
+          You sell analytics to your customers: client portals, self-service reporting, white-label dashboards, or customer-facing AI.
+        </div>
+      </div>
+
+      <div class="pattern">
+        <div>
+          <span class="pnum">Pattern D</span>
+          <h4>Agentic operations</h4>
+          <p><strong>Inputs.</strong> Input tables that capture the human decision on whatever the agent surfaces, including dismissals and escalations.</p>
+          <p><strong>Actions.</strong> Triggered sequences fired when a Sigma agent finds an anomaly, with APIs running out to your systems of record.</p>
+          <p><strong>AI.</strong> Sigma agents with custom instructions and tools, paired with warehouse agents for retrieval over governed data.</p>
+        </div>
+        <div class="pcustomer">
+          <span class="ctitle">Use when</span>
+          A workflow needs the data to come find you: billing audit, fraud flagging, churn intervention, or account 360.
+        </div>
+      </div>
+
+      <div class="pattern">
+        <div>
+          <span class="pnum">Pattern E</span>
+          <h4>Closed-loop forecasting</h4>
+          <p><strong>Inputs.</strong> Input tables for forecasts, drivers, scenarios, and commentary, with linked tables that reach actuals from the warehouse.</p>
+          <p><strong>Actions.</strong> Snapshot stored procedures, compare-to-prior actions, and distribution sequences that get the right output to finance on schedule.</p>
+          <p><strong>AI.</strong> Sigma Assistant for variance analysis, with a warehouse agent layered in for plain-English explanations if the audience needs them.</p>
+        </div>
+        <div class="pcustomer">
+          <span class="ctitle">Use when</span>
+          Finance, sales ops, or supply ops owns the cycle: pricing, FP&A, demand, headcount, or capacity.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 9 -->
+<section class="full-warm anchor" id="ch9">
+  <div class="wrap">
+    <div class="chapter-num">Chapter nine</div>
+    <h2>A four-week rollout</h2>
+    <p class="lead">Four weeks is a fair cadence for shipping the first AI App, with smaller workflows running faster and heavier governance reviews running a little slower. Use what's below as a planning baseline rather than a fixed contract, and remember that the second AI App on this pattern usually ships in half the time.</p>
+
+    <div class="timeline four-step">
+      <div class="step">
+        <div class="wk">Week 1</div>
+        <h4>Scope</h4>
+        <p>Answer the five scoping questions, confirm the warehouse data is there, and produce the list of inputs and actions the workflow will need.</p>
+      </div>
+      <div class="step">
+        <div class="wk">Week 2</div>
+        <h4>Build v1</h4>
+        <p>Connect the data, build the workbook, and wire up the first piece of data capture. Get a working prototype in front of a real user before the week ends.</p>
+      </div>
+      <div class="step">
+        <div class="wk">Week 3</div>
+        <h4>Govern and pilot</h4>
+        <p>Add the write-back schema, wire up the action sequences, layer in the AI surface, and open the app to five or ten pilot users. Measure cycle time and error rate as you go.</p>
+      </div>
+      <div class="step">
+        <div class="wk">Week 4</div>
+        <h4>Ship and template</h4>
+        <p>Promote a tagged version to production with a rollback ready, save the pattern as a template the next builder can clone, and pick the next workflow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 10: SHIPPING CHECKLIST -->
+<section class="full-warm anchor" id="ch10">
+  <div class="wrap">
+    <div class="chapter-num">Chapter ten</div>
+    <h2>The shipping checklist</h2>
+    <p class="lead">What follows is the page to print, paste into a workbook, or keep open while you build. Each line is a specific thing to verify before you move forward, and the order is meant to be the order you actually walk. Tick a box and the strikethrough will confirm you're done.</p>
+
+    <div class="checklist">
+
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-week">Week 1</span>
+          <h3>Scope the workflow</h3>
+        </div>
+        <ul>
+          <li><label><input type="checkbox" /><span class="check-text">Name the decision the app will make in one sentence with a verb in it.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Pick one user for one screen, walking one path through the data.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Confirm the data already exists in the warehouse and someone on the team can query it.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">List every piece of data capture the workflow will need, along with the source for each one.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">List every action the app will trigger, with the cause and the effect for each one.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Decide where AI fits, and pick one place to start before adding more.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Get the write-back schema reviewed by security, and wait for sign-off before continuing.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Write down the success metric and how you'll measure it before any building starts.</span></label></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-week">Week 2</span>
+          <h3>Build version one</h3>
+        </div>
+        <ul>
+          <li><label><input type="checkbox" /><span class="check-text">Configure the connection to the warehouse and test it with a real user account.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Build the first workbook against the warehouse data.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Wire up the first piece of data capture and link it to a governed source.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Confirm one full edit lands end to end, from the screen down to the warehouse.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Get one real user in front of v1 and capture their feedback in writing.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Log every edge case in a backlog the rest of the team can find.</span></label></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-week">Week 3</span>
+          <h3>Govern and pilot</h3>
+        </div>
+        <ul>
+          <li><label><input type="checkbox" /><span class="check-text">Provision the production write-back schema and confirm the right roles have access.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Wire up the actions for the core path the user will walk most often.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Add approval logic anywhere a manager needs to confirm a change before it lands.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Layer in the AI surface you picked in week one.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Verify the audit trail captures who changed what, when, and why.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Test access controls with at least two different user roles.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Open the app to five or ten pilot users with a light walkthrough.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Track cycle time, error rate, and adoption against the pre-app baseline.</span></label></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-week">Week 4</span>
+          <h3>Ship and template</h3>
+        </div>
+        <ul>
+          <li><label><input type="checkbox" /><span class="check-text">Tag a version, promote it to production, and have a rollback plan ready.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Save the pattern as a template the next builder can clone cold.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Write the builder documentation and put it where the team will actually find it.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Scope the next workflow using the same five questions from chapter six.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">Report the outcome back to leadership against the success metric you set in week one.</span></label></li>
+        </ul>
+      </div>
+
+      <div class="phase stop">
+        <div class="phase-header">
+          <span class="phase-week">Don't ship if</span>
+          <h3>Stop conditions</h3>
+        </div>
+        <ul>
+          <li><label><input type="checkbox" /><span class="check-text">Two users are seeing different numbers for the same metric on the same screen.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">A change is writing back to the wrong schema, or to no schema at all.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">An audit row is missing for an action the system has already recorded as complete.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">The AI is surfacing data the user is not authorized to see.</span></label></li>
+          <li><label><input type="checkbox" /><span class="check-text">A user without permissions can still edit something inside the workflow.</span></label></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 11: CONCLUSION -->
+<section class="section anchor" id="ch11">
+  <div class="wrap">
+    <div class="chapter-num">Chapter eleven</div>
+    <h2>Where this leaves you</h2>
+    <p class="lead">Twenty years of business intelligence taught us how to see our companies from the outside in, mostly through the window of a dashboard. The next twenty are going to be about doing something with what we see, which is what an AI App actually is when you strip away the marketing language.</p>
+    <p class="lead" style="margin-top:18px">AI Apps don't replace the dashboard so much as they put the dashboard inside the workflow itself, where the people who actually run the business can act on the numbers without filing a ticket or starting a spreadsheet round-trip. That's the bet, and it's already paying off for the customers we've quoted across these pages, with cycle times collapsing from weeks to minutes and revenue surfacing that nobody on those teams knew was hiding in the data.</p>
+    <p class="lead" style="margin-top:18px">The harder part, and the reason we wrote a playbook instead of a blog post, is that the bet only pays off if someone actually ships something. The four parts have to come together. The five questions have to get specific answers. The four weeks have to be four real weeks of building, not four weeks of meetings about building. Every customer getting real value from an AI App today started with one workflow, one user, and one decision they wanted their team to make better.</p>
+    <p class="lead" style="margin-top:18px">Pick the workflow tomorrow morning. Open the playbook back to chapter six when you forget where to start. We'll be here.</p>
+  </div>
+</section>
+
+<!-- CTA: SAVE AS PDF -->
+<section class="full" id="cta">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#BFD8FB">Take this with you</div>
+    <h2 style="color:#FFFFFF">Save the whole thing as a PDF.</h2>
+    <p class="lead" style="color:#FFFFFF; opacity:0.95">Everything you've just read sits in a single page that prints cleanly to PDF, which means the playbook, the patterns, the checklist, and the conclusion all travel together to whoever needs them next on your team.</p>
+    <div class="cta-actions">
+      <a class="pill" href="#" onclick="window.print(); return false;">Save as PDF</a>
+      <a class="pill outline-light" href="https://www.sigmacomputing.com/go/request-a-demo" target="_blank" rel="noopener">Talk to Sigma</a>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="full-warm">
+  <div class="wrap">
+    <div class="eyebrow">How we built this playbook</div>
+    <h2>Methodology</h2>
+    <p class="lead">We pulled every recorded sales call from September 2025 through May 2026, all 52,895 of them, and ran them through two AI-extracted datasets that fed the analysis behind this playbook.</p>
+
+    <div class="three-col" style="margin-top:48px">
+      <div class="card">
+        <h4>AI_GONG_MARKETING_PERSONAS</h4>
+        <p>A Cortex-powered persona evaluation for external call participants, with structured fields pulled directly from the transcripts: current state, desired state, capability mapping, cost of inaction, expected outcomes, requested capabilities, and competitive differentiators. We filtered to high-confidence rows for everything in this playbook.</p>
+      </div>
+      <div class="card">
+        <h4>GONG_CALLS_ENRICHED</h4>
+        <p>Call-level transcripts enriched with sentiment scores and per-feature interest scores covering AI, agents, input tables, workbooks, governance, and multi-tenancy. We aggregated across calls to surface what comes up most often and where it shows up most intensely.</p>
+      </div>
+      <div class="card">
+        <h4>Cross-checks</h4>
+        <p>Every customer outcome was checked against Sigma's approved messaging library and any active reference customer agreements. The quotes presented in this playbook are paraphrased syntheses of high-confidence transcript extractions, and named customer numbers are published with permission.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="brand"><img src="sigma-logo-white.svg" alt="Sigma" /></div>
+    <div>
+      The AI Apps Playbook · Edition 2026.1 · sigmacomputing.com
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
