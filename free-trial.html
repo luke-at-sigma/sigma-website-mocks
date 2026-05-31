@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free trial | Sigma</title>
+<link rel="icon" type="image/svg+xml" href="assets/logos/Sigma_Symbol_ShadowBlack.svg">
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+
+.page { max-width: 1200px; margin: 0 auto; padding: 24px 40px 56px; }
+
+/* ===== Back link ===== */
+.back {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 14px; font-weight: 500; color: var(--fg-2);
+  margin-bottom: 24px;
+  transition: color var(--dur-base) var(--ease-standard);
+}
+.back:hover { color: var(--sigma-blue); }
+.back svg { width: 16px; height: 16px; }
+
+/* ===== Buttons (match live site: rounded-lg, not pills) ===== */
+.pill {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 48px; padding: 0 24px; border-radius: var(--radius-sm);
+  font-family: var(--font-sans); font-size: 16px; font-weight: 600; letter-spacing: -0.16px;
+  line-height: 1; cursor: pointer; border: 1px solid transparent;
+  transition: background var(--dur-base) var(--ease-standard), color var(--dur-base) var(--ease-standard);
+  white-space: nowrap;
+}
+.pill svg { width: 20px; height: 20px; }
+.pill.primary { background: var(--sigma-blue-500); color: #fff; }
+.pill.primary:hover { background: var(--sigma-blue-600); }
+.pill.primary:active { background: var(--sigma-blue-press); }
+.pill.inverse { background: #fff; color: var(--sigma-blue); }
+.pill.inverse:hover { background: var(--sigma-blue-50); }
+
+/* ===== Two-column layout ===== */
+.cols {
+  display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 28px;
+  align-items: stretch;
+}
+
+/* ===== Left: form card ===== */
+.form-card {
+  background: #fff; border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); padding: 40px;
+  box-shadow: var(--shadow-card);
+  display: flex; flex-direction: column;
+}
+.eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--sigma-blue); margin: 0 0 16px;
+}
+.form-card h1 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: 40px; line-height: 1.08; letter-spacing: -0.02em;
+  margin: 0 0 12px; color: var(--fg-1);
+}
+.form-card .lede { font-size: 16px; line-height: 1.55; color: var(--fg-2); margin: 0 0 28px; max-width: 440px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 13px; font-weight: 600; color: var(--fg-1); }
+.field label .req { color: var(--sigma-blue); margin-left: 2px; }
+.field input, .field select {
+  height: 46px; padding: 0 12px; font-family: var(--font-sans);
+  font-size: 15px; color: var(--fg-1);
+  border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+  background: #fff; transition: border-color var(--dur-base) var(--ease-standard), box-shadow var(--dur-base) var(--ease-standard);
+}
+.field select { appearance: none; -webkit-appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23767474' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px;
+}
+.field input:focus, .field select:focus { outline: none; border-color: var(--sigma-blue); box-shadow: var(--shadow-focus); }
+.field input.invalid, .field select.invalid { border-color: var(--error); }
+.field .err { font-size: 12px; color: var(--error); display: none; }
+.field.show-err .err { display: block; }
+.form-card .submit { width: 100%; margin-top: 24px; }
+.form-foot { font-size: 12px; line-height: 1.5; color: var(--fg-3); margin: 16px 0 0; }
+.form-foot a { color: var(--sigma-blue); border-bottom: 1px solid currentColor; }
+
+/* success */
+.form-success { display: none; text-align: center; padding: 40px 8px; margin: auto 0; }
+.form-success .check { width: 64px; height: 64px; border-radius: 50%; background: var(--sigma-blue-50); color: var(--sigma-blue); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+.form-success .check svg { width: 32px; height: 32px; }
+.form-success h2 { font-family: var(--font-display); font-weight: 400; font-size: 32px; margin: 0 0 12px; letter-spacing: -0.01em; }
+.form-success p { font-size: 15px; line-height: 1.55; color: var(--fg-2); margin: 0 auto; max-width: 320px; }
+.form-card.done .form-grid, .form-card.done .lede, .form-card.done > h1,
+.form-card.done .eyebrow, .form-card.done .submit, .form-card.done .form-foot { display: none; }
+.form-card.done .form-success { display: block; }
+
+/* ===== Right: stacked cards ===== */
+.rail { display: flex; flex-direction: column; gap: 28px; }
+
+/* See demos card */
+.demo-card {
+  flex: 1; background: #fff; border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: box-shadow var(--dur-base) var(--ease-standard), border-color var(--dur-base) var(--ease-standard);
+}
+.demo-card:hover { box-shadow: var(--shadow-card); border-color: var(--border-strong); }
+.demo-visual {
+  aspect-ratio: 16 / 7; background: linear-gradient(135deg, var(--sigma-blue-100), var(--sigma-blue-soft));
+  position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+/* faux product surface inside the visual */
+.faux {
+  position: absolute; inset: 22px 22px -40px; background: #fff;
+  border: 1px solid var(--border-subtle); border-radius: 12px 12px 0 0;
+  box-shadow: var(--shadow-card); padding: 12px;
+}
+.faux .bar { height: 8px; border-radius: 4px; background: var(--gray-100); margin-bottom: 8px; }
+.faux .bar.s { width: 40%; background: var(--sigma-blue-200); }
+.faux .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px; }
+.faux .cell { height: 26px; border-radius: 4px; background: var(--gray-50); }
+.faux .cell.b { background: var(--sigma-blue); }
+.faux .cell.m { background: var(--sigma-blue-100); }
+.demo-body { padding: 24px 24px 26px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.demo-tag { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-2); }
+.demo-body h2 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: 26px; line-height: 1.2; letter-spacing: -0.01em; margin: 0; color: var(--fg-1);
+}
+.demo-body p { font-size: 14.5px; line-height: 1.5; color: var(--fg-2); margin: 0; }
+.demo-link {
+  margin-top: auto; padding-top: 14px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--sigma-blue);
+}
+.demo-link svg { width: 16px; height: 16px; transition: transform var(--dur-base) var(--ease-standard); }
+.demo-card:hover .demo-link svg { transform: translateX(4px); }
+
+/* Free trial card */
+.trial-card {
+  background: var(--sigma-blue-500); color: #fff;
+  border-radius: var(--radius-lg); padding: 32px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.trial-tag { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.78; }
+.trial-card h2 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: 28px; line-height: 1.15; letter-spacing: -0.01em; margin: 4px 0 0; color: #fff;
+}
+.trial-card p { font-size: 14.5px; line-height: 1.5; opacity: 0.9; margin: 8px 0 20px; max-width: 360px; }
+.trial-card .pill { align-self: flex-start; }
+
+/* ===== Logo wall (vertical-cycling slots, matches live site) ===== */
+.logos-wrap { margin-top: 48px; }
+.logos-kicker {
+  text-align: center; font-size: 12px; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--fg-2); margin: 0 0 28px;
+}
+.logos-row {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px;
+  align-items: center; max-width: 1000px; margin: 0 auto;
+}
+.logo-slot { height: 40px; overflow: hidden; display: flex; justify-content: center; }
+.logo-stack { display: flex; flex-direction: column; will-change: transform; }
+.logo-cell { height: 40px; flex: 0 0 40px; display: flex; align-items: center; justify-content: center; }
+.logo-mark {
+  font-family: var(--font-sans); font-weight: 700; font-size: 19px;
+  letter-spacing: 0.01em; color: var(--gray-500); opacity: 0.6; white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .logos-row { grid-template-columns: repeat(3, 1fr); gap: 16px 12px; row-gap: 8px; }
+}
+
+/* responsive */
+@media (max-width: 960px) {
+  .cols { grid-template-columns: 1fr; }
+  .rail { flex-direction: column; }
+}
+@media (max-width: 560px) {
+  .page { padding: 24px 20px 40px; }
+  .form-card { padding: 28px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-card h1 { font-size: 34px; }
+}
+</style>
+</head>
+<body>
+<div class="page" data-screen-label="See a demo">
+
+  <a href="request-a-demo.html" class="back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 17l-5-5m0 0l5-5m-5 5h12"/></svg>
+    Back
+  </a>
+
+  <div class="cols">
+    <!-- LEFT: form -->
+    <div class="form-card" id="formCard">
+      <p class="eyebrow">Free trial</p>
+      <h1>Start building for free.</h1>
+      <p class="lede">Spin up your Sigma trial in minutes. Connect your warehouse, explore live data, and build your first workbook — no credit card required.</p>
+      <form id="demoForm" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="fname">First name <span class="req">*</span></label>
+            <input id="fname" name="fname" type="text" autocomplete="given-name" required>
+            <span class="err">Please enter your first name.</span>
+          </div>
+          <div class="field">
+            <label for="lname">Last name <span class="req">*</span></label>
+            <input id="lname" name="lname" type="text" autocomplete="family-name" required>
+            <span class="err">Please enter your last name.</span>
+          </div>
+          <div class="field full">
+            <label for="email">Work email <span class="req">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+            <span class="err">Please enter a valid work email.</span>
+          </div>
+          <div class="field">
+            <label for="company">Company <span class="req">*</span></label>
+            <input id="company" name="company" type="text" autocomplete="organization" required>
+            <span class="err">Please enter your company.</span>
+          </div>
+          <div class="field">
+            <label for="title">Job title</label>
+            <input id="title" name="title" type="text" autocomplete="organization-title">
+            <span class="err"></span>
+          </div>
+          <div class="field">
+            <label for="country">Country <span class="req">*</span></label>
+            <select id="country" name="country" required>
+              <option value="" selected disabled>Select…</option>
+              <option>United States</option>
+              <option>Canada</option>
+              <option>United Kingdom</option>
+              <option>Germany</option>
+              <option>France</option>
+              <option>Australia</option>
+              <option>India</option>
+              <option>Other</option>
+            </select>
+            <span class="err">Please select your country.</span>
+          </div>
+          <div class="field">
+            <label for="employees">Company size</label>
+            <select id="employees" name="employees">
+              <option value="" selected disabled>Select…</option>
+              <option>1–50</option>
+              <option>51–200</option>
+              <option>201–1,000</option>
+              <option>1,001–5,000</option>
+              <option>5,000+</option>
+            </select>
+            <span class="err"></span>
+          </div>
+        </div>
+        <button type="submit" class="pill primary submit">Start free trial</button>
+        <p class="form-foot">By submitting, you agree to Sigma's <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>.</p>
+      </form>
+
+      <div class="form-success">
+        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h2>Thanks — your trial is on its way.</h2>
+        <p>Check your inbox for a link to activate your Sigma trial and get started.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: rail -->
+    <div class="rail">
+      <a href="#" class="demo-card">
+        <div class="demo-visual">
+          <div class="faux">
+            <div class="bar s"></div>
+            <div class="bar"></div>
+            <div class="grid">
+              <div class="cell b"></div><div class="cell m"></div><div class="cell"></div><div class="cell m"></div>
+              <div class="cell"></div><div class="cell m"></div><div class="cell b"></div><div class="cell"></div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-body">
+          <span class="demo-tag">Self-guided</span>
+          <h2>See demos</h2>
+          <p>Click through interactive product tours and walkthroughs at your own pace — no scheduling required.</p>
+          <span class="demo-link">Explore demos
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <div class="trial-card">
+        <span class="trial-tag">Talk to an expert</span>
+        <h2>Want a guided tour?</h2>
+        <p>See Sigma on your data with a Sigma expert. We'll walk through the workflows that matter to your team.</p>
+        <a href="see-a-demo.html" class="pill inverse">Request a demo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGO WALL (vertical cycling) -->
+  <div class="logos-wrap">
+    <p class="logos-kicker">Data-driven teams run on Sigma</p>
+    <div class="logos-row" id="logosRow"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // Logo wall: each slot cycles its logos upward, staggered (matches live site)
+  (function () {
+    var logos = ["Tomo","Clover","Cboe","data.world","Podium","TrovaTrip","Duolingo","UnitedMasters","Astronomer","Wurl","Kythera Labs","Teesnap"];
+    var row = document.getElementById('logosRow');
+    var SLOTS = 6, H = 40, PER = 3;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    for (var s = 0; s < SLOTS; s++) {
+      var slot = document.createElement('div'); slot.className = 'logo-slot';
+      var stack = document.createElement('div'); stack.className = 'logo-stack';
+      var items = [];
+      for (var k = 0; k < PER; k++) items.push(logos[(s + k * SLOTS) % logos.length]);
+      items.push(items[0]); // clone first for seamless wrap
+      items.forEach(function (name) {
+        var cell = document.createElement('div'); cell.className = 'logo-cell';
+        var mark = document.createElement('span'); mark.className = 'logo-mark'; mark.textContent = name;
+        cell.appendChild(mark); stack.appendChild(cell);
+      });
+      slot.appendChild(stack); row.appendChild(slot);
+
+      if (reduce) continue;
+      (function (stackEl) {
+        var idx = 0;
+        setTimeout(function () {
+          setInterval(function () {
+            idx++;
+            stackEl.style.transition = 'transform 0.6s cubic-bezier(0.2,0,0,1)';
+            stackEl.style.transform = 'translateY(' + (-idx * H) + 'px)';
+            if (idx === PER) {
+              setTimeout(function () {
+                stackEl.style.transition = 'none';
+                stackEl.style.transform = 'translateY(0)';
+                idx = 0;
+              }, 620);
+            }
+          }, 2800);
+        }, s * 450);
+      })(stack);
+    }
+  })();
+
+  var form = document.getElementById('demoForm');
+  var card = document.getElementById('formCard');
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function validateField(el) {
+    var field = el.closest('.field');
+    var ok = true;
+    if (el.hasAttribute('required')) {
+      if (!el.value.trim()) ok = false;
+      else if (el.type === 'email' && !emailRe.test(el.value.trim())) ok = false;
+    }
+    field.classList.toggle('show-err', !ok);
+    el.classList.toggle('invalid', !ok);
+    return ok;
+  }
+
+  form.querySelectorAll('input, select').forEach(function (el) {
+    el.addEventListener('blur', function () { if (el.hasAttribute('required')) validateField(el); });
+    el.addEventListener('input', function () {
+      if (el.closest('.field').classList.contains('show-err')) validateField(el);
+    });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var valid = true;
+    form.querySelectorAll('[required]').forEach(function (el) { if (!validateField(el)) valid = false; });
+    if (!valid) {
+      var firstBad = form.querySelector('.invalid');
+      if (firstBad) firstBad.focus();
+      return;
+    }
+    card.classList.add('done');
+  });
+})();
+</script>
+</body>
+</html>
