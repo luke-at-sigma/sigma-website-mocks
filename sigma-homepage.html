@@ -865,70 +865,54 @@ button.cg-logo{cursor:pointer;}
   </div>
 </section>
 
-<!-- ===== CUSTOMERS (swappable design variants) ===== -->
-<div id="customersSlot" class="relative">
-<!-- VARIANT: combined (featured story card + real-logo proof grid) -->
-<div class="cv" data-variant="combined">
-  <section class="bg-white"><div class="overflow-hidden"><div class="container mx-auto max-w-[1280px] px-4 py-14 lg:px-6 lg:py-16">
-    <div class="mx-auto mb-10 flex max-w-2xl flex-col items-center gap-2 text-center lg:max-w-6xl">
-      <h2 class="font-family-advercase text-[36px] font-normal leading-[1.4] tracking-[-0.01em] text-text-primary lg:text-[48px]">From the hottest startups to the Fortune 100</h2>
-      <p class="-mt-1 max-w-2xl text-balance text-[16px] font-normal leading-[1.3] tracking-[-0.01em] text-text-secondary lg:text-[20px]">Sigma customers in every industry and stage have built thousands of AI applications to automate critical business processes.</p>
+<!-- ===== CUSTOMERS (3 toggleable variants) ===== -->
+<section class="bg-white"><div class="overflow-hidden"><div class="container mx-auto max-w-[1280px] px-4 py-14 lg:px-6 lg:py-16">
+  <div class="mx-auto mb-10 flex max-w-3xl flex-col items-center gap-2 text-center">
+    <h2 class="font-family-advercase text-[36px] font-normal leading-[1.4] tracking-[-0.01em] text-text-primary lg:text-[48px]">From the hottest startups to the Fortune 100</h2>
+    <p class="-mt-1 max-w-2xl text-balance text-[16px] font-normal leading-[1.3] tracking-[-0.01em] text-text-secondary lg:text-[20px]">Sigma customers in every industry and stage have built thousands of AI applications to automate critical business processes.</p>
+  </div>
+
+  <div id="custSlot">
+    <!-- VARIANT 1: Quote spotlight + logo marquee (quotes + logos) -->
+    <div class="cvv" data-cust="quotes">
+      <div class="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+        <div class="relative min-h-[300px] overflow-hidden rounded-2xl border border-gray-100 bg-gradient-glass-blue p-8 lg:p-10">
+          <div id="qsCard" class="transition-opacity duration-300"></div>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-sm font-medium text-text-secondary">Hear from the teams building on Sigma</p>
+          <div id="qsThumbs" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+      <div class="mt-12 marquee-mask overflow-hidden border-t border-gray-100 pt-10"><div id="qsMarquee" class="marquee-track items-center gap-x-14"></div></div>
     </div>
 
-    <div class="grid items-stretch gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
-      <!-- LEFT: featured story card (swaps when a logo is chosen) -->
-      <article id="cgFeature" class="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-900 shadow-[0_30px_80px_-44px_rgba(8,55,126,0.5)]"></article>
+    <!-- VARIANT 2: Story card grid (customer stories) -->
+    <div class="cvv hidden" data-cust="stories">
+      <div id="storyGrid" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+      <div class="mt-8 flex justify-center"><a href="#" class="inline-flex items-center gap-1.5 rounded-lg border border-blue-500 px-6 py-2.5 text-base font-medium text-blue-500 transition-colors hover:bg-blue-50">See all customer stories<span aria-hidden="true">&rarr;</span></a></div>
+    </div>
 
-      <!-- RIGHT: real-logo proof grid with + marks -->
-      <div class="flex flex-col">
-        <p class="mb-6 text-sm font-medium text-text-secondary">Deployed company-wide at</p>
-        <div id="cgGrid" class="grid flex-1 grid-cols-3 items-center gap-x-4 gap-y-6">
-          <button type="button" class="cg-cell cg-logo flex items-center justify-center rounded-lg px-1 py-2" data-c="duolingo" aria-selected="true"><img class="h-6 w-auto max-w-[120px] object-contain" alt="Duolingo" src="https://cdn.sanity.io/images/9i48iita/production/e14d68acde180fe14992d79c7553352fc30187df-400x94.svg" onerror="this.remove()"></button>
-          <button type="button" class="cg-cell cg-logo flex items-center justify-center rounded-lg px-1 py-2" data-c="doordash" aria-selected="false"><img class="h-4 w-auto max-w-[120px] object-contain" alt="DoorDash" src="https://cdn.sanity.io/images/9i48iita/production/a475cb8751a48ce9af09468677457be765fbc89e-491x57.svg" onerror="this.remove()"></button>
-          <button type="button" class="cg-cell cg-logo flex items-center justify-center rounded-lg px-1 py-2" data-c="workday" aria-selected="false"><img class="h-7 w-auto max-w-[110px] object-contain" alt="Workday" src="https://cdn.sanity.io/images/9i48iita/production/89b4d5af1c6a91389e6f0ab3f7e0dedcfbc4eefb-313x151.svg" onerror="this.remove()"></button>
-          <button type="button" class="cg-cell cg-logo flex items-center justify-center rounded-lg px-1 py-2" data-c="blackstone" aria-selected="false"><img class="h-5 w-auto max-w-[130px] object-contain" alt="Blackstone" src="https://cdn.sanity.io/images/9i48iita/production/e92fad7ce99726471cacec4fe78b8f20654226d8-500x196.svg" onerror="this.remove()"></button>
-          <button type="button" class="cg-cell cg-logo flex items-center justify-center rounded-lg px-1 py-2" data-c="hashicorp" aria-selected="false"><img class="h-6 w-auto max-w-[130px] object-contain" alt="HashiCorp" src="https://cdn.sanity.io/images/9i48iita/production/a422c71c5c0333ae1005f6cf26734a783bdd2460-254x72.svg" onerror="this.remove()"></button>
-          <button type="button" class="cg-cell cg-logo flex items-center justify-center rounded-lg px-1 py-2" data-c="bilt" aria-selected="false"><img class="h-5 w-auto max-w-[90px] object-contain" alt="Bilt" src="https://cdn.sanity.io/images/9i48iita/production/65f3a19ca58d247ef010a2c88244199712e42087-2560x690.webp?w=240&auto=format" onerror="this.remove()"></button>
-          <button type="button" class="cg-cell cg-logo flex items-center justify-center rounded-lg px-1 py-2" data-c="conagra" aria-selected="false"><img class="h-7 w-auto max-w-[110px] object-contain" alt="Conagra" src="https://cdn.sanity.io/images/9i48iita/production/a0d162f48c497d9049dc12d10c0659a0804132b6-500x357.svg" onerror="this.remove()"></button>
-          <div class="cg-cell cg-logo flex items-center justify-center px-1 py-2"><img class="h-5 w-auto max-w-[110px] object-contain" alt="Figma" src="https://cdn.sanity.io/images/9i48iita/production/457708f9fd5477e6813b7f692b612aa3827d8fa5-98x37.svg" onerror="this.remove()"></div>
-          <div class="cg-cell cg-logo flex items-center justify-center px-1 py-2"><img class="h-4 w-auto max-w-[90px] object-contain" alt="AMD" src="https://cdn.sanity.io/images/9i48iita/production/1391ce3e00cde0441f9445b9dd14bcd8e5d7c4de-94x23.svg" onerror="this.remove()"></div>
-          <div class="cg-cell cg-logo flex items-center justify-center px-1 py-2"><img class="h-3.5 w-auto max-w-[130px] object-contain" alt="J.P. Morgan" src="https://cdn.sanity.io/images/9i48iita/production/dea47382d3b3ff652f9de953cd45094e2c4714e7-1000x142.svg" onerror="this.remove()"></div>
-          <div class="cg-cell cg-logo flex items-center justify-center px-1 py-2"><img class="h-5 w-auto max-w-[90px] object-contain" alt="CBRE" src="https://cdn.sanity.io/images/9i48iita/production/5f8f3327594d6d7501ac8d700ce438ad9b128d6d-94x25.svg" onerror="this.remove()"></div>
-          <div class="cg-cell cg-logo flex items-center justify-center px-1 py-2"><img class="h-4 w-auto max-w-[120px] object-contain" alt="Pinecone" src="https://cdn.sanity.io/images/9i48iita/production/70d70aeed4958610356d66f5ab2d7e1a826999b8-1077x220.svg" onerror="this.remove()"></div>
-          <div class="cg-cell cg-logo flex items-center justify-center px-1 py-2"><img class="h-4 w-auto max-w-[90px] object-contain" alt="Glean" src="https://cdn.sanity.io/images/9i48iita/production/b84bd9e685a75a363d4a9025ae188a59d4abafc1-100x41.svg" onerror="this.remove()"></div>
-          <div class="cg-cell cg-logo flex items-center justify-center px-1 py-2"><img class="h-4 w-auto max-w-[110px] object-contain" alt="WHOOP" src="https://cdn.sanity.io/images/9i48iita/production/cd545e2cf6f313996d334d953f3a51f4cd020b5c-1200x192.png?w=240&auto=format" onerror="this.remove()"></div>
-          <div class="cg-cell cg-logo flex items-center justify-center px-1 py-2"><img class="h-4 w-auto max-w-[90px] object-contain" alt="Cboe" src="https://cdn.sanity.io/images/9i48iita/production/68060cc65463d1b47836ccb2b9653ff69beefa5c-94x32.svg" onerror="this.remove()"></div>
+    <!-- VARIANT 3: Logo picker + cinematic feature (logos + stories + quotes) -->
+    <div class="cvv hidden" data-cust="picker">
+      <div class="grid items-stretch gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
+        <article id="pkFeature" class="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-900 shadow-[0_30px_80px_-44px_rgba(8,55,126,0.5)] lg:aspect-auto lg:min-h-[520px]"></article>
+        <div class="flex flex-col">
+          <p class="mb-4 text-sm font-medium text-text-secondary">Pick a customer &middot; hear their story</p>
+          <div id="pkGrid" class="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-3"></div>
         </div>
       </div>
     </div>
-    <!-- Ramp-style wall of love -->
-    <div class="mt-14 border-t border-gray-100 pt-10">
-      <p class="mb-6 text-center text-sm font-medium text-text-secondary">Loved by 2,000+ teams</p>
-      <div id="rcpBand" class="rcp-band marquee-mask relative -mx-4 overflow-hidden px-4 lg:mx-0 lg:px-0">
-        <div id="rcpSpot" class="pointer-events-none absolute inset-0 z-20 opacity-0 transition-opacity duration-200"></div>
-        <div class="flex flex-col gap-4">
-          <div class="rcp-track" data-dup>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><div class="flex items-center justify-between gap-3"><div class="min-w-0"><p class="truncate text-sm font-medium text-text-primary">Jonathan Burket</p><p class="truncate text-xs text-text-secondary">Engineering Director, Duolingo</p></div><img class="h-4 w-auto max-w-[88px] shrink-0 object-contain opacity-70 grayscale" alt="Duolingo" src="https://cdn.sanity.io/images/9i48iita/production/e14d68acde180fe14992d79c7553352fc30187df-400x94.svg" onerror="this.remove()"></div><p class="text-sm leading-snug text-text-secondary">&ldquo;A dashboard in under two hours that got the answers.&rdquo;</p></article>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><div class="flex items-center justify-between gap-3"><div class="min-w-0"><p class="truncate text-sm font-medium text-text-primary">Andrew Huynh</p><p class="truncate text-xs text-text-secondary">Senior BI Engineer, DoorDash</p></div><img class="h-3.5 w-auto max-w-[92px] shrink-0 object-contain opacity-70 grayscale" alt="DoorDash" src="https://cdn.sanity.io/images/9i48iita/production/a475cb8751a48ce9af09468677457be765fbc89e-491x57.svg" onerror="this.remove()"></div><p class="text-sm leading-snug text-text-secondary">&ldquo;The collaboration with Sigma has been refreshing&mdash;we brag about it to other vendors.&rdquo;</p></article>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><div class="flex items-center justify-between gap-3"><div class="min-w-0"><p class="truncate text-sm font-medium text-text-primary">Marketing Analytics</p><p class="truncate text-xs text-text-secondary">Workday</p></div><img class="h-6 w-auto max-w-[80px] shrink-0 object-contain opacity-70 grayscale" alt="Workday" src="https://cdn.sanity.io/images/9i48iita/production/89b4d5af1c6a91389e6f0ab3f7e0dedcfbc4eefb-313x151.svg" onerror="this.remove()"></div><p class="text-sm leading-snug text-text-secondary">&ldquo;Real-time dashboards improved decision-making speed by 40%.&rdquo;</p></article>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><div class="flex items-center justify-between gap-3"><div class="min-w-0"><p class="truncate text-sm font-medium text-text-primary">Han Zhang</p><p class="truncate text-xs text-text-secondary">Senior Vice President, Blackstone</p></div><img class="h-4 w-auto max-w-[110px] shrink-0 object-contain opacity-70 grayscale" alt="Blackstone" src="https://cdn.sanity.io/images/9i48iita/production/e92fad7ce99726471cacec4fe78b8f20654226d8-500x196.svg" onerror="this.remove()"></div><p class="text-sm leading-snug text-text-secondary">&ldquo;You&rsquo;re just adding an Excel user to analyze billion-row records.&rdquo;</p></article>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><div class="flex items-center justify-between gap-3"><div class="min-w-0"><p class="truncate text-sm font-medium text-text-primary">Sean Rice</p><p class="truncate text-xs text-text-secondary">Dir. Data Engineering, HashiCorp</p></div><img class="h-5 w-auto max-w-[110px] shrink-0 object-contain opacity-70 grayscale" alt="HashiCorp" src="https://cdn.sanity.io/images/9i48iita/production/a422c71c5c0333ae1005f6cf26734a783bdd2460-254x72.svg" onerror="this.remove()"></div><p class="text-sm leading-snug text-text-secondary">&ldquo;A lot more trust in our metrics&mdash;people understand the data.&rdquo;</p></article>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><div class="flex items-center justify-between gap-3"><div class="min-w-0"><p class="truncate text-sm font-medium text-text-primary">Ben Kramer</p><p class="truncate text-xs text-text-secondary">Sr. Director of Analytics, Bilt</p></div><img class="h-4 w-auto max-w-[64px] shrink-0 object-contain opacity-70 grayscale" alt="Bilt" src="https://cdn.sanity.io/images/9i48iita/production/65f3a19ca58d247ef010a2c88244199712e42087-2560x690.webp?w=200&auto=format" onerror="this.remove()"></div><p class="text-sm leading-snug text-text-secondary">&ldquo;A data model for every pod, so teams self-serve answers.&rdquo;</p></article>
-          </div>
-          <div class="rcp-track rev" data-dup>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><div class="flex items-center justify-between gap-3"><div class="min-w-0"><p class="truncate text-sm font-medium text-text-primary">Manav Purohit</p><p class="truncate text-xs text-text-secondary">Dir. Analytics Engineering, Conagra</p></div><img class="h-6 w-auto max-w-[78px] shrink-0 object-contain opacity-70 grayscale" alt="Conagra" src="https://cdn.sanity.io/images/9i48iita/production/a0d162f48c497d9049dc12d10c0659a0804132b6-500x357.svg" onerror="this.remove()"></div><p class="text-sm leading-snug text-text-secondary">&ldquo;Data apps erase the boundary between data entry and consumption.&rdquo;</p></article>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><span class="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-text-secondary"><span class="size-1.5 rounded-full bg-green-500"></span>Verified customer</span><p class="text-sm leading-snug text-text-primary">&ldquo;Our analysts ship apps without waiting on engineering.&rdquo;</p></article>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><span class="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-text-secondary"><span class="size-1.5 rounded-full bg-green-500"></span>Verified customer</span><p class="text-sm leading-snug text-text-primary">&ldquo;Live warehouse data&mdash;no extracts, no stale dashboards.&rdquo;</p></article>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><span class="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-text-secondary"><span class="size-1.5 rounded-full bg-green-500"></span>Verified customer</span><p class="text-sm leading-snug text-text-primary">&ldquo;Governance is inherited from the warehouse. Huge.&rdquo;</p></article>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><span class="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-text-secondary"><span class="size-1.5 rounded-full bg-green-500"></span>Verified customer</span><p class="text-sm leading-snug text-text-primary">&ldquo;We replaced three tools with one Sigma workspace.&rdquo;</p></article>
-            <article class="flex h-[168px] w-[300px] shrink-0 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 md:w-[330px]"><span class="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-text-secondary"><span class="size-1.5 rounded-full bg-green-500"></span>Verified customer</span><p class="text-sm leading-snug text-text-primary">&ldquo;Finance models scenarios in the tool it already trusts.&rdquo;</p></article>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div></div></section>
+  </div>
+</div></div></section>
+
+<!-- customers variant toggle (contextual) -->
+<div id="custToggle" class="fixed bottom-6 left-1/2 z-[60] flex -translate-x-1/2 items-center gap-1 rounded-full border border-gray-200 bg-white/95 p-1.5 shadow-[0_10px_40px_-8px_rgba(0,0,0,0.25)] backdrop-blur" role="group" aria-label="Customer section design switcher">
+  <span class="hidden px-3 text-xs font-semibold uppercase tracking-wider text-text-secondary sm:inline">Customers</span>
+  <button class="seg-btn shrink-0 rounded-full px-3.5 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary" data-cust="quotes" aria-selected="true">Quotes</button>
+  <button class="seg-btn shrink-0 rounded-full px-3.5 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary" data-cust="stories" aria-selected="false">Stories</button>
+  <button class="seg-btn shrink-0 rounded-full px-3.5 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary" data-cust="picker" aria-selected="false">Logos + Stories</button>
 </div>
-</div><!-- /#customersSlot -->
 
 <!-- ===== LIBRARY HIGHLIGHT ===== -->
 <section id="library-highlight" class="bg-white">
@@ -1417,109 +1401,106 @@ button.cg-logo{cursor:pointer;}
     tick();
   }
 
-  /* ---------- customer stacked slider ---------- */
-  var track = document.getElementById('custTrack');
-  var tabsWrap = document.getElementById('custTabs');
-  if (track && tabsWrap) {
-    var ccards = Array.prototype.slice.call(track.querySelectorAll('.cust-card'));
-    var tabs = Array.prototype.slice.call(tabsWrap.querySelectorAll('.cust-tab'));
-    var cn = ccards.length, cur = 0, timer, INTERVAL = 6000;
-    function clamp(x) { if (x > cn / 2) x -= cn; if (x < -cn / 2) x += cn; return x; }
-    function render() {
-      ccards.forEach(function (c, i) {
-        var rel = clamp(i - cur), t, o, z, f;
-        if (rel === 0) { t = 'translateX(-50%) scale(1)'; o = 1; z = 20; f = 'none'; }
-        else if (rel === 1) { t = 'translateX(20%) scale(.85)'; o = .4; z = 10; f = 'grayscale(1)'; }
-        else if (rel === -1) { t = 'translateX(-120%) scale(.85)'; o = .4; z = 10; f = 'grayscale(1)'; }
-        else { t = 'translateX(-50%) scale(.7)'; o = 0; z = 0; f = 'grayscale(1)'; }
-        c.style.transform = t; c.style.opacity = o; c.style.zIndex = z; c.style.filter = f;
-        c.style.pointerEvents = rel === 0 ? 'auto' : 'none';
-      });
-      tabs.forEach(function (tb, i) {
-        var sel = i === cur;
-        tb.setAttribute('aria-selected', sel ? 'true' : 'false');
-        var label = tb.querySelector('span');
-        if (label) label.style.opacity = sel ? '1' : '.5';
-        var holder = tb.querySelectorAll('span')[1];
-        if (holder) holder.style.background = sel ? '' : 'transparent';
-        var bar = tb.querySelector('.cust-bar');
-        if (bar) {
-          bar.style.transition = 'none'; bar.style.width = '0%';
-          if (sel) { void bar.offsetWidth; bar.style.transition = 'width ' + INTERVAL + 'ms linear'; bar.style.width = '100%'; }
-        }
-      });
-    }
-    function next() { cur = (cur + 1) % cn; render(); }
-    function startTimer() { clearInterval(timer); timer = setInterval(next, INTERVAL); }
-    tabs.forEach(function (tb) {
-      tb.addEventListener('click', function () { cur = parseInt(tb.dataset.idx, 10) || 0; render(); startTimer(); });
-    });
-    render(); startTimer();
-  }
 })();
 </script>
 <script>
 (function () {
-  var grid = document.getElementById('cgGrid'), feat = document.getElementById('cgFeature');
-  if (!grid || !feat) return;
-  var B = 'https://cdn.sanity.io/images/9i48iita/production/';
-  var IMG = '?w=900&h=1100&fit=crop&auto=format';
-  var CD = {
-    duolingo:{logo:B+'e14d68acde180fe14992d79c7553352fc30187df-400x94.svg', thumb:B+'6fdefd95adacf2a5744e7afbf71e874c570c006e-1200x660.jpg'+IMG, video:'u5fcygz5n7', name:'Jonathan Burket', role:'Engineering Director, Duolingo', quote:"Using Sigma, I made a dashboard in under two hours that got the answers."},
-    doordash:{logo:B+'a475cb8751a48ce9af09468677457be765fbc89e-491x57.svg', thumb:B+'3e99bdd93390885ad030ec5899cac57d4c391bdf-1000x550.heif'+IMG, name:'Andrew Huynh', role:'Senior BI Engineer, DoorDash', quote:"The collaboration with Sigma is so refreshing we brag about it to other vendors."},
-    workday:{logo:B+'89b4d5af1c6a91389e6f0ab3f7e0dedcfbc4eefb-313x151.svg', thumb:B+'ac0a794fad3a74967c70920e4046debc6cf29643-2000x1100.heif'+IMG, name:'Marketing Analytics', role:'Workday', quote:"Real-time dashboards improved decision-making speed by 40%."},
-    blackstone:{logo:B+'afc020e94d020a5fd7bcdce666fdc34bf302aa9e-500x196.svg', thumb:B+'c94fe0da14ae3c7ceb3938f69ca45e073c16c29b-872x290.heif'+IMG, name:'Han Zhang', role:'Senior Vice President, Blackstone', quote:"You're just adding an Excel user to analyze billion-row records."},
-    hashicorp:{logo:B+'a422c71c5c0333ae1005f6cf26734a783bdd2460-254x72.svg', thumb:B+'e56b1e66ee30296757f8b183b326a2eabf5d9540-1200x660.jpg'+IMG, name:'Sean Rice', role:'Director of Data Engineering, HashiCorp', quote:"Since Sigma, we have a lot more trust in our metrics."},
-    bilt:{logo:B+'65f3a19ca58d247ef010a2c88244199712e42087-2560x690.webp?w=240&auto=format', thumb:B+'c4b1d34f59c1eb28b6ce6ddaf1ff31afd4b693c1-4093x2365.webp'+IMG, name:'Ben Kramer', role:'Sr. Director of Analytics, Bilt', quote:"A data model for every pod, so teams can self-serve answers."},
-    conagra:{logo:B+'a0d162f48c497d9049dc12d10c0659a0804132b6-500x357.svg', thumb:B+'16d60d9d82672fdb956abc5de05033ac9938fa08-2000x1100.heif'+IMG, name:'Manav Purohit', role:'Director Analytics Engineering, Conagra', quote:"Data apps erase the boundary between data entry and consumption."}
-  };
-  var btns = grid.querySelectorAll('[data-c]');
-  function overlay(d) {
-    var play = d.video
-      ? '<button id="cgFeatPlay" type="button" aria-label="Play video" class="absolute left-4 top-4 z-10 grid size-12 place-items-center rounded-xl bg-black/40 text-white backdrop-blur-md transition hover:bg-black/55"><svg viewBox="0 0 24 24" class="ml-0.5 size-6 fill-current" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></button>'
-      : '';
-    return '<img id="cgFeatImg" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500" alt="" src="' + d.thumb + '" onload="this.style.opacity=1" onerror="this.remove()">' +
-      '<div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/88 via-black/8 to-black/45"></div>' + play +
-      '<img class="pointer-events-none absolute right-5 top-5 z-10 h-6 w-auto max-w-[140px] object-contain brightness-0 invert" alt="" src="' + d.logo + '" onerror="this.style.display=\'none\'">' +
-      '<div class="absolute inset-x-0 bottom-0 z-10 p-6">' +
-        '<blockquote class="font-family-advercase text-xl leading-snug tracking-[-0.01em] text-white lg:text-2xl">“' + d.quote + '”</blockquote>' +
-        '<div class="mt-3 text-sm"><span class="font-medium text-white">' + d.name + '</span><span class="text-white/60"> · ' + d.role + '</span></div>' +
-        '<a href="#" class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-white/90 transition-colors hover:text-white">Read their story<span aria-hidden="true">→</span></a>' +
-      '</div>';
-  }
-  function setFeatured(key) {
-    var d = CD[key]; if (!d) return;
-    feat.innerHTML = overlay(d);
-    btns.forEach(function (b) { b.setAttribute('aria-selected', b.dataset.c === key ? 'true' : 'false'); });
-    if (d.video) {
-      var pb = document.getElementById('cgFeatPlay');
-      if (pb) pb.addEventListener('click', function () {
-        feat.innerHTML = '<iframe class="absolute inset-0 h-full w-full" src="https://fast.wistia.net/embed/iframe/' + d.video + '?autoPlay=true" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + d.name + ' — customer story"></iframe>';
-      });
-    }
-  }
-  btns.forEach(function (b) {
-    b.addEventListener('click', function () { setFeatured(b.dataset.c); });
-    b.addEventListener('mouseenter', function () { setFeatured(b.dataset.c); });
-  });
-  setFeatured('duolingo');
-})();
-</script>
+  var slot = document.getElementById("custSlot");
+  if (!slot) return;
+  var B = "https://cdn.sanity.io/images/9i48iita/production/";
+  var C = [{"key": "duolingo", "name": "Duolingo", "logo": "https://cdn.sanity.io/images/9i48iita/production/e14d68acde180fe14992d79c7553352fc30187df-400x94.svg", "img": "6fdefd95adacf2a5744e7afbf71e874c570c006e-1200x660.jpg", "author": "Jonathan Burket", "role": "Engineering Director", "quote": "Using Sigma, I made a dashboard in under two hours that got the answers. The AI features let our team move faster than ever.", "metric": "<2 hrs", "metricLabel": "to first dashboard", "story": "How Duolingo democratized data access"}, {"key": "doordash", "name": "DoorDash", "logo": "https://cdn.sanity.io/images/9i48iita/production/a475cb8751a48ce9af09468677457be765fbc89e-491x57.svg", "img": "3e99bdd93390885ad030ec5899cac57d4c391bdf-1000x550.heif", "author": "Andrew Huynh", "role": "Senior BI Engineer", "quote": "The collaboration with Sigma has been really refreshing \u2014 it\u2019s something we brag about to other vendors.", "metric": "+30%", "metricLabel": "more queries, flat cost", "story": "DoorDash: 30% more queries at constant cost"}, {"key": "blackstone", "name": "Blackstone", "logo": "https://cdn.sanity.io/images/9i48iita/production/afc020e94d020a5fd7bcdce666fdc34bf302aa9e-500x196.svg", "img": "c94fe0da14ae3c7ceb3938f69ca45e073c16c29b-872x290.heif", "author": "Han Zhang", "role": "Senior Vice President", "quote": "You\u2019re not using specialized Python developers to analyze billion-row records anymore. You\u2019re just adding an Excel user.", "metric": "1B+ rows", "metricLabel": "no Python needed", "story": "Blackstone analyzes at cloud scale"}, {"key": "hashicorp", "name": "HashiCorp", "logo": "https://cdn.sanity.io/images/9i48iita/production/a422c71c5c0333ae1005f6cf26734a783bdd2460-254x72.svg", "img": "e56b1e66ee30296757f8b183b326a2eabf5d9540-1200x660.jpg", "author": "Sean Rice", "role": "Director of Data Engineering", "quote": "Since Sigma, we have a lot more trust in our metrics. People know the data is up to date and they understand it.", "metric": "Org-wide", "metricLabel": "trusted metrics", "story": "HashiCorp cut 80% of its dashboards"}, {"key": "bilt", "name": "Bilt", "logo": "https://cdn.sanity.io/images/9i48iita/production/65f3a19ca58d247ef010a2c88244199712e42087-2560x690.webp?w=240&auto=format", "img": "7ee251074dd084c26317233e2068c06ab5e1f43b-1200x660.heif", "author": "Ben Kramer", "role": "Sr. Director of Analytics", "quote": "We\u2019re working toward a data model for every pod, so teams can self-serve answers through a consistent structure.", "metric": "Every pod", "metricLabel": "has a data model", "story": "How Bilt built its data dream stack"}, {"key": "conagra", "name": "Conagra", "logo": "https://cdn.sanity.io/images/9i48iita/production/a0d162f48c497d9049dc12d10c0659a0804132b6-500x357.svg", "img": "16d60d9d82672fdb956abc5de05033ac9938fa08-2000x1100.heif", "author": "Manav Purohit", "role": "Director, Analytics Engineering", "quote": "Sigma data apps are eliminating the boundary between data entry and consumption. We move a lot faster now.", "metric": "Faster", "metricLabel": "data to action", "story": "How Conagra scaled CPG analytics"}, {"key": "workday", "name": "Workday", "logo": "https://cdn.sanity.io/images/9i48iita/production/89b4d5af1c6a91389e6f0ab3f7e0dedcfbc4eefb-313x151.svg", "img": "ac0a794fad3a74967c70920e4046debc6cf29643-2000x1100.heif", "author": "Marketing Analytics", "role": "Workday", "quote": "Real-time dashboards improved decision-making speed by 40%.", "metric": "+40%", "metricLabel": "faster decisions", "story": "Workday\u2019s marketing engine, rebuilt"}];
+  var MARQUEE = ["https://cdn.sanity.io/images/9i48iita/production/e14d68acde180fe14992d79c7553352fc30187df-400x94.svg", "https://cdn.sanity.io/images/9i48iita/production/a475cb8751a48ce9af09468677457be765fbc89e-491x57.svg", "https://cdn.sanity.io/images/9i48iita/production/89b4d5af1c6a91389e6f0ab3f7e0dedcfbc4eefb-313x151.svg", "https://cdn.sanity.io/images/9i48iita/production/afc020e94d020a5fd7bcdce666fdc34bf302aa9e-500x196.svg", "https://cdn.sanity.io/images/9i48iita/production/a422c71c5c0333ae1005f6cf26734a783bdd2460-254x72.svg", "https://cdn.sanity.io/images/9i48iita/production/65f3a19ca58d247ef010a2c88244199712e42087-2560x690.webp?w=240&auto=format", "https://cdn.sanity.io/images/9i48iita/production/a0d162f48c497d9049dc12d10c0659a0804132b6-500x357.svg", "https://cdn.sanity.io/images/9i48iita/production/457708f9fd5477e6813b7f692b612aa3827d8fa5-98x37.svg", "https://cdn.sanity.io/images/9i48iita/production/1391ce3e00cde0441f9445b9dd14bcd8e5d7c4de-94x23.svg", "https://cdn.sanity.io/images/9i48iita/production/dea47382d3b3ff652f9de953cd45094e2c4714e7-1000x142.svg", "https://cdn.sanity.io/images/9i48iita/production/5f8f3327594d6d7501ac8d700ce438ad9b128d6d-94x25.svg", "https://cdn.sanity.io/images/9i48iita/production/70d70aeed4958610356d66f5ab2d7e1a826999b8-1077x220.svg", "https://cdn.sanity.io/images/9i48iita/production/b84bd9e685a75a363d4a9025ae188a59d4abafc1-100x41.svg", "https://cdn.sanity.io/images/9i48iita/production/68060cc65463d1b47836ccb2b9653ff69beefa5c-94x32.svg"];
+  function bg(p, q){ return B + p + q; }
+  function esc(s){ return s; }
 
-<script>
-(function () {
-  /* duplicate ticker rows for a seamless loop */
-  document.querySelectorAll('.rcp-track[data-dup]').forEach(function (t) { t.innerHTML += t.innerHTML; });
-  /* cursor spotlight over the wall of love */
-  var band = document.getElementById('rcpBand'), spot = document.getElementById('rcpSpot');
-  if (band && spot) {
-    band.addEventListener('mousemove', function (e) {
-      var r = band.getBoundingClientRect();
-      spot.style.setProperty('--sx', (e.clientX - r.left) + 'px');
-      spot.style.setProperty('--sy', (e.clientY - r.top) + 'px');
-      spot.style.opacity = '1';
+  /* ---- VARIANT 1: quote spotlight + logo marquee ---- */
+  var qsCard = document.getElementById("qsCard"), qsThumbs = document.getElementById("qsThumbs"), qsMq = document.getElementById("qsMarquee");
+  var qsCur = 0, qsTimer;
+  function qsPaint(i){
+    var d = C[i];
+    qsCard.style.opacity = "0";
+    setTimeout(function(){
+      qsCard.innerHTML =
+        '<svg class="size-8 text-blue-500/60" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 7L7 12h3v5H4v-6l3-4h3zm10 0l-3 5h3v5h-6v-6l3-4h3z"/></svg>'+
+        '<blockquote class="mt-4 font-family-advercase text-[22px] font-normal leading-snug tracking-[-0.01em] text-text-primary lg:text-[28px]">“'+d.quote+'”</blockquote>'+
+        '<div class="mt-6 flex items-center gap-4"><img src="'+d.logo+'" alt="'+d.name+'" class="h-6 w-auto max-w-[120px] object-contain" onerror="this.replaceWith(document.createTextNode(\''+d.name+'\'))"><div class="leading-tight"><p class="text-sm font-semibold text-text-primary">'+d.author+'</p><p class="text-xs text-text-secondary">'+d.role+(d.role===d.name?'':', '+d.name)+'</p></div></div>';
+      qsCard.style.opacity = "1";
+    }, 200);
+    Array.prototype.forEach.call(qsThumbs.children, function(b, k){ b.setAttribute("aria-selected", k===i?"true":"false"); });
+    qsCur = i;
+  }
+  if (qsCard){
+    C.forEach(function(d, i){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "qs-thumb flex items-center justify-center rounded-lg border border-gray-100 bg-white px-3 py-2 transition";
+      b.setAttribute("aria-selected", i===0?"true":"false");
+      b.innerHTML = '<img src="'+d.logo+'" alt="'+d.name+'" class="h-5 w-auto max-w-[92px] object-contain" onerror="this.replaceWith(document.createTextNode(\''+d.name+'\'))">';
+      b.addEventListener("click", function(){ qsPaint(i); qsRestart(); });
+      qsThumbs.appendChild(b);
     });
-    band.addEventListener('mouseleave', function () { spot.style.opacity = '0'; });
+    var ml = MARQUEE.map(function(u){ return '<img src="'+u+'" alt="" class="h-6 w-auto max-w-[120px] shrink-0 object-contain opacity-60 grayscale">'; }).join("");
+    qsMq.innerHTML = ml + ml;
+    function qsRestart(){ clearInterval(qsTimer); qsTimer = setInterval(function(){ qsPaint((qsCur+1)%C.length); }, 5000); }
+    qsPaint(0); qsRestart();
+  }
+
+  /* ---- VARIANT 2: story card grid ---- */
+  var grid = document.getElementById("storyGrid");
+  if (grid){
+    grid.innerHTML = C.map(function(d){
+      return '<a href="#" class="group relative block aspect-[4/5] overflow-hidden rounded-2xl bg-gray-900">'+
+        '<img src="'+bg(d.img,"?w=720&h=900&fit=crop&auto=format")+'" alt="" class="absolute inset-0 h-full w-full object-cover opacity-0 transition duration-500 group-hover:scale-[1.04]" onload="this.style.opacity=1" onerror="this.remove()">'+
+        '<div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/15 to-black/35"></div>'+
+        '<img src="'+d.logo+'" alt="'+d.name+'" class="pointer-events-none absolute left-5 top-5 z-10 h-5 w-auto max-w-[120px] object-contain brightness-0 invert" onerror="this.style.display=\'none\'">'+
+        '<span class="absolute right-5 top-5 z-10 rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur">'+d.metric+'</span>'+
+        '<div class="absolute inset-x-0 bottom-0 z-10 p-5"><blockquote class="text-[15px] font-medium leading-snug text-white">“'+d.quote+'”</blockquote>'+
+        '<div class="mt-2 text-xs text-white/70">'+d.author+(d.role===d.name?'':' · '+d.role)+'</div>'+
+        '<span class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-white/90 transition-colors group-hover:text-white">Read their story<span aria-hidden="true">→</span></span></div>'+
+        '</a>';
+    }).join("");
+  }
+
+  /* ---- VARIANT 3: logo picker + cinematic feature ---- */
+  var pkGrid = document.getElementById("pkGrid"), pkFeat = document.getElementById("pkFeature");
+  function pkOverlay(d){
+    return '<img class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500" alt="" src="'+bg(d.img,"?w=900&h=1100&fit=crop&auto=format")+'" onload="this.style.opacity=1" onerror="this.remove()">'+
+      '<div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-black/45"></div>'+
+      '<img class="pointer-events-none absolute right-5 top-5 z-10 h-6 w-auto max-w-[140px] object-contain brightness-0 invert" alt="" src="'+d.logo+'" onerror="this.style.display=\'none\'">'+
+      '<div class="absolute left-5 top-5 z-10 rounded-xl bg-white/12 px-3 py-2 backdrop-blur"><div class="font-family-advercase text-xl leading-none text-white">'+d.metric+'</div><div class="mt-1 text-[10px] uppercase tracking-wider text-white/70">'+d.metricLabel+'</div></div>'+
+      '<div class="absolute inset-x-0 bottom-0 z-10 p-6"><blockquote class="font-family-advercase text-xl leading-snug tracking-[-0.01em] text-white lg:text-2xl">“'+d.quote+'”</blockquote>'+
+      '<div class="mt-3 text-sm"><span class="font-medium text-white">'+d.author+'</span><span class="text-white/60"> · '+(d.role===d.name?d.name:d.role+', '+d.name)+'</span></div>'+
+      '<a href="#" class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-white/90 transition-colors hover:text-white">Read their story<span aria-hidden="true">→</span></a></div>';
+  }
+  function pkSet(i){
+    if(!pkFeat) return;
+    pkFeat.innerHTML = pkOverlay(C[i]);
+    Array.prototype.forEach.call(pkGrid.children, function(b,k){ b.setAttribute("aria-selected", k===i?"true":"false"); });
+  }
+  if (pkGrid && pkFeat){
+    C.forEach(function(d,i){
+      var b = document.createElement("button");
+      b.type="button";
+      b.className="pk-cell flex items-center justify-center rounded-lg border border-gray-100 bg-white px-2 py-4 transition";
+      b.setAttribute("aria-selected", i===0?"true":"false");
+      b.innerHTML = '<img src="'+d.logo+'" alt="'+d.name+'" class="h-6 w-auto max-w-[110px] object-contain" onerror="this.replaceWith(document.createTextNode(\''+d.name+'\'))">';
+      b.addEventListener("mouseenter", function(){ pkSet(i); });
+      b.addEventListener("click", function(){ pkSet(i); });
+      pkGrid.appendChild(b);
+    });
+    pkSet(0);
+  }
+
+  /* ---- variant toggle + contextual show/hide vs hero toggle ---- */
+  var variants = slot.querySelectorAll(".cvv");
+  var bar = document.getElementById("custToggle"), ht = document.getElementById("heroToggle");
+  var segs = bar ? bar.querySelectorAll(".seg-btn") : [];
+  function show(name){ variants.forEach(function(v){ v.classList.toggle("hidden", v.dataset.cust!==name); }); Array.prototype.forEach.call(segs, function(s){ s.setAttribute("aria-selected", s.dataset.cust===name?"true":"false"); }); }
+  Array.prototype.forEach.call(segs, function(s){ s.addEventListener("click", function(){ show(s.dataset.cust); }); });
+  function vis(el,on){ if(!el) return; el.style.transition="opacity .2s"; el.style.opacity=on?"1":"0"; el.style.pointerEvents=on?"auto":"none"; }
+  if ("IntersectionObserver" in window && bar){
+    vis(bar,false);
+    new IntersectionObserver(function(es){ es.forEach(function(e){ vis(bar,e.isIntersecting); vis(ht,!e.isIntersecting); }); }, {threshold:0.15}).observe(slot);
   }
 })();
 </script>
