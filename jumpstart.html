@@ -120,6 +120,7 @@
   .badge-admin   { background: #EDE5FB; color: #5B2D9B; }
   .badge-lab     { background: #DEF5E8; color: #1A7A3C; }
   .badge-new     { background: #E2F5EA; color: #1A7A3C; }
+  .badge-follow  { background: #DFF3F6; color: #0F5B78; }
 
   .course-desc { font-size: 15px; color: #767474; line-height: 1.6; }
 
@@ -228,18 +229,19 @@
 
     <!-- Filter bar -->
     <div class="filter-bar" id="filterBar">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="new">New</button>
-      <button class="filter-btn" data-filter="build-pro">Build / Pro</button>
-      <button class="filter-btn" data-filter="admin">Admin</button>
-      <button class="filter-btn" data-filter="view-act-analyze">View / Act / Analyze</button>
-      <button class="filter-btn" data-filter="hands-on">Hands-on</button>
+      <button class="filter-btn active" data-filter="all" title="Show all courses">All</button>
+      <button class="filter-btn" data-filter="new" title="Show new courses">New</button>
+      <button class="filter-btn" data-filter="build-pro" title="Show courses appropriate for Sigma users with a Build or Pro license.">Build / Pro</button>
+      <button class="filter-btn" data-filter="admin" title="Show courses appropriate for Sigma users with the Admin account type">Admin</button>
+      <button class="filter-btn" data-filter="view-act-analyze" title="Show courses appropriate for Sigma users with a View, Act, or Analyze license">View / Act / Analyze</button>
+      <button class="filter-btn" data-filter="follow-along" title="Follow along live in your own Sigma instance">Follow-Along</button>
+      <button class="filter-btn" data-filter="lab" title="Perform all the steps in a lab environment specific to this course">Lab</button>
     </div>
 
     <div class="courses-grid" id="coursesGrid">
 
       <!-- 1: Build Fundamentals -->
-      <div class="course-card" data-tags="build-pro hands-on">
+      <div class="course-card" data-tags="build-pro follow-along">
         <div class="course-thumb theme-blue">
           <div class="course-thumb-inner">
             <div class="thumb-title">Build Fundamentals</div>
@@ -248,7 +250,7 @@
         </div>
         <div class="course-body">
           <div class="badge-row">
-            <span class="badge badge-lab">Hands-on</span>
+            <span class="badge badge-follow">Follow-Along</span>
             <span class="badge badge-build">Build / Pro</span>
           </div>
           <p class="course-desc">The starting point for anyone with a Build or Pro license. Connect to data, create calculations, build dashboards, and understand pivots and input tables — in two hours.</p>
@@ -261,7 +263,7 @@
       </div>
 
       <!-- 2: Building Models -->
-      <div class="course-card" data-tags="build-pro admin hands-on">
+      <div class="course-card" data-tags="build-pro admin follow-along">
         <div class="course-thumb theme-dark">
           <div class="course-thumb-inner">
             <div class="thumb-title">Building Models</div>
@@ -270,7 +272,7 @@
         </div>
         <div class="course-body">
           <div class="badge-row">
-            <span class="badge badge-lab">Hands-on</span>
+            <span class="badge badge-follow">Follow-Along</span>
             <span class="badge badge-admin">Admin</span>
             <span class="badge badge-build">Build / Pro</span>
           </div>
@@ -284,7 +286,7 @@
       </div>
 
       <!-- 3: Visual Elements -->
-      <div class="course-card" data-tags="build-pro">
+      <div class="course-card" data-tags="build-pro follow-along">
         <div class="course-thumb theme-blue">
           <div class="course-thumb-inner">
             <div class="thumb-title">Visual Elements</div>
@@ -293,6 +295,7 @@
         </div>
         <div class="course-body">
           <div class="badge-row">
+            <span class="badge badge-follow">Follow-Along</span>
             <span class="badge badge-build">Build / Pro</span>
           </div>
           <p class="course-desc">Level up your dashboard craft. Cover chart type selection, conditional formatting, segmented controls, moving averages, workbook actions, and combo charts.</p>
@@ -305,7 +308,7 @@
       </div>
 
       <!-- 4: Interactivity -->
-      <div class="course-card" data-tags="build-pro">
+      <div class="course-card" data-tags="build-pro follow-along">
         <div class="course-thumb theme-teal">
           <div class="course-thumb-inner">
             <div class="thumb-title">Interactivity</div>
@@ -314,6 +317,7 @@
         </div>
         <div class="course-body">
           <div class="badge-row">
+            <span class="badge badge-follow">Follow-Along</span>
             <span class="badge badge-build">Build / Pro</span>
           </div>
           <p class="course-desc">Turn static dashboards into interactive experiences. Cover containers, modals, popovers, tabbed layouts, and action sequences — the building blocks of Sigma app building.</p>
@@ -326,7 +330,7 @@
       </div>
 
       <!-- 5: Sigma Navigation -->
-      <div class="course-card" data-tags="view-act-analyze">
+      <div class="course-card" data-tags="view-act-analyze follow-along">
         <div class="course-thumb theme-light">
           <div class="course-thumb-inner">
             <div class="thumb-title">Sigma Navigation</div>
@@ -335,6 +339,7 @@
         </div>
         <div class="course-body">
           <div class="badge-row">
+            <span class="badge badge-follow">Follow-Along</span>
             <span class="badge badge-nav">View / Act / Analyze</span>
           </div>
           <p class="course-desc">For View, Act, or Analyze license holders new to Sigma. Learn to navigate the interface, use controls and filters, and get more out of the dashboards you already have.</p>
@@ -347,7 +352,7 @@
       </div>
 
       <!-- 6: Admin Overview -->
-      <div class="course-card" data-tags="admin">
+      <div class="course-card" data-tags="admin follow-along">
         <div class="course-thumb theme-dark">
           <div class="course-thumb-inner">
             <div class="thumb-title">Admin Overview</div>
@@ -356,6 +361,7 @@
         </div>
         <div class="course-body">
           <div class="badge-row">
+            <span class="badge badge-follow">Follow-Along</span>
             <span class="badge badge-admin">Admin</span>
           </div>
           <p class="course-desc">An introduction to the essential administrative features in Sigma — settings, authentication, connections, account types, and managing version tags and exports.</p>
@@ -390,7 +396,7 @@
       </div>
 
       <!-- 8: AI & Agents Overview -->
-      <div class="course-card" data-tags="build-pro new">
+      <div class="course-card" data-tags="build-pro follow-along">
         <div class="course-thumb theme-violet">
           <div class="course-thumb-inner">
             <div class="thumb-title">AI &amp; Agents Overview</div>
@@ -399,7 +405,7 @@
         </div>
         <div class="course-body">
           <div class="badge-row">
-            <span class="badge badge-new">New</span>
+            <span class="badge badge-follow">Follow-Along</span>
             <span class="badge badge-build">Build / Pro</span>
           </div>
           <p class="course-desc">An introduction to Sigma's AI features — from the formula assistant and Sigma Assistant to running AI queries and building agentic chat experiences.</p>
@@ -412,7 +418,7 @@
       </div>
 
       <!-- 9: App Building Intro -->
-      <div class="course-card" data-tags="hands-on build-pro new">
+      <div class="course-card" data-tags="lab build-pro new">
         <div class="course-thumb theme-dark">
           <div class="course-thumb-inner">
             <div class="thumb-title">App Building Intro</div>
@@ -422,7 +428,7 @@
         <div class="course-body">
           <div class="badge-row">
             <span class="badge badge-new">New</span>
-            <span class="badge badge-lab">Hands-on</span>
+            <span class="badge badge-lab">Lab</span>
             <span class="badge badge-build">Build / Pro</span>
           </div>
           <p class="course-desc">A fast-paced hands-on session introducing input tables, forms, modals, and actions using a simple app use case. Prerequisite: Build Fundamentals.</p>
@@ -435,7 +441,7 @@
       </div>
 
       <!-- 10: Actions -->
-      <div class="course-card" data-tags="hands-on build-pro new">
+      <div class="course-card" data-tags="lab build-pro new">
         <div class="course-thumb theme-teal">
           <div class="course-thumb-inner">
             <div class="thumb-title">Actions</div>
@@ -445,7 +451,7 @@
         <div class="course-body">
           <div class="badge-row">
             <span class="badge badge-new">New</span>
-            <span class="badge badge-lab">Hands-on</span>
+            <span class="badge badge-lab">Lab</span>
             <span class="badge badge-build">Build / Pro</span>
           </div>
           <p class="course-desc">A fast-paced single session lab focused on getting the most out of actions as you build your Sigma apps. Prerequisite: Build Fundamentals.</p>
